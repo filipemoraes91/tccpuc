@@ -1,0 +1,26 @@
+import React from "react";
+import { Stack } from "@mui/material";
+
+export function StackCenter(props) {
+    return (<Stack
+        // direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+    >
+        {props.children}
+    </Stack>
+    )
+}
+
+export function StackJustify(props) {
+    return (<Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        spacing={2}
+    >
+        {props.children}
+    </Stack>
+    )
+}
