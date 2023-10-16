@@ -24,8 +24,8 @@ export function ContainerPages(props) {
 
 export function ContainerLogin(props) {
     return (<Container maxWidth="xxl" style={{
-        backgroundColor: '#0c0c0c',
-        backgroundImage: 'linear-gradient(0deg, #0c0c0c 0%, #e8e0f1 100%)',        
+        backgroundColor: '#fff',
+        // backgroundImage: 'linear-gradient(0deg, #0c0c0c 0%, #e8e0f1 100%)',        
         height: '100vh',
         position: 'absolute',
         padding: '0'

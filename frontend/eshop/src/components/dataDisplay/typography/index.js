@@ -8,7 +8,7 @@ function TGDefault(props) {
 }
 
 export function TGLogin() {
-    return <TGDefault variant="h4" text="Login" />
+    return <TGDefault variant="h4" text="Login" color='#000' />
 }
 
 export function TGMenuDivider(props) {
@@ -17,4 +17,8 @@ export function TGMenuDivider(props) {
 
 export function TGPageTitle(props) {
     return <TGDefault variant="h6" component="div" sx={{ flexGrow: 1 }} text={props.text} color='#f0f0f0' />
+}
+
+export function TGMedio(props) {
+    return <TGDefault variant="button" component="div" sx={{ flexGrow: 1 }} text={props.text} color='#000' />
 }

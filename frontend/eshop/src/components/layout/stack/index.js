@@ -3,7 +3,6 @@ import { Stack } from "@mui/material";
 
 export function StackCenter(props) {
     return (<Stack
-        // direction="row"
         justifyContent="center"
         alignItems="center"
         spacing={2}

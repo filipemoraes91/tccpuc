@@ -16,3 +16,7 @@ export function BtnVoltar(props) {
 export function BtnNovo(props) {
     return <BtnDefault text="Novo" onClick={props.onClick} color="success"/>
 }
+
+export function BtnCadastrar(props) {
+    return <BtnDefault text="Cadastrar-se" onClick={props.onClick} color="info"/>
+}
