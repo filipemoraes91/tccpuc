@@ -8,10 +8,10 @@ import { BtnNovo, BtnVoltar } from '../../inputs/button';
 export default function ToolBarPages(props) {
     return (
         <Paper elevation={1}>
-            <Box sx={{ backgroundColor: '#3e3e3e', borderRadius: '5px', padding: '5px' }}>
+            <Box sx={{ backgroundColor: '#e9e9e9', borderRadius: '5px', padding: '5px' }}>
                 <StackJustify>
                     <TGPageTitle text={props.title} />
-                    <Box>
+                    <Box style={{display: props.btnVisible}}>
                         <StackJustify>
                             <BtnNovo />
                             <BtnVoltar />

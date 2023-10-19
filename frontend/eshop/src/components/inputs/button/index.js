@@ -20,3 +20,7 @@ export function BtnNovo(props) {
 export function BtnCadastrar(props) {
     return <BtnDefault text="Cadastrar-se" onClick={props.onClick} color="info"/>
 }
+
+export function BtnSalvar(props) {
+    return <BtnDefault text="Salvar" onClick={props.onClick} color="success"/>
+}

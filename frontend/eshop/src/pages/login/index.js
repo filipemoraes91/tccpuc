@@ -10,6 +10,10 @@ import { LogoM } from "../../images";
 
 export default function Login() {
     const [logar] = useAuth();
+    
+    function cadClientes() {
+        window.location.href = '/cadastrar'
+    }
 
     return (
         <StackCenter>
@@ -20,8 +24,8 @@ export default function Login() {
             <TFUser />
             <TFPassword />
             <BtnLogin onClick={() => logar({ usuario: 'filipe', senha: '123' })} />
-            <TGMedio text='Não é cadastado?'/>
-            <BtnCadastrar />
+            <TGMedio text='Não é cadastrado?'/>
+            <BtnCadastrar onClick={() => cadClientes()} />
         </StackCenter>
     )
 }
