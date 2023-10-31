@@ -53,36 +53,5 @@ export default function CadUser() {
         </Container>
       </form>
     </div>
-    // <form onSubmit={handleSubmit}>
-    //   <TextField
-    //     label="Nome"
-    //     name="nome"
-    //     value={user.nome}
-    //     onChange={handleInputChange}
-    //     fullWidth
-    //     margin="normal"
-    //   />
-    //   <TextField
-    //     label="Email"
-    //     name="email"
-    //     type="email"
-    //     value={user.email}
-    //     onChange={handleInputChange}
-    //     fullWidth
-    //     margin="normal"
-    //   />
-    //   <TextField
-    //     label="Senha"
-    //     name="senha"
-    //     type="password"
-    //     value={user.senha}
-    //     onChange={handleInputChange}
-    //     fullWidth
-    //     margin="normal"
-    //   />
-    //   <Button type="submit" variant="contained" color="primary">
-    //     Cadastrar
-    //   </Button>
-    // </form>
   );
 };

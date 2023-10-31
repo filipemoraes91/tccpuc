@@ -1,7 +1,6 @@
 const pessoasModel = require('../models/pessoasModel');
 
 const getAll = async(req, res) => {
-    console.log('akiaki')
     const [pessoas] = await pessoasModel.getAll();
     return res.status(200).json(pessoas);
 };

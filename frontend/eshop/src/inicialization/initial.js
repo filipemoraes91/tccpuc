@@ -12,3 +12,10 @@ export let iniUser = {
     email: '',
     senha: '',
   }
+
+export let iniProdutos = {
+    nome: '',
+    descricao: '',
+    preco: 0,
+    estoque: 0
+}
