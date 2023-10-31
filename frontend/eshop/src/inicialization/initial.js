@@ -1,24 +1,14 @@
-export let iniUsuario = {
-    login_usu : '',
-    senha_usu : '',
-    cod_pfl : '',
-    cod_pess: ''
-}
-
 export let iniPessoa = {
-    id: 0,
-    nome: '',
-    sobrenome: '',
-    cpf: '',
-    endereco: {
-        municipio: '',
-        uf: '',
-        rua: '',
-        numero: '',
-        bairro: ''
-    },
-    telefone: '',
-    usuario: '',
-    senha: ''
+    cod_pess: 0,
+    nom_pess: '',
+    cpfcnpj_pess: '',
+    email_pess: '',
+    senha_pess: '',
+    cod_pfl : '1'
 }
 
+export let iniUser = {
+    nome: '',
+    email: '',
+    senha: '',
+  }

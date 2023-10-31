@@ -1,52 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { ContainerPages } from "../../components/layout/container";
-import { Divider, Grid, Paper } from "@mui/material";
-import ToolBarPages from "../../components/surfaces/toolBar";
-import usePessoas from "../../hooks/usePessoas";
-import { TFDefault } from "../../components/inputs/textField";
-import { StackCenter, StackJustify } from "../../components/layout/stack";
-import { BtnCadastrar, BtnSalvar } from "../../components/inputs/button";
-import { TGMenuDivider } from "../../components/dataDisplay/typography";
-import useUsuarios from "../../hooks/useUsuarios";
-import { iniUsuario } from "../../inicialization/initial";
+import React, { useState } from 'react';
+import { Container, Typography, Paper, Box, Grid } from '@mui/material';
+import { iniUser } from '../../inicialization/initial';
+import { LogoM } from '../../images';
+import { TFPassword, TFUser } from '../../components/inputs/textField';
+import { BtnCadastrar } from '../../components/inputs/button';
 
 export default function CadUser() {
-    const { postUsuarios } = useUsuarios();
-    const [usuario, setUsuario] = useState(iniUsuario);
+  const [user, setUser] = useState(iniUser);
 
-    const onChange = (event) => {
-        setUsuario((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
-    }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
 
-    return (
-        <ContainerPages >
-            {/* <ToolBarPages title='Criar Conta' btnVisible='none' /> */}
-            <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '15px' }}>
-                {/* <br /> */}
-                <Divider textAlign="left"><TGMenuDivider text='Dados do Usuário' /></Divider>
-                <StackJustify>
-                    <TFDefault fullWidth={true} name='login_usu' label='Usuário' onChange={onChange} />
-                    <TFDefault fullWidth={true} name='senha_usu' label='Senha' type='password' onChange={onChange}/>
-                </StackJustify>
-                <br />
-                <StackJustify>
-                    <TFDefault fullWidth={true} name='nom_pess' label='Nome' onChange={onChange}/>
-                    <TFDefault fullWidth={true} name='sobrenome_pess' label='Sobrenome' onChange={onChange}/>
-                </StackJustify>
-                <br />
-                <StackJustify>
-                    <TFDefault fullWidth={true} name='email_pess' label='Email' onChange={onChange}/>
-                    <TFDefault fullWidth={true} name='cpfcnpj_pess' label='CPF/CNPJ' onChange={onChange}/>
-                </StackJustify>
-                <br />
-                <br />
-                <BtnSalvar onClick={() => postUsuarios(usuario)}/>
-            </Paper>
-        </ContainerPages>
-    )
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(user);
+  };
+
+  return (
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <Container component="main" maxWidth="xs">
+          <Paper elevation={3}>
+            <Box p={2} style={{ background: 'black', padding: '10px', borderRadius: '5px' }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} align="center">
+                  <LogoM />
+                  <Typography variant="h5">Novo Cadastro</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
+                    <TFUser value={user.email}
+                      onChange={handleInputChange}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
+                    <TFPassword value={user.senha}
+                      onChange={handleInputChange}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <BtnCadastrar />
+                </Grid>
+              </Grid>
+            </Box>
+          </Paper>
+        </Container>
+      </form>
+    </div>
+    // <form onSubmit={handleSubmit}>
+    //   <TextField
+    //     label="Nome"
+    //     name="nome"
+    //     value={user.nome}
+    //     onChange={handleInputChange}
+    //     fullWidth
+    //     margin="normal"
+    //   />
+    //   <TextField
+    //     label="Email"
+    //     name="email"
+    //     type="email"
+    //     value={user.email}
+    //     onChange={handleInputChange}
+    //     fullWidth
+    //     margin="normal"
+    //   />
+    //   <TextField
+    //     label="Senha"
+    //     name="senha"
+    //     type="password"
+    //     value={user.senha}
+    //     onChange={handleInputChange}
+    //     fullWidth
+    //     margin="normal"
+    //   />
+    //   <Button type="submit" variant="contained" color="primary">
+    //     Cadastrar
+    //   </Button>
+    // </form>
+  );
+};

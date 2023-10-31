@@ -12,7 +12,7 @@ export function TGLogin() {
 }
 
 export function TGMenuDivider(props) {
-    return <TGDefault variant="overline" text={props.text} color='#5e5e5e' fontSize='large' />
+    return <TGDefault variant="overline" text={props.text} color='#5e5e5e' />
 }
 
 export function TGPageTitle(props) {

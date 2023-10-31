@@ -7,7 +7,7 @@ const getAll = async(req, res) => {
 };
 
 const addPessoa = async(req, res) => {
-    const addPessoa = await pessoasModel.ddPessoa(req.body);
+    const addPessoa = await pessoasModel.addPessoa(req.body);
     return res.status(201).json({"message" : addPessoa});
 }
 module.exports = {

@@ -6,9 +6,9 @@ const getAll = async () => {
     return pessoas;
 }
 const addPessoa = async(pessoa) => {
-    const {nome, cpfcnpj, endereco, num, cidade, estado, telefone} = pessoa;
-    const qry = 'INSERT INTO PESSOAS (nome, cpfcnpj, endereco, num, cidade, estado, telefone) values (?, ?, ?, ?, ?, ?, ?)';
-    const addPessoa =  await connection.execute(qry,[nome, cpfcnpj, endereco, num, cidade, estado, telefone]);
+    const {nom_pess, cpfcnpj_pess, email_pess, senha_pess, cod_pfl} = pessoa;
+    const qry = 'INSERT INTO PESSOAS (nom_pess, cpfcnpj_pess, email_pess, senha_pess, cod_pfl) values (?, ?, ?, ?, ?)';
+    const addPessoa =  await connection.execute(qry,[nom_pess, cpfcnpj_pess, email_pess, senha_pess, cod_pfl]);
     return addPessoa;
 }
 

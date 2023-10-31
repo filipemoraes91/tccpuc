@@ -18,15 +18,28 @@ const usePessoas = () => {
     setPessoas(response.data);
   }
 
-  useEffect(() => {
-    getPessoas();
-    console.log(pessoas)
-  }, [])
+  async function postPessoas(pessoas) {
+    console.log(pessoas);
+    const response = await axios({
+      method: 'post',
+      url: '/pessoas',
+      headers: {
+        config
+      },
+      data: pessoas,
+    });
+    alert(response.data);
+  }
+
+  // useEffect(() => {
+  //   getPessoas();
+  //   console.log(pessoas)
+  // }, [])
 
 
 
 
-  return { pessoas };
+  return { pessoas, postPessoas };
 }
 
 export default usePessoas;

@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(241, 241, 241);
+  }
+  
+  form {
+    text-align: center;
+  }
+  
+
+  

@@ -8,9 +8,9 @@ export function TFDefault(props) {
 }
 
 export function TFUser(props) {
-    return <TFDefault id="user" name="user" type='text' value={props.value} label="Usuário" color="secondary"/>
+    return <TFDefault id="email" name="email" type='email' value={props.value} label="Usuário" color="secondary" fullWidth={true} onChange={props.onChange}/>
 }
 
 export function TFPassword(props) {
-    return <TFDefault id="senha" name="senha" type="Password" value={props.value} label="Senha"/>
+    return <TFDefault id="senha" name="senha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange}/>
 }
