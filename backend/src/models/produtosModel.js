@@ -6,15 +6,15 @@ const getAll = async () => {
     );
     return produtos;
 }
-const addProduto = async(produto) => {
-    const {nome, descricao, preco, estoque} = produto;
+
+const addProduto = async (produto) => {
+    const { nome, descricao, preco, estoque } = produto;
     const qry = 'INSERT INTO PRODUTOS (nome, descricao, preco, estoque) values (?, ?, ?, ?)';
-    console.log(qry);
-    const addProduto =  await connection.execute(qry,[nome, descricao, preco, estoque]);
+    const addProduto = await connection.execute(qry, [nome, descricao, preco, estoque]);
     return addProduto;
 }
 
-module.exports ={
+module.exports = {
     getAll,
     addProduto
 }

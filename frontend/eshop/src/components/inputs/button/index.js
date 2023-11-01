@@ -22,5 +22,9 @@ export function BtnCadastrar(props) {
 }
 
 export function BtnSalvar(props) {
-    return <BtnDefault text="Salvar" onClick={props.onClick} color="success"/>
+    return <BtnDefault text="Salvar" onClick={props.onClick} color="success" type="submit" />
+}
+
+export function BtnCancelar(props) {
+    return <BtnDefault text="Cancelar" onClick={props.onClick} color='warning'/>
 }

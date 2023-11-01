@@ -23,3 +23,15 @@ export function StackJustify(props) {
     </Stack>
     )
 }
+
+export function StackRight(props) {
+    return (<Stack
+        direction="col"
+        justifyContent="end"
+        alignItems="end"
+        spacing={2}
+    >
+        {props.children}
+    </Stack>
+    )
+}

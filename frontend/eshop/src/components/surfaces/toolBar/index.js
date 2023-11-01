@@ -11,9 +11,9 @@ export default function ToolBarPages(props) {
             <Box sx={{ backgroundColor: '#e9e9e9', borderRadius: '5px', padding: '5px' }}>
                 <StackJustify>
                     <TGPageTitle text={props.title} />
-                    <Box style={{display: props.btnVisible}}>
+                    <Box style={{display: props.btnVisible ? '' : 'none'}}>
                         <StackJustify>
-                            <BtnNovo />
+                            <BtnNovo onClick={props.onClickNovo} />
                             <BtnVoltar />
                         </StackJustify>
                     </Box>
