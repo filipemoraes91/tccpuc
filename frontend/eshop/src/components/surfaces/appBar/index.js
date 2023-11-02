@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,6 +10,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import TemporaryDrawer from '../../navigation/drawer';
+import { Avatar, Button } from '@mui/material';
+import { getInfUser } from '../../../utils';
 
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
@@ -39,20 +42,30 @@ export default function MenuAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                eShop
+            eShop
           </Typography>
           {auth && (
             <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              {getInfUser() ?
+                <Avatar
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  {getInfUser().nome.slice(0, 1).toUpperCase()}
+                </Avatar> :
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle fontSize='larger' />
+                </IconButton>}
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -65,17 +78,22 @@ export default function MenuAppBar() {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
+                style={{ marginTop: '35px' }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                <MenuItem onClick={handleClose}>Login</MenuItem>
+                <MenuItem style={{ minWidth: '200px' }}>
+                  <Link to="/perfil" style={{ textDecoration: 'none', minWidth: '100%' }}>Perfil</Link>
+                </MenuItem>
+                <MenuItem >
+                  <Link to="/login" style={{ textDecoration: 'none', minWidth: '100%' }}>Login</Link>
+                </MenuItem>
               </Menu>
             </div>
           )}
         </Toolbar>
       </AppBar>
-      <TemporaryDrawer open={openMenu} onClose={() => setOpenMenu(false)}/>
+      <TemporaryDrawer open={openMenu} onClose={() => setOpenMenu(false)} />
     </Box>
   );
 }

@@ -13,7 +13,7 @@ const db = require('./conection');
 // }
 
 async function getUsuario(email, senha) {
-    const query = 'SELECT NOME, EMAIL FROM usuarios WHERE email = ? AND senha = ?';
+    const query = 'SELECT nome, email, id FROM usuarios WHERE email = ? AND senha = ?';
     const usuario = await db.execute(query,[email, senha]);
     return usuario;
     // console.log(query)

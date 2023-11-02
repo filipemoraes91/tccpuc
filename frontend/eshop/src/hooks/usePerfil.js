@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import axios from "../services/";
+import axios from "../services";
 // import useToken from "./useToken";
 
-const usePessoas = () => {
+const usePerfil = () => {
   // const { renovaToken } = useToken();
   const token = 'Bearer ' + sessionStorage.getItem('token_sac');
-  const [pessoas, setPessoas] = useState([]);
+  const [perfil, setPerfil] = useState([]);
 
 
   let config = {
@@ -13,33 +13,33 @@ const usePessoas = () => {
       'Access-Control-Allow-Origin': '*'  
     }
   };
-  async function getPessoas() {
-    const response = await axios.get('/pessoas', config);
-    setPessoas(response.data);
+  async function getPerfil() {
+    const response = await axios.get('/perfil', config);
+    setPerfil(response.data);
   }
 
-  async function postPessoas(pessoas) {
-    console.log(pessoas);
+  async function postPerfil(perfil) {
+    console.log(perfil);
     const response = await axios({
       method: 'post',
-      url: '/pessoas',
+      url: '/perfil',
       headers: {
         config
       },
-      data: pessoas,
+      data: perfil,
     });
     alert(response.data);
   }
 
   // useEffect(() => {
-  //   getPessoas();
-  //   console.log(pessoas)
+  //   getPerfil();
+  //   console.log(perfil)
   // }, [])
 
 
 
 
-  return { pessoas, postPessoas };
+  return { perfil, postPerfil };
 }
 
-export default usePessoas;
+export default usePerfil;

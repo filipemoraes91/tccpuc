@@ -3,20 +3,15 @@ import { ContainerPages } from "../../components/layout/container";
 import { Grid, Paper } from "@mui/material";
 import { CardCliente } from "../../components/surfaces/card";
 import ToolBarPages from "../../components/surfaces/toolBar";
-import usePessoas from "../../hooks/usePessoas";
+import usePerfil from "../../hooks/usePerfil";
 
-export default function Pessoas() {
-    const { pessoas } = usePessoas();
+export default function Perfil() {
+    const { perfil } = usePerfil();
 
 
-    function ListPessoas(pessoa, p) {
-        
-        return <h1>{pessoa.nome}</h1>
-    }
-
-    return (
+        return (
         <ContainerPages >
-            <ToolBarPages title='Cadastro de Clientes' />
+            <ToolBarPages title='Perfil' />
             <br />
             <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
                 <Grid container spacing={2}>
@@ -35,7 +30,6 @@ export default function Pessoas() {
                     <Grid item xs={12} md={6} lg={4}>
                         <CardCliente />
                     </Grid> */}
-                    {pessoas ? pessoas.map(ListPessoas) : 'Aguarde...'}
                 </Grid>
             </Paper>
         </ContainerPages>

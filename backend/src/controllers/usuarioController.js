@@ -14,7 +14,7 @@ const login = async (req, res) => {
 
     const token = auth.generateToken(usuario.id);
     
-    res.status(200).json({ auth: true, token, usuario: usuario  });
+    res.status(200).json({ auth: true, token, usuario: usuario[0]  });
   } catch (error) {
     res.status(500).json({ auth: false, message: 'Erro no servidor.' });
     console.log('erro server');
