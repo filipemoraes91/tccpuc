@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { BtnAddCart, BtnEditar, BtnOnFavotiro } from '../../inputs/button';
 
 export function CardCliente() {
     return (
@@ -32,6 +33,40 @@ export function CardCliente() {
             <CardActions>
                 <Button size="small">Bloquear</Button>
                 <Button size="small">Editar</Button>
+            </CardActions>
+
+        </Card >
+    );
+}
+
+export function CardProdutos(props) {
+    return (
+        <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+                <Box>
+                    <Typography variant="button" component="div" style={{ fontWeight: '600', fontSize: 18 }}>
+                        {props.nome}
+                    </Typography>
+                    <Typography variant="body2">
+                        {props.descricao}
+                        <br />
+                        {props.preco}
+                        <br />
+                        {props.estoque}
+                        <br />
+                        {props.categoria}
+                    </Typography>
+                </Box>
+            </CardContent>
+            <CardActions>
+                {props.tipo === 'cadastro' ?
+                    <BtnEditar />
+                    :
+                    <>
+                        <BtnAddCart />
+                        <BtnOnFavotiro />
+                    </>
+                }
             </CardActions>
 
         </Card >

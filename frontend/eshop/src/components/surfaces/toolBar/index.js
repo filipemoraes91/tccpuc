@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Button, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import { StackJustify } from '../../layout/stack';
 import { TGPageTitle } from '../../dataDisplay/typography';
-import { BtnNovo, BtnVoltar } from '../../inputs/button';
+import { BtnNovo } from '../../inputs/button';
 
 export default function ToolBarPages(props) {
     return (
@@ -14,7 +14,6 @@ export default function ToolBarPages(props) {
                     <Box style={{display: props.btnVisible ? '' : 'none'}}>
                         <StackJustify>
                             <BtnNovo onClick={props.onClickNovo} />
-                            <BtnVoltar />
                         </StackJustify>
                     </Box>
                 </StackJustify>

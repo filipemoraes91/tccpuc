@@ -14,7 +14,7 @@ export function StackCenter(props) {
 
 export function StackJustify(props) {
     return (<Stack
-        direction="row"
+        direction={props.direction ? props.direction : "row"}
         justifyContent="space-between"
         alignItems="center"
         spacing={2}
@@ -26,7 +26,7 @@ export function StackJustify(props) {
 
 export function StackRight(props) {
     return (<Stack
-        direction="col"
+        direction="row"
         justifyContent="end"
         alignItems="end"
         spacing={2}
