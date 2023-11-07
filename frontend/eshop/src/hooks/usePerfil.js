@@ -22,7 +22,7 @@ const usePerfil = () => {
     console.log(perfil);
     const response = await axios({
       method: 'post',
-      url: '/perfil',
+      url: '/endereco',
       headers: {
         config
       },

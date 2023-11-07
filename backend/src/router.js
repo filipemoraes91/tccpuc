@@ -2,6 +2,7 @@ const express = require('express');
 const auth = require('./auth');
 const usuarioController = require('./controllers/usuarioController');
 const pessoasContrl = require('./controllers/pessoasController');
+const enderecoContrl = require('./controllers/enderecoController');
 const produtosContrl = require('./controllers/produtosController');
 
 
@@ -9,6 +10,9 @@ const router = express.Router();
 
 router.get('/pessoas', pessoasContrl.getAll);
 router.post('/pessoas', pessoasContrl.addPessoa);
+
+router.get('/endereco', enderecoContrl.getAll);
+router.post('/endereco', enderecoContrl.addEndereco);
 
 router.get('/produtos', produtosContrl.getAll);
 router.post('/produtos', produtosContrl.addProduto);
