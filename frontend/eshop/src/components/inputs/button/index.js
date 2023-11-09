@@ -1,6 +1,7 @@
-import { Button, IconButton } from "@mui/material";
+import { Badge, Button, IconButton } from "@mui/material";
 import React from "react";
-import { IconAddCar, IconCadEditar, IconCadNovo, IconOffFavorito } from "../../dataDisplay/icons";
+import { IconAddCar, IconCadEditar, IconCadNovo, IconOffFavorito, ShoppingCart, IconDelete } from "../../dataDisplay/icons";
+
 
 
 function BtnDefault(props) {
@@ -49,5 +50,19 @@ export function BtnAddCart(props) {
 export function BtnOnFavotiro(props) {
     return <IconButton aria-label="favorito" onClick={props.onClick} color='error'>
         <IconOffFavorito />
+    </IconButton>
+}
+
+export function BtnDelete(props) {
+    return <IconButton aria-label="delete" onClick={props.onClick} color='error'>
+        <IconDelete />
+    </IconButton>
+}
+
+export function BtnShopCart(props) {
+    return <IconButton aria-label="carrinho" onClick={props.onClick} color='inherit'>
+        <Badge badgeContent={props.itens} color="warning">
+            <ShoppingCart />
+        </Badge>
     </IconButton>
 }

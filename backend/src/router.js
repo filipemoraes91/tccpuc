@@ -4,12 +4,17 @@ const usuarioController = require('./controllers/usuarioController');
 const pessoasContrl = require('./controllers/pessoasController');
 const enderecoContrl = require('./controllers/enderecoController');
 const produtosContrl = require('./controllers/produtosController');
+const carrinhoContrl = require('./controllers/carrinhoController');
 
 
 const router = express.Router();
 
 router.get('/pessoas', pessoasContrl.getAll);
 router.post('/pessoas', pessoasContrl.addPessoa);
+
+router.get('/carrinho', carrinhoContrl.getAll);
+router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
+router.post('/carrinho', carrinhoContrl.addItensCarrinho);
 
 router.get('/endereco', enderecoContrl.getAll);
 router.post('/endereco', enderecoContrl.addEndereco);

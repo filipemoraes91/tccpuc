@@ -16,3 +16,7 @@ export function TFUser(props) {
 export function TFPassword(props) {
     return <TFDefault id="senha" name="senha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange}/>
 }
+
+export function TFQtde(props) {
+    return <input  id="qtde" name="qtde" type="number" min="1" value={props.value} label="Qtde"  onChange={props.onChange} style={{width: '50px', borderRadius: '5px', height: '18px'}}/>
+}

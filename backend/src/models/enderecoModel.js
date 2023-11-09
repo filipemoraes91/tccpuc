@@ -3,7 +3,7 @@ const getAll = async () => {
     const endereco = await connection.execute(
         'SELECT * FROM ENDERECO'
     );
-    return pessoas;
+    return endereco;
 }
 
 const addEndereco = async (endereco) => {

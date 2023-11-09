@@ -23,7 +23,7 @@ export let iniProdutos = {
 }
 
 export let iniEndereco = {
-    UsuarioID: getInfUser().id,
+    UsuarioID: getInfUser() ? getInfUser().id : 0,
     Rua: '',
     Numero: 0,
     UF: '',

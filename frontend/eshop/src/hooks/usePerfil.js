@@ -31,15 +31,7 @@ const usePerfil = () => {
     alert(response.data);
   }
 
-  // useEffect(() => {
-  //   getPerfil();
-  //   console.log(perfil)
-  // }, [])
-
-
-
-
-  return { perfil, postPerfil };
+    return { perfil, postPerfil };
 }
 
 export default usePerfil;

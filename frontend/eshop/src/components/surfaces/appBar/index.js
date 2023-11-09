@@ -10,14 +10,20 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import TemporaryDrawer from '../../navigation/drawer';
-import { Avatar, Button } from '@mui/material';
-import { getInfUser } from '../../../utils';
+import { Avatar } from '@mui/material';
+import { Logoff, getInfUser } from '../../../utils';
+import { StackJustify } from '../../layout/stack';
+import { BtnShopCart } from '../../inputs/button';
+import useCarrinho from '../../../hooks/useCarrinho';
 
 export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openMenu, setOpenMenu] = React.useState(false);
+  const { getQtdeItens, qtdeItens } = useCarrinho();
 
+  React.useEffect(() => {
+    getQtdeItens();
+  }, [])
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,6 +32,55 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  function MenuUser() {
+    if (getInfUser()) {
+      return <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        style={{ marginTop: '35px' }}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem style={{ minWidth: '200px' }}>
+          <Link to="/perfil" style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }}>Perfil</Link>
+        </MenuItem>
+        <MenuItem style={{ minWidth: '200px' }}>
+          <Link to="/home" style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }} onClick={() => Logoff()}>Sair</Link>
+        </MenuItem>
+      </Menu>
+    } else {
+      return <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        style={{ marginTop: '35px' }}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem >
+          <Link to="/login" style={{ textDecoration: 'none', minWidth: '100%' }}>Login</Link>
+        </MenuItem>
+      </Menu>
+    }
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -44,53 +99,33 @@ export default function MenuAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             eShop
           </Typography>
-          {auth && (
-            <div>
-              {getInfUser() ?
-                <Avatar
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  {getInfUser().nome.slice(0, 1).toUpperCase()}
-                </Avatar> :
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle fontSize='larger' />
-                </IconButton>}
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                style={{ marginTop: '35px' }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
+          {getInfUser() ?
+            <StackJustify>
+              <Link to="/carrinho" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <BtnShopCart itens={qtdeItens} />
+              </Link>
+              <Avatar
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
               >
-                <MenuItem style={{ minWidth: '200px' }}>
-                  <Link to="/perfil" style={{ textDecoration: 'none', minWidth: '100%' }}>Perfil</Link>
-                </MenuItem>
-                <MenuItem >
-                  <Link to="/login" style={{ textDecoration: 'none', minWidth: '100%' }}>Login</Link>
-                </MenuItem>
-              </Menu>
-            </div>
-          )}
+                {getInfUser().nome.slice(0, 1).toUpperCase()}
+              </Avatar>
+            </StackJustify>
+            :
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle fontSize='larger' />
+            </IconButton>}
+          <MenuUser />
         </Toolbar>
       </AppBar>
       <TemporaryDrawer open={openMenu} onClose={() => setOpenMenu(false)} />

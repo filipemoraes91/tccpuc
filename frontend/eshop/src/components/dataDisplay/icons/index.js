@@ -9,6 +9,8 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export function IconHome() {
     return <HomeIcon />
@@ -39,7 +41,7 @@ export function IconAddCar() {
 }
 
 export function IconDelete() {
-    return <DeleteForeverIcon />
+    return <DeleteIcon />
 }
 
 export function IconOnFavorito() {
@@ -49,3 +51,9 @@ export function IconOnFavorito() {
 export function IconOffFavorito() {
     return <FavoriteBorderIcon />
 }
+
+export function ShoppingCart() {
+    return <LocalGroceryStoreIcon />
+}
+
+    

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { ContainerPages } from "../../components/layout/container";
 import { Box, Grid, Paper } from "@mui/material";
-import { iniProdutos } from "../../inicialization/initial";
 import useProdutos from "../../hooks/useProdutos";
 import { CardProdutos } from "../../components/surfaces/card";
+import useCarrinho from "../../hooks/useCarrinho";
 
 export default function Produtos() {
     const { produtos } = useProdutos();
+    const { postItemCarrinho } = useCarrinho()
 
     function ListProdutos(produto, p) {
         return <Grid key={p} item xs={12} md={4} lg={3}>
@@ -16,6 +17,7 @@ export default function Produtos() {
                 preco={produto.Preco}
                 estoque={produto.Estoque}
                 categoria={produto.CategoriaID}
+                addCarrinho={() => postItemCarrinho(produto)}
             />
         </Grid>
 
