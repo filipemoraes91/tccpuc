@@ -20,7 +20,7 @@ export default function CadProdutos() {
 
 
     useEffect(() => {
-        if (produto && !isLoading)
+        if (produto && !isLoading && prod.ID === 0)
             setProd(produto);
     }, [isLoading])
 
@@ -28,9 +28,9 @@ export default function CadProdutos() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (name === 'preco') {
-            setProd({ ...produto, [name]: value.replace(",", ".") });
+            setProd({ ...prod, [name]: value.replace(",", ".") });
         } else {
-            setProd({ ...produto, [name]: value });
+            setProd({ ...prod, [name]: value });
         }
     };
 

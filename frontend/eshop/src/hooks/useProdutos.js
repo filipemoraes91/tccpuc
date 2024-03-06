@@ -22,10 +22,10 @@ const useProdutos = () => {
     try {
       const response = await api.put('/produtos/editar/:id', produto);
       alert(response.data.message);
+      window.location.href = '/produtos'
     } catch (err) {
       alert(err.response.data.message);
     }
-    window.location.href = '/produtos'
   };
 
   const getProdutos = async () => {
