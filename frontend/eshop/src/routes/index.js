@@ -3,8 +3,9 @@ import Login from "../pages/login";
 import Home from "../pages/home";
 import Pefil from "../pages/perfil";
 import CadUser from "../pages/user";
-import Produtos from "../pages/produtos";
 import Carrinho from "../pages/carrinho";
+import Produtos from "../pages/produtos/lista";
+import CadProdutos from "../pages/produtos/form";
 
 export default function RoutesApp() {
   return (
@@ -16,6 +17,8 @@ export default function RoutesApp() {
         <Route path="/home" element={<Home />} />
         <Route path="/perfil" element={<Pefil />} />
         <Route path="/produtos" element={<Produtos />} />
+        <Route path="/produtos/editar/:id" element={<CadProdutos />} />
+        <Route path="/produtos/novo" element={<CadProdutos />} />
         <Route path="/carrinho" element={<Carrinho />} />
       </Routes>
     </BrowserRouter>

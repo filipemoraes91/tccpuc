@@ -15,12 +15,15 @@ router.post('/pessoas', pessoasContrl.addPessoa);
 router.get('/carrinho', carrinhoContrl.getAll);
 router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
 router.post('/carrinho', carrinhoContrl.addItensCarrinho);
+router.delete('/carrinho', carrinhoContrl.removeItensCarrinho);
 
 router.get('/endereco', enderecoContrl.getAll);
 router.post('/endereco', enderecoContrl.addEndereco);
 
 router.get('/produtos', produtosContrl.getAll);
 router.post('/produtos', produtosContrl.addProduto);
+router.get('/produtos/editar/:id', produtosContrl.getProduto);
+router.put('/produtos/editar/:id', produtosContrl.putProduto);
 
 router.post('/login', usuarioController.login);
 

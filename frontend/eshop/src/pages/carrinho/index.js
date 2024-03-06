@@ -7,7 +7,7 @@ import useCarrinho from "../../hooks/useCarrinho";
 
 export default function Produtos() {
     const { produtos } = useProdutos();
-    const { getItens, itens } = useCarrinho();
+    const { getItens, deleteItens, itens } = useCarrinho();
 
     useEffect(() => {
         getItens()
@@ -21,6 +21,7 @@ export default function Produtos() {
             estoque={item.Estoque}
             categoria={item.CategoriaID}
             qtde={item.Quantidade}
+            onClickDelete={() => deleteItens(item.ID)}
         />
 
     }

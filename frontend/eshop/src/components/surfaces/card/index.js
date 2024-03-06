@@ -53,7 +53,7 @@ export function CardProdutos(props) {
                     <Typography variant="body2">
                         {props.descricao}
                         <br />
-                        {props.preco}
+                        R$ {props.preco}
                         <br />
                         {props.estoque}
                         <br />
@@ -63,7 +63,7 @@ export function CardProdutos(props) {
             </CardContent>
             <CardActions>
                 {props.tipo === 'cadastro' ?
-                    <BtnEditar />
+                    <BtnEditar to={`/produtos/editar/${props.id}`} />
                     :
                     <>
                         <BtnAddCart onClick={props.addCarrinho} />
@@ -97,7 +97,7 @@ export function CardItemCar(props) {
                     </Box>
                     <Box>
                         <TFQtde value={props.qtde} />
-                        <BtnDelete />
+                        <BtnDelete onClick={props.onClickDelete} />
                     </Box>
                 </StackJustify>
 

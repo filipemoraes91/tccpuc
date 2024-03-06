@@ -42,8 +42,21 @@ const useCarrinho = () => {
     // }
   };
 
+  const deleteItens = async (ID) => {
+    try {
+      setIsLoading(true);
+      console.log(ID)
+      let data = { ID: ID }
+      const response = await api.delete('/carrinho', data);
+      setIsLoading(false);
+      alert(response.data)
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+  };
 
-  return { postItemCarrinho, getQtdeItens, getItens, qtdeItens, itens, isLoading, error };
+
+  return { postItemCarrinho, getQtdeItens, deleteItens, getItens, qtdeItens, itens, isLoading, error };
 };
 
 export default useCarrinho;

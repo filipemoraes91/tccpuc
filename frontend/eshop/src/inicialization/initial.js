@@ -16,10 +16,11 @@ export let iniUser = {
 }
 
 export let iniProdutos = {
-    nome: '',
-    descricao: '',
-    preco: 0,
-    estoque: 0
+    ID: 0,
+    Nome: '',
+    Descricao: '',
+    Preco: 0,
+    Estoque: 0
 }
 
 export let iniEndereco = {

@@ -13,7 +13,7 @@ import { TGMenuDivider } from '../../dataDisplay/typography';
 
 function ItemMenu(props) {
     function direct() {
-        window.location.href = `\ ${props.text}`;
+        window.location.href = `/${props.text}`;
     }
 
     return (
@@ -38,11 +38,11 @@ export default function TemporaryDrawer(props) {
             <Box sx={{ minWidth: 200, bgcolor: 'background.paper' }}>
                 <List>
                     <ItemMenu icon={<IconHome />} text='Home' />
-                    <Divider textAlign="left"><TGMenuDivider text='Cadastros'/></Divider>
+                    <Divider textAlign="left"><TGMenuDivider text='Cadastros' /></Divider>
                     <ItemMenu icon={<IconCadClientes />} text='Clientes' />
                     <ItemMenu icon={<IconCadProdutos />} text='Produtos' />
                     <ItemMenu icon={<IconCadUsuarios />} text='Usuários' />
-                    <Divider textAlign="left"><TGMenuDivider text='Sessões'/></Divider>
+                    <Divider textAlign="left"><TGMenuDivider text='Sessões' /></Divider>
                 </List>
             </Box>
         </Drawer>

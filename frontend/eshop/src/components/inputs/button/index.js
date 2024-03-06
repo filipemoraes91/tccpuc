@@ -1,6 +1,7 @@
 import { Badge, Button, IconButton } from "@mui/material";
 import React from "react";
 import { IconAddCar, IconCadEditar, IconCadNovo, IconOffFavorito, ShoppingCart, IconDelete } from "../../dataDisplay/icons";
+import { Link } from "react-router-dom";
 
 
 
@@ -38,7 +39,8 @@ export function BtnCancelar(props) {
 }
 
 export function BtnEditar(props) {
-    return <BtnDefault text="Editar" startIcon={<IconCadEditar />} onClick={props.onClick} color='info' size="small" />
+    return <Link to={props.to}><BtnDefault text="Editar" startIcon={<IconCadEditar />} color='info' size="small" /></Link>
+
 }
 
 export function BtnAddCart(props) {
