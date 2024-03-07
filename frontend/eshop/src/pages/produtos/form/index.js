@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ContainerPages } from "../../../components/layout/container";
 import ToolBarPages from "../../../components/surfaces/toolBar";
-import { Box, Paper, Stack, TextField } from "@mui/material";
+import { Box, Paper, Stack } from "@mui/material";
 import { iniProdutos } from "../../../inicialization/initial";
 import { BtnCancelar, BtnSalvar } from "../../../components/inputs/button";
 import useProdutos from "../../../hooks/useProdutos";
@@ -20,26 +20,41 @@ export default function CadProdutos() {
 
 
     useEffect(() => {
-        if (produto && !isLoading && prod.ID === 0)
+        if (produto && !isLoading && window.location.pathname !== '/produtos/novo')
             setProd(produto);
     }, [isLoading])
 
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'preco') {
-            setProd({ ...prod, [name]: value.replace(",", ".") });
+        if (name === 'Preco' || name === 'Estoque') {
+            setProd({ ...prod, [name]: parseFloat(value.replace(",", ".")) });
+        }
+        if (name === 'CategoriaID') {
+            setProd({ ...prod, [name]: parseInt(value) });
         } else {
             setProd({ ...prod, [name]: value });
         }
     };
 
-    const handleSubmit = () => {
-        if (window.location.pathname === '/novo')
-            postProduto(prod);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const p = {
+            ID: prod.ID,
+            Nome: prod.Nome,
+            Descricao: prod.Descricao,
+            Preco: parseFloat(prod.Preco),
+            Estoque: parseFloat(prod.Estoque),
+            CategoriaID: parseInt(prod.CategoriaID)
+        }
+        if (window.location.pathname.includes('novo'))
+            postProduto(p);
         else
-            putProduto(prod);
+            putProduto(p);
+
+        window.location.href = '/produtos'
     };
+
 
     return (
         <ContainerPages>
@@ -47,13 +62,14 @@ export default function CadProdutos() {
             <br />
             <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
                 <Box p={1}>
-                    {!isLoading && prod.ID > 0 || window.location.pathname === '/novo' ?
+                    {!isLoading && prod.ID > 0 || window.location.pathname === '/produtos/novo' ?
                         <form onSubmit={handleSubmit}>
                             <Stack spacing={1} >
                                 <TFDefault fullWidth={true} id="Nome" name='Nome' onChange={handleInputChange} value={prod.Nome} label="Nome" />
                                 <TFDefault fullWidth={true} id="Descricao" name='Descricao' onChange={handleInputChange} value={prod.Descricao} label="Descrição" />
-                                <TFDefault fullWidth={true} id="Preco" name='Preco' onChange={handleInputChange} value={prod.Preco.replace(".", ",")} label="Preço" />
-                                <TFDefault fullWidth={true} id="Estoque" name='Estoque' onChange={handleInputChange} value={prod.Estoque} label="Estoque" />
+                                <TFDefault fullWidth={true} type='number' id="Preco" name='Preco' onChange={handleInputChange} value={prod.Preco} label="Preço" />
+                                <TFDefault fullWidth={true} type='number' id="Estoque" name='Estoque' onChange={handleInputChange} value={prod.Estoque} label="Estoque" />
+                                <TFDefault fullWidth={true} type='number' id="CategoriaID" name='CategoriaID' onChange={handleInputChange} value={prod.CategoriaID} label="Categoria" />
                                 <StackRight>
                                     <BtnSalvar />
                                     <BtnCancelar onClick={() => window.location.href = '/produtos'} />

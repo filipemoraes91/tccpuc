@@ -39,7 +39,11 @@ export function BtnCancelar(props) {
 }
 
 export function BtnEditar(props) {
-    return <Link to={props.to}><BtnDefault text="Editar" startIcon={<IconCadEditar />} color='info' size="small" /></Link>
+    return <Link to={props.to}>
+        <IconButton aria-label="delete" onClick={props.onClick} color='info'>
+            <IconCadEditar />
+        </IconButton>
+    </Link>
 
 }
 

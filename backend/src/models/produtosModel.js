@@ -1,36 +1,39 @@
 const connection = require('./conection');
 
 const addProduto = async (produto) => {
-    const { nome, descricao, preco, estoque } = produto;
-    const qry = 'INSERT INTO PRODUTOS (nome, descricao, preco, estoque) values (?, ?, ?, ?)';
-    const addProduto = await connection.execute(qry, [nome, descricao, preco, estoque]);
+    const { Nome, Descricao, Preco, CategoriaID } = produto;
+    const qry = 'INSERT INTO produtos (Nome, Descricao, Preco, CategoriaID) VALUES (?,?,?, ?)';
+    const addProduto = await connection.execute(qry, [Nome, Descricao, Preco, CategoriaID]);
     return addProduto;
 }
 
+
+const putProduto = async (produto) => {
+    const { Nome, Descricao, Preco, Estoque, CategoriaID, ID } = produto;
+    console.log(produto);
+    const qry = 'UPDATE produtos SET Nome = ?, Descricao = ?, Preco = ?, Estoque = ?, CategoriaID = ? WHERE ID = ?';
+    const putProduto = await connection.execute(qry, [Nome, Descricao, Preco, Estoque, CategoriaID, ID]);
+    console.log('alterado')
+    return putProduto;
+};
+
 const getAll = async () => {
     const produtos = await connection.execute(
-        'SELECT * FROM PRODUTOS'
+        'SELECT * FROM produtos'
     );
     return produtos;
 }
 
 const getProduto = async (id) => {
-    const qry = 'SELECT * FROM PRODUTOS WHERE ID = ?';
+    const qry = 'SELECT * FROM produtos WHERE ID = ?';
     const produto = await connection.execute(qry, [id]);
     return produto[0];
 }
 
-const putProduto = async (produto) => {
-    const { Nome, Descricao, Preco, Estoque, CategoriaID, ID } = produto;
-    const qry = 'UPDATE PRODUTOS SET Nome=?, Descricao=?, Preco=?, Estoque=?, CategoriaID=? WHERE ID=?';
-    const [result] = await connection.query(qry, [Nome, Descricao, Preco.replace(",", "."), Estoque, CategoriaID, ID]);
-    return result.affectedRows;
-};
-
 const deleteProduto = async (id) => {
-    const query = 'DELETE FROM PRODUTOS WHERE id=?';
-    const [result] = await connection.query(query, [id]);
-    return result.affectedRows;
+    const qry = 'DELETE FROM produtos WHERE ID=?';
+    const deleteProduto = await connection.execute(qry, [id]);
+    return deleteProduto;
 };
 
 module.exports = {

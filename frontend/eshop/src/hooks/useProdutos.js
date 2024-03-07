@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import api from '../services';
 
 const useProdutos = () => {
@@ -10,19 +10,18 @@ const useProdutos = () => {
   const postProduto = async (produto) => {
     try {
       setIsLoading(true);
-      const response = await api.post('/produtos', produto);
-      setIsLoading(false);
+      const response = await api.post('/produtos/novo', produto);
       alert(response.data.message);
     } catch (err) {
       alert(err.response.data.message);
     }
+    setIsLoading(false);
   };
 
   const putProduto = async (produto) => {
     try {
-      const response = await api.put('/produtos/editar/:id', produto);
+      const response = await api.put(`/produtos/editar/${produto.ID}`, produto);
       alert(response.data.message);
-      window.location.href = '/produtos'
     } catch (err) {
       alert(err.response.data.message);
     }
@@ -42,7 +41,7 @@ const useProdutos = () => {
   const getProduto = async (id) => {
     try {
       setIsLoading(true);
-      const response = await api.get(`/produtos/editar/${id}`);
+      const response = await api.get(`/produtos/${id}`);
       setIsLoading(false);
       setProduto(response.data[0]);
     } catch (err) {
@@ -50,11 +49,19 @@ const useProdutos = () => {
     }
   };
 
-  // useEffect(() => {
-  //   getProdutos();
-  // }, [])
 
-  return { postProduto, getProdutos, getProduto, putProduto, produtos, produto, isLoading, error };
+  const deleteProduto = async (id) => {
+    try {
+      setIsLoading(true);
+      const response = await api.delete(`/produtos/delete/${id}`);
+      alert(response.data.message);
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+    setIsLoading(false);
+  }
+
+  return { postProduto, getProdutos, getProduto, putProduto, deleteProduto, produtos, produto, isLoading, error };
 };
 
 export default useProdutos;

@@ -1,6 +1,6 @@
 import { getInfUser } from "../utils"
 
-export let iniPessoa = {
+export const iniPessoa = {
     cod_pess: 0,
     nom_pess: '',
     cpfcnpj_pess: '',
@@ -9,21 +9,22 @@ export let iniPessoa = {
     cod_pfl: '1'
 }
 
-export let iniUser = {
+export const iniUser = {
     nome: '',
     email: '',
     senha: '',
 }
 
-export let iniProdutos = {
+export const iniProdutos = {
     ID: 0,
     Nome: '',
     Descricao: '',
-    Preco: 0,
-    Estoque: 0
+    Preco: 0.0,
+    Estoque: 0.0,
+    CategoriaID: 0
 }
 
-export let iniEndereco = {
+export const iniEndereco = {
     UsuarioID: getInfUser() ? getInfUser().id : 0,
     Rua: '',
     Numero: 0,

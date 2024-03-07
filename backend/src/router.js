@@ -21,9 +21,10 @@ router.get('/endereco', enderecoContrl.getAll);
 router.post('/endereco', enderecoContrl.addEndereco);
 
 router.get('/produtos', produtosContrl.getAll);
-router.post('/produtos', produtosContrl.addProduto);
-router.get('/produtos/editar/:id', produtosContrl.getProduto);
+router.get('/produtos/:id', produtosContrl.getProduto);
+router.post('/produtos/novo', produtosContrl.addProduto);
 router.put('/produtos/editar/:id', produtosContrl.putProduto);
+router.delete('/produtos/delete/:id', produtosContrl.deleteProduto);
 
 router.post('/login', usuarioController.login);
 

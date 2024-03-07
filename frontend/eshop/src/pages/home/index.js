@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ContainerPages } from "../../components/layout/container";
 import { Box, Grid, Paper } from "@mui/material";
 import useProdutos from "../../hooks/useProdutos";
@@ -6,8 +6,12 @@ import { CardProdutos } from "../../components/surfaces/card";
 import useCarrinho from "../../hooks/useCarrinho";
 
 export default function Produtos() {
-    const { produtos } = useProdutos();
+    const { getProdutos, produtos } = useProdutos();
     const { postItemCarrinho } = useCarrinho()
+
+    useEffect(() => {
+        getProdutos();
+    }, [])
 
     function ListProdutos(produto, p) {
         return <Grid key={p} item xs={12} md={4} lg={3}>

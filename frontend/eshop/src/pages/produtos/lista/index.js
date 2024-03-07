@@ -7,22 +7,28 @@ import { CardProdutos } from "../../../components/surfaces/card";
 import { ContainerPages } from "../../../components/layout/container";
 
 export default function Produtos() {
-    const { getProdutos, produtos } = useProdutos();
-    const [produto, setProduto] = useState(iniProdutos);
+    const { getProdutos, produtos, deleteProduto } = useProdutos();
 
     useEffect(() => {
         getProdutos();
     }, [])
+
+    function deleteProd(id) {
+        deleteProduto(id);
+        getProdutos();
+    }
 
     function ListProdutos(produto, p) {
         return <Grid key={p} item xs={12} md={4} lg={3}>
             <CardProdutos tipo='cadastro'
                 nome={produto.Nome}
                 descricao={produto.Descricao}
-                preco={produto.Preco.replace(".", ",")}
+                preco={produto.Preco}
                 estoque={produto.Estoque}
                 categoria={produto.CategoriaID}
                 id={produto.ID}
+
+                onClickDelete={() => deleteProd(produto.ID)}
             />
         </Grid>
 
@@ -30,7 +36,7 @@ export default function Produtos() {
 
     return (
         <ContainerPages >
-            <ToolBarPages title='Cadastro de Produtos' />
+            <ToolBarPages title='Cadastro de Produtos' btnVisible onClickNovo={() => window.location.href = '/produtos/novo'} />
             <br />
             <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
                 <Box p={1}>

@@ -55,15 +55,18 @@ export function CardProdutos(props) {
                         <br />
                         R$ {props.preco}
                         <br />
-                        {props.estoque}
+                        Estoque:{props.estoque}
                         <br />
-                        {props.categoria}
+                        Categoria:{props.categoria}
                     </Typography>
                 </Box>
             </CardContent>
             <CardActions>
                 {props.tipo === 'cadastro' ?
-                    <BtnEditar to={`/produtos/editar/${props.id}`} />
+                    <>
+                        <BtnEditar to={`/produtos/editar/${props.id}`} />
+                        <BtnDelete onClick={props.onClickDelete} />
+                    </>
                     :
                     <>
                         <BtnAddCart onClick={props.addCarrinho} />
