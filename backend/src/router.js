@@ -15,7 +15,7 @@ router.post('/pessoas', pessoasContrl.addPessoa);
 router.get('/carrinho', carrinhoContrl.getAll);
 router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
 router.post('/carrinho', carrinhoContrl.addItensCarrinho);
-router.delete('/carrinho', carrinhoContrl.removeItensCarrinho);
+router.delete('/carrinho/:id', carrinhoContrl.removeItensCarrinho);
 
 router.get('/endereco', enderecoContrl.getAll);
 router.post('/endereco', enderecoContrl.addEndereco);
@@ -30,7 +30,7 @@ router.post('/login', usuarioController.login);
 
 // Rota protegida (exemplo)
 router.get('/recurso-protegido', auth.verifyToken, (req, res) => {
-  res.json({ message: 'Rota protegida, apenas usuários autenticados podem acessar.' });
+  res.json({ message: 'Para acessar este recuso efetue o login!' });
 });
 
 

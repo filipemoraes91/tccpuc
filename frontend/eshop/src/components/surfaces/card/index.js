@@ -43,28 +43,30 @@ export function CardCliente() {
 }
 
 export function CardProdutos(props) {
+    const produto = props.produto;
     return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
                 <Box>
                     <Typography variant="button" component="div" style={{ fontWeight: '600', fontSize: 18 }}>
-                        {props.nome}
+                        {produto.Nome}
                     </Typography>
                     <Typography variant="body2">
-                        {props.descricao}
+                        {produto.Descricao}
                         <br />
-                        R$ {props.preco}
+                        R$ {produto.Preco}
                         <br />
-                        Estoque:{props.estoque}
+                        Estoque:{produto.Estoque}
                         <br />
-                        Categoria:{props.categoria}
+                        Categoria:{produto.Categoria}
                     </Typography>
+                    <img src={produto.LinkImg ? produto.LinkImg : 'https://img.freepik.com/vetores-gratis/ilustracao-de-galeria-icone_53876-27002.jpg?t=st=1710210992~exp=1710214592~hmac=8fd0c7965707fe14d785ae4861d2cd4125041f32ae63cf32f4cb1c960b8aa6f3&w=740'} width={200} height={240} />
                 </Box>
             </CardContent>
             <CardActions>
                 {props.tipo === 'cadastro' ?
                     <>
-                        <BtnEditar to={`/produtos/editar/${props.id}`} />
+                        <BtnEditar to={`/produtos/editar/${produto.ID}`} />
                         <BtnDelete onClick={props.onClickDelete} />
                     </>
                     :

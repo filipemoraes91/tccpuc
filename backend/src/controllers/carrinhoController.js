@@ -11,13 +11,22 @@ const getQtdeItens = async (req, res) => {
 };
 
 const addItensCarrinho = async (req, res) => {
-    const addItensCarrinho = await carrinhoModel.addItensCarrinho(req.body);
-    return res.status(201).json({ "message": addItensCarrinho });
+    try {
+        const addItensCarrinho = await carrinhoModel.addItensCarrinho(req.body);
+        return res.status(201).json({ "message": "Item adicionado com sucesso!", "Item": addItensCarrinho[0] });
+    } catch (error) {
+        return res.status(500).json({ "message": "Ops! Ocorreu algum erro!", "error": error });
+    }
 }
 
 const removeItensCarrinho = async (req, res) => {
-    const removeItensCarrinho = await carrinhoModel.removeItensCarrinho(req.body);
-    return res.status(201).json({ "message": removeItensCarrinho });
+    const id = req.params.id;
+    try {
+        const item = await carrinhoModel.removeItensCarrinho(id);
+        return res.status(200).json({ "message": "Item removido com sucesso!", "Item": item });
+    } catch (error) {
+        return res.status(500).json({ "message": "Ops! Ocorreu algum erro!", "error": error });
+    }
 }
 module.exports = {
     getAll,

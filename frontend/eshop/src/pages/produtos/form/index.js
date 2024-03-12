@@ -45,7 +45,8 @@ export default function CadProdutos() {
             Descricao: prod.Descricao,
             Preco: parseFloat(prod.Preco),
             Estoque: parseFloat(prod.Estoque),
-            CategoriaID: parseInt(prod.CategoriaID)
+            CategoriaID: parseInt(prod.CategoriaID),
+            LinkImg: prod.LinkImg
         }
         if (window.location.pathname.includes('novo'))
             postProduto(p);
@@ -70,6 +71,7 @@ export default function CadProdutos() {
                                 <TFDefault fullWidth={true} type='number' id="Preco" name='Preco' onChange={handleInputChange} value={prod.Preco} label="Preço" />
                                 <TFDefault fullWidth={true} type='number' id="Estoque" name='Estoque' onChange={handleInputChange} value={prod.Estoque} label="Estoque" />
                                 <TFDefault fullWidth={true} type='number' id="CategoriaID" name='CategoriaID' onChange={handleInputChange} value={prod.CategoriaID} label="Categoria" />
+                                <TFDefault fullWidth={true} id="LinkImg" name='LinkImg' onChange={handleInputChange} value={prod.LinkImg} label="Link da Imagem" />
                                 <StackRight>
                                     <BtnSalvar />
                                     <BtnCancelar onClick={() => window.location.href = '/produtos'} />

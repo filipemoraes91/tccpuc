@@ -6,12 +6,15 @@ import { CardItemCar } from "../../components/surfaces/card";
 import useCarrinho from "../../hooks/useCarrinho";
 
 export default function Produtos() {
-    const { produtos } = useProdutos();
-    const { getItens, deleteItens, itens } = useCarrinho();
+    const { getItens, deleteItens, isLoading, itens } = useCarrinho();
 
     useEffect(() => {
         getItens()
     }, [])
+
+    const delItem = (ID) => {
+        deleteItens(ID)
+    }
 
     function ListItens(item, i) {
         return <CardItemCar key={i}
@@ -21,7 +24,7 @@ export default function Produtos() {
             estoque={item.Estoque}
             categoria={item.CategoriaID}
             qtde={item.Quantidade}
-            onClickDelete={() => deleteItens(item.ID)}
+            onClickDelete={() => delItem(item.ID)}
         />
 
     }
@@ -30,7 +33,7 @@ export default function Produtos() {
         <ContainerPages>
             <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
                 <Box p={1}>
-                    {itens ? itens.map(ListItens) : <h1>Aguarde...</h1>}
+                    {itens ? itens > 0 ? itens.map(ListItens) : <h4>Não existem itens no carrinho</h4> : <h1>Aguarde...</h1>}
                 </Box>
             </Paper>
         </ContainerPages >

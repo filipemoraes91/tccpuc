@@ -1,18 +1,18 @@
 const connection = require('./conection');
 
 const addProduto = async (produto) => {
-    const { Nome, Descricao, Preco, CategoriaID } = produto;
-    const qry = 'INSERT INTO produtos (Nome, Descricao, Preco, CategoriaID) VALUES (?,?,?, ?)';
+    const { Nome, Descricao, Preco, CategoriaID, LinkImg } = produto;
+    const qry = 'INSERT INTO produtos (Nome, Descricao, Preco, CategoriaID, LinkImg) VALUES (?,?,?,?,?)';
     const addProduto = await connection.execute(qry, [Nome, Descricao, Preco, CategoriaID]);
     return addProduto;
 }
 
 
 const putProduto = async (produto) => {
-    const { Nome, Descricao, Preco, Estoque, CategoriaID, ID } = produto;
-    console.log(produto);
-    const qry = 'UPDATE produtos SET Nome = ?, Descricao = ?, Preco = ?, Estoque = ?, CategoriaID = ? WHERE ID = ?';
-    const putProduto = await connection.execute(qry, [Nome, Descricao, Preco, Estoque, CategoriaID, ID]);
+    const { Nome, Descricao, Preco, Estoque, CategoriaID, LinkImg, ID } = produto;
+    console.log(produto)
+    const qry = 'UPDATE produtos SET Nome = ?, Descricao = ?, Preco = ?, Estoque = ?, CategoriaID = ?, LinkImg = ? WHERE ID = ?';
+    const putProduto = await connection.execute(qry, [Nome, Descricao, Preco, Estoque, CategoriaID, LinkImg, ID]);
     console.log('alterado')
     return putProduto;
 };

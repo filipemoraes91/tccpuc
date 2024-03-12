@@ -16,11 +16,7 @@ export default function Produtos() {
     function ListProdutos(produto, p) {
         return <Grid key={p} item xs={12} md={4} lg={3}>
             <CardProdutos
-                nome={produto.Nome}
-                descricao={produto.Descricao}
-                preco={produto.Preco}
-                estoque={produto.Estoque}
-                categoria={produto.CategoriaID}
+                produto={produto}
                 addCarrinho={() => postItemCarrinho(produto)}
             />
         </Grid>

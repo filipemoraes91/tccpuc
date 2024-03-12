@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import api from '../services';
 import { getInfUser } from '../utils';
 
@@ -9,14 +9,17 @@ const useCarrinho = () => {
   const [qtdeItens, setQtdeItens] = useState(0);
 
   const postItemCarrinho = async (item) => {
+    console.log(item);
     try {
       setIsLoading(true);
       let data = { usuarioID: getInfUser().id, produtoID: item.ID, Quantidade: 1 }
       const response = await api.post('/carrinho', data);
       setIsLoading(false);
+      console.log(response)
       alert(response.data.message);
+      window.location.href = '/home'
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err);
     }
   };
 
@@ -45,13 +48,12 @@ const useCarrinho = () => {
   const deleteItens = async (ID) => {
     try {
       setIsLoading(true);
-      console.log(ID)
-      let data = { ID: ID }
-      const response = await api.delete('/carrinho', data);
+      const response = await api.delete(`/carrinho/${ID}`);
       setIsLoading(false);
-      alert(response.data)
+      alert(response.data.message)
+      window.location.href = '/carrinho'
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err);
     }
   };
 

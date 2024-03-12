@@ -15,10 +15,9 @@ const addItensCarrinho = async (item) => {
 }
 
 
-const removeItensCarrinho = async (item) => {
-    const { ID } = item;
-    const qry = 'DELETE FROM CARRINHOCOMPRAS WHERE ID = ?';
-    const removeItensCarrinho = await connection.execute(qry, [ID]);
+const removeItensCarrinho = async (id) => {
+    const qry = 'DELETE FROM CARRINHOCOMPRAS WHERE ProdutoID = ?';
+    const removeItensCarrinho = await connection.execute(qry, [id]);
     return removeItensCarrinho;
 }
 

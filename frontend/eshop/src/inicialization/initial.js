@@ -21,7 +21,8 @@ export const iniProdutos = {
     Descricao: '',
     Preco: 0.0,
     Estoque: 0.0,
-    CategoriaID: 0
+    CategoriaID: 0,
+    LinkImg: ''
 }
 
 export const iniEndereco = {

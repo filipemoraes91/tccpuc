@@ -19,6 +19,7 @@ const useProdutos = () => {
   };
 
   const putProduto = async (produto) => {
+    console.log(produto)
     try {
       const response = await api.put(`/produtos/editar/${produto.ID}`, produto);
       alert(response.data.message);
