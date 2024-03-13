@@ -18,5 +18,5 @@ export function TFPassword(props) {
 }
 
 export function TFQtde(props) {
-    return <input id="qtde" name="qtde" type="number" min="1" value={props.value} label="Qtde" onChange={props.onChange} style={{ width: '50px', borderRadius: '5px', height: '18px' }} />
+    return <input id="qtde" name="qtde" value={props.value} label="Qtde" onChange={props.onChange} style={{ width: '50px', borderRadius: '5px', height: '18px' }} />
 }

@@ -8,7 +8,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { IconCadClientes, IconCadProdutos, IconCadUsuarios, IconHome } from '../../dataDisplay/icons';
+import { IconCadClientes, IconCadProdutos, IconCadUsuarios, IconHome, IconOnFavorito } from '../../dataDisplay/icons';
 import { TGMenuDivider } from '../../dataDisplay/typography';
 
 function ItemMenu(props) {
@@ -42,6 +42,7 @@ export default function TemporaryDrawer(props) {
                     <ItemMenu icon={<IconCadClientes />} text='Clientes' />
                     <ItemMenu icon={<IconCadProdutos />} text='Produtos' />
                     <ItemMenu icon={<IconCadUsuarios />} text='Usuários' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' />
                     <Divider textAlign="left"><TGMenuDivider text='Sessões' /></Divider>
                 </List>
             </Box>

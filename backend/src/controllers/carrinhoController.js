@@ -2,7 +2,7 @@ const carrinhoModel = require('../models/carrinhoModel');
 
 const getAll = async (req, res) => {
     const [itens] = await carrinhoModel.getAll();
-    return res.status(200).json(itens);
+    return res.status(200).json(itens); 
 };
 
 const getQtdeItens = async (req, res) => {

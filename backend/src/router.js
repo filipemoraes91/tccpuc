@@ -5,6 +5,7 @@ const pessoasContrl = require('./controllers/pessoasController');
 const enderecoContrl = require('./controllers/enderecoController');
 const produtosContrl = require('./controllers/produtosController');
 const carrinhoContrl = require('./controllers/carrinhoController');
+const favoritosContrl = require('./controllers/favoritosController');
 
 
 const router = express.Router();
@@ -16,6 +17,10 @@ router.get('/carrinho', carrinhoContrl.getAll);
 router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
 router.post('/carrinho', carrinhoContrl.addItensCarrinho);
 router.delete('/carrinho/:id', carrinhoContrl.removeItensCarrinho);
+
+router.get('/favoritos', favoritosContrl.getAll);
+router.post('/favoritos', favoritosContrl.addFavorito);
+router.delete('/favoritos/:id', favoritosContrl.removeFavorito);
 
 router.get('/endereco', enderecoContrl.getAll);
 router.post('/endereco', enderecoContrl.addEndereco);

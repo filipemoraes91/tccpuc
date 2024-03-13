@@ -4,10 +4,13 @@ import { Box, Grid, Paper } from "@mui/material";
 import useProdutos from "../../hooks/useProdutos";
 import { CardProdutos } from "../../components/surfaces/card";
 import useCarrinho from "../../hooks/useCarrinho";
+import useFavoritos from "../../hooks/useFavoritos";
+import { getInfUser } from "../../utils";
 
 export default function Produtos() {
     const { getProdutos, produtos } = useProdutos();
-    const { postItemCarrinho } = useCarrinho()
+    const { postItemCarrinho } = useCarrinho();
+    const { postFavoritos} = useFavoritos();
 
     useEffect(() => {
         getProdutos();
@@ -18,6 +21,7 @@ export default function Produtos() {
             <CardProdutos
                 produto={produto}
                 addCarrinho={() => postItemCarrinho(produto)}
+                addFavorito={() => postFavoritos(produto)}
             />
         </Grid>
 

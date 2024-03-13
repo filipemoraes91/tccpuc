@@ -39,30 +39,28 @@ export function BtnCancelar(props) {
 }
 
 export function BtnEditar(props) {
-    return <Link to={props.to}>
-        <IconButton aria-label="delete" onClick={props.onClick} color='info'>
-            <IconCadEditar />
-        </IconButton>
-    </Link>
+    return <Button aria-label="favorito" onClick={props.onClick} color='info' variant="contained" size="small">
+        <IconCadEditar />
+    </Button>
 
 }
 
 export function BtnAddCart(props) {
-    return <IconButton aria-label="adicionar ao carrinho" onClick={props.onClick} color="success">
+    return <Button aria-label="favorito" onClick={props.onClick} color='success' variant="contained" size="small">
         <IconAddCar />
-    </IconButton>
+    </Button>
 }
 
 export function BtnOnFavotiro(props) {
-    return <IconButton aria-label="favorito" onClick={props.onClick} color='error'>
+    return <Button aria-label="favorito" onClick={props.onClick} color='error' variant="contained" size="small">
         <IconOffFavorito />
-    </IconButton>
+    </Button>
 }
 
 export function BtnDelete(props) {
-    return <IconButton aria-label="delete" onClick={props.onClick} color='error'>
+    return <Button aria-label="delete" onClick={props.onClick} color='error' variant="contained" size="small">
         <IconDelete />
-    </IconButton>
+    </Button>
 }
 
 export function BtnShopCart(props) {

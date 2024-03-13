@@ -6,9 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { BtnAddCart, BtnDelete, BtnEditar, BtnOnFavotiro } from '../../inputs/button';
-import { Grid } from '@mui/material';
-import { StackJustify } from '../../layout/stack';
-import { TFQtde } from '../../inputs/textField';
+import { ButtonGroup, Grid } from '@mui/material';
+import { StackCenter, StackJustify } from '../../layout/stack';
+import { TFDefault, TFQtde } from '../../inputs/textField';
 
 export function CardCliente() {
     return (
@@ -44,8 +44,10 @@ export function CardCliente() {
 
 export function CardProdutos(props) {
     const produto = props.produto;
+
+
     return (
-        <Card sx={{ minWidth: 275 }}>
+        <Card sx={{ minWidth: 275, minHeight: 400 }}>
             <CardContent>
                 <Box>
                     <Typography variant="button" component="div" style={{ fontWeight: '600', fontSize: 18 }}>
@@ -60,52 +62,55 @@ export function CardProdutos(props) {
                         <br />
                         Categoria:{produto.Categoria}
                     </Typography>
-                    <img src={produto.LinkImg ? produto.LinkImg : 'https://img.freepik.com/vetores-gratis/ilustracao-de-galeria-icone_53876-27002.jpg?t=st=1710210992~exp=1710214592~hmac=8fd0c7965707fe14d785ae4861d2cd4125041f32ae63cf32f4cb1c960b8aa6f3&w=740'} width={200} height={240} />
+                    <p />
+                    <StackCenter>
+                        <img src={produto.LinkImg ? produto.LinkImg : 'https://img.freepik.com/vetores-gratis/ilustracao-de-galeria-icone_53876-27002.jpg?t=st=1710210992~exp=1710214592~hmac=8fd0c7965707fe14d785ae4861d2cd4125041f32ae63cf32f4cb1c960b8aa6f3&w=740'} width={200} height={140} />
+                    </StackCenter>
                 </Box>
             </CardContent>
-            <CardActions>
-                {props.tipo === 'cadastro' ?
-                    <>
-                        <BtnEditar to={`/produtos/editar/${produto.ID}`} />
-                        <BtnDelete onClick={props.onClickDelete} />
-                    </>
-                    :
-                    <>
-                        <BtnAddCart onClick={props.addCarrinho} />
-                        <BtnOnFavotiro onClick={props.addFavorito} />
-                    </>
-                }
-            </CardActions>
-
+            <StackCenter>
+                <CardActions disableSpacing >
+                    {props.tipo === 'cadastro' ?
+                        <>
+                            <BtnEditar onClick={() => window.location.href =`/produtos/editar/${produto.ID}`} />
+                            <BtnDelete onClick={props.onClickDelete} />
+                        </>
+                        :
+                        <>
+                            <BtnAddCart onClick={props.addCarrinho} />
+                            <BtnOnFavotiro onClick={props.addFavorito} />
+                        </>
+                    }
+                </CardActions>
+            </StackCenter>
         </Card >
     );
 }
 
 export function CardItemCar(props) {
+    const produto = props.produto;
     return (
         <Card sx={{ margin: '10px' }}>
             <CardContent>
                 <StackJustify>
-                    <img src="https://www.campinagrandedosul.pr.leg.br/imagens/SplashInstagraamIconPng715x715.png/image"
-                        height={150} />
+                    <img src={produto.LinkImg ? produto.LinkImg : 'https://img.freepik.com/vetores-gratis/ilustracao-de-galeria-icone_53876-27002.jpg?t=st=1710210992~exp=1710214592~hmac=8fd0c7965707fe14d785ae4861d2cd4125041f32ae63cf32f4cb1c960b8aa6f3&w=740'} width={200} height={140} />
                     <Box>
                         <Typography variant="button" component="div" style={{ fontWeight: '600', fontSize: 18 }}>
-                            {props.nome}
+                            {produto.Nome}
                         </Typography>
                         <Typography variant="body2">
-                            {props.descricao}
+                            {produto.Descricao}
                             <br />
-                            {props.preco}
+                            R$ {produto.Preco}
                             <br />
-                            {props.categoria}
+                            {produto.Categoria}
                         </Typography>
                     </Box>
                     <Box>
-                        <TFQtde value={props.qtde} />
+                        <Typography variant="body2">{produto.Quantidade}</Typography><br />
                         <BtnDelete onClick={props.onClickDelete} />
                     </Box>
                 </StackJustify>
-
             </CardContent>
         </Card >
     );

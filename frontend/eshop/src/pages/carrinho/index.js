@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { ContainerPages } from "../../components/layout/container";
-import { Box, Grid, Paper } from "@mui/material";
-import useProdutos from "../../hooks/useProdutos";
+import { Box, Paper, TextField, Typography } from "@mui/material";
 import { CardItemCar } from "../../components/surfaces/card";
 import useCarrinho from "../../hooks/useCarrinho";
+import ToolBarPages from "../../components/surfaces/toolBar";
+import { StackRight } from "../../components/layout/stack";
+import { TGPageTitle } from "../../components/dataDisplay/typography";
 
 export default function Produtos() {
     const { getItens, deleteItens, isLoading, itens } = useCarrinho();
+    let total = 0;
 
     useEffect(() => {
         getItens()
     }, [])
 
-    const delItem = (ID) => {
-        deleteItens(ID)
-    }
-
     function ListItens(item, i) {
+        total = total + parseFloat(item.Preco);
         return <CardItemCar key={i}
-            nome={item.Nome}
-            descricao={item.Descricao}
-            preco={item.Preco}
-            estoque={item.Estoque}
-            categoria={item.CategoriaID}
-            qtde={item.Quantidade}
-            onClickDelete={() => delItem(item.ID)}
+            produto={item}
+            onClickDelete={() => deleteItens(item.ID)}
         />
-
     }
 
     return (
         <ContainerPages>
-            <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
+            <ToolBarPages title='Meu Carrinho' />
+            {itens ? itens.length > 0 ? itens.map(ListItens) : <h4>Não existem itens no carrinho</h4> : <h1>Aguarde...</h1>}
+            <Paper elevation={1}>
                 <Box p={1}>
-                    {itens ? itens > 0 ? itens.map(ListItens) : <h4>Não existem itens no carrinho</h4> : <h1>Aguarde...</h1>}
+                    <StackRight>
+                        <Typography variant="button" component="div" sx={{ flexGrow: 1, fontSize: 16, fontWeight: '600' }} >Total dos Itens</Typography>
+                        <Typography variant="button" component="div" sx={{ fontSize: 16, fontWeight: '600' }} >{total.toFixed(2)}</Typography>
+                    </StackRight>
                 </Box>
             </Paper>
         </ContainerPages >
