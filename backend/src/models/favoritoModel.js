@@ -9,7 +9,6 @@ const getAll = async () => {
 }
 
 const addFavorito = async (item) => {
-    console.log(item);
     const { usuarioID, produtoID } = item;
     const qry = 'INSERT INTO FAVORITOS (usuarioID, produtoID) values (?,?)';
     const addFavorito = await connection.execute(qry, [usuarioID, produtoID]);

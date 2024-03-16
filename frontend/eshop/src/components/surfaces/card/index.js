@@ -6,9 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { BtnAddCart, BtnDelete, BtnEditar, BtnOnFavotiro } from '../../inputs/button';
-import { ButtonGroup, Grid } from '@mui/material';
 import { StackCenter, StackJustify } from '../../layout/stack';
-import { TFDefault, TFQtde } from '../../inputs/textField';
 
 export function CardCliente() {
     return (
@@ -72,12 +70,14 @@ export function CardProdutos(props) {
                 <CardActions disableSpacing >
                     {props.tipo === 'cadastro' ?
                         <>
-                            <BtnEditar onClick={() => window.location.href =`/produtos/editar/${produto.ID}`} />
+                            <BtnEditar onClick={() => window.location.href = `/produtos/editar/${produto.ID}`} />
+                            <span style={{ margin: '5px' }} />
                             <BtnDelete onClick={props.onClickDelete} />
                         </>
                         :
                         <>
                             <BtnAddCart onClick={props.addCarrinho} />
+                            <span style={{ margin: '5px' }} />
                             <BtnOnFavotiro onClick={props.addFavorito} />
                         </>
                     }

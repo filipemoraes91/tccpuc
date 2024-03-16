@@ -19,7 +19,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login(user.email, user.senha);
+        login(user);
 
     };
 
@@ -36,20 +36,20 @@ function Login() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
-                                        <TFUser value={user.email}
+                                        <TFUser value={user.Email}
                                             onChange={handleInputChange}
                                         />
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
-                                        <TFPassword value={user.senha}
+                                        <TFPassword value={user.Senha}
                                             onChange={handleInputChange}
                                         />
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <BtnLogin/>
+                                    <BtnLogin />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button component={Link} to="/cadastrar" fullWidth variant="contained" color="info">Cadastre-se</Button>

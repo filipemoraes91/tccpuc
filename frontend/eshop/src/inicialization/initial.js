@@ -10,9 +10,10 @@ export const iniPessoa = {
 }
 
 export const iniUser = {
-    nome: '',
-    email: '',
-    senha: '',
+    Nome: '',
+    Email: '',
+    Senha: '',
+    PerfilID: 0
 }
 
 export const iniProdutos = {

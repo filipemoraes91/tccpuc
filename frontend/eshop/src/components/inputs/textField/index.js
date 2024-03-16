@@ -9,12 +9,16 @@ export function TFDefault(props) {
     />
 }
 
+export function TFText(props) {
+    return <TFDefault id={props.id} name={props.name} type='text' value={props.value} label={props.label} fullWidth={true} onChange={props.onChange} />
+}
+
 export function TFUser(props) {
-    return <TFDefault id="email" name="email" type='email' value={props.value} label="Usuário" color="secondary" fullWidth={true} onChange={props.onChange} />
+    return <TFDefault id="Email" name="Email" type='email' value={props.value} label="Usuário" color="secondary" fullWidth={true} onChange={props.onChange} />
 }
 
 export function TFPassword(props) {
-    return <TFDefault id="senha" name="senha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange} />
+    return <TFDefault id="Senha" name="Senha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange} />
 }
 
 export function TFQtde(props) {

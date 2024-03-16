@@ -27,7 +27,7 @@ export default function CadProdutos() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'Preco' || name === 'Estoque') {
+        if ((name === 'Preco') || (name === 'Estoque')) {
             setProd({ ...prod, [name]: parseFloat(value.replace(",", ".")) });
         }
         if (name === 'CategoriaID') {
@@ -63,7 +63,7 @@ export default function CadProdutos() {
             <br />
             <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
                 <Box p={1}>
-                    {!isLoading && prod.ID > 0 || window.location.pathname === '/produtos/novo' ?
+                    {(!isLoading && prod.ID > 0) || (window.location.pathname === '/produtos/novo') ?
                         <form onSubmit={handleSubmit}>
                             <Stack spacing={1} >
                                 <TFDefault fullWidth={true} id="Nome" name='Nome' onChange={handleInputChange} value={prod.Nome} label="Nome" />

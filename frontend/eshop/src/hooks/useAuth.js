@@ -5,9 +5,9 @@ const useAuth = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const login = async (email, senha) => {
+  const login = async (user) => {
     try {
-      const response = await axios.post('/login', { email, senha });
+      const response = await axios.post('/login', user);
       setUser(response.data);
       sessionStorage.setItem('token', response.data.token);
       sessionStorage.setItem('usuario', JSON.stringify(response.data.usuario));

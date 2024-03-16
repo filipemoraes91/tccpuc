@@ -1,4 +1,5 @@
-const db = require('./conection');
+const connection = require('./conection');
+
 // const getAll = async () => {
 //     const pessoas = await db.execute(
 //         'SELECT * FROM PESSOAS'
@@ -12,9 +13,10 @@ const db = require('./conection');
 //     return addPessoa;
 // }
 
-async function getUsuario(email, senha) {
-    const query = 'SELECT nome, email, id FROM usuarios WHERE email = ? AND senha = ?';
-    const usuario = await db.execute(query,[email, senha]);
+async function getUsuario(user) {
+    const { Email, Senha } = user;
+    const query = 'SELECT Nome, Email, ID FROM usuarios WHERE Email = ? AND Senha = ?';
+    const usuario = await connection.execute(query, [Email, Senha]);
     return usuario;
     // console.log(query)
     // db.query(query, [email, senha], (err, results) => {        
@@ -29,11 +31,27 @@ async function getUsuario(email, senha) {
     //         return res.status(401).json({ mensagem: 'Credenciais inválidas' });
     //     }
     // });
-
 }
 
-module.exports = {
-            // getAll,
-            // addPessoa,
-            getUsuario
+const addUsuario = async (usuario) => {
+    try {
+        const { Nome, Email, Senha, PerfilID } = usuario;
+        console.log(Nome)
+        const qry = 'INSERT INTO usuarios (Nome, Email, Senha, PerfilID) VALUES (?, ?, ?, ?)';
+        const addUsuario = await connection.execute(qry, [Nome, Email, Senha, PerfilID]);
+        return addUsuario;
+    } catch (error) {
+        console.error('Erro ao adicionar usuário:', error);
+        // Capturando o erro específico do MySQL
+        if (error.code === 'ER_DUP_ENTRY') {
+            return { success: false, message: 'Este usuário já existe.' };
         }
+        return { success: false, message: 'Erro ao adicionar usuário' };
+    }
+}
+
+
+module.exports = {
+    getUsuario,
+    addUsuario
+}

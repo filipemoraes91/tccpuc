@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/login";
 import Home from "../pages/home";
 import Pefil from "../pages/perfil";
-import CadUser from "../pages/user";
+import CadUser from "../pages/user/form";
 import Carrinho from "../pages/carrinho";
 import Produtos from "../pages/produtos/lista";
 import CadProdutos from "../pages/produtos/form";
@@ -22,6 +22,7 @@ export default function RoutesApp() {
         <Route path="/produtos/novo" element={<CadProdutos />} />
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/usuarios" element={<CadUser />} />
       </Routes>
     </BrowserRouter>
   );

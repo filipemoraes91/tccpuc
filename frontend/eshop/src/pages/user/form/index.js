@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Container, Typography, Paper, Box, Grid } from '@mui/material';
-import { iniUser } from '../../inicialization/initial';
-import { LogoM } from '../../images';
-import { TFPassword, TFUser } from '../../components/inputs/textField';
-import { BtnCadastrar } from '../../components/inputs/button';
+import { iniUser } from '../../../inicialization/initial';
+import { LogoM } from '../../../images';
+import { TFPassword, TFText, TFUser } from '../../../components/inputs/textField';
+import { BtnCadastrar } from '../../../components/inputs/button';
+import useUsuarios from '../../../hooks/useUsuarios';
 
 export default function CadUser() {
   const [user, setUser] = useState(iniUser);
+  const { postUsuario } = useUsuarios();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -14,9 +16,13 @@ export default function CadUser() {
   };
 
   const handleSubmit = (e) => {
+    postUsuario({
+      Nome: user.Nome,
+      Email: user.Email,
+      Senha: user.Senha,
+      PerfilID: parseInt(0)
+    });
     e.preventDefault();
-
-    console.log(user);
   };
 
   return (
@@ -32,14 +38,21 @@ export default function CadUser() {
                 </Grid>
                 <Grid item xs={12}>
                   <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
-                    <TFUser value={user.email}
+                    <TFText name='Nome' label='Nome' value={user.Nome}
                       onChange={handleInputChange}
                     />
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
                   <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
-                    <TFPassword value={user.senha}
+                    <TFUser value={user.Email}
+                      onChange={handleInputChange}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
+                    <TFPassword value={user.Senha}
                       onChange={handleInputChange}
                     />
                   </Box>

@@ -32,6 +32,7 @@ router.put('/produtos/editar/:id', produtosContrl.putProduto);
 router.delete('/produtos/delete/:id', produtosContrl.deleteProduto);
 
 router.post('/login', usuarioController.login);
+router.post('/usuario/novo', usuarioController.addUsuario);
 
 // Rota protegida (exemplo)
 router.get('/recurso-protegido', auth.verifyToken, (req, res) => {

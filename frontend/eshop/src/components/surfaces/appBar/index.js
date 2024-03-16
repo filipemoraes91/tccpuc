@@ -111,7 +111,7 @@ export default function MenuAppBar() {
                 onClick={handleMenu}
                 color="inherit"
               >
-                {getInfUser().nome.slice(0, 1).toUpperCase()}
+                {getInfUser().Nome.slice(0, 1).toUpperCase()}
               </Avatar>
             </StackJustify>
             :
