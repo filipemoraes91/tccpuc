@@ -13,7 +13,13 @@ export const iniUser = {
     Nome: '',
     Email: '',
     Senha: '',
-    PerfilID: 0
+    PerfilID: 0,
+    Rua: '',
+    Numero: '',
+    UF: '',
+    Cidade: '',
+    CEP: '',
+    Complemento: ''
 }
 
 export const iniProdutos = {
@@ -24,14 +30,4 @@ export const iniProdutos = {
     Estoque: 0.0,
     CategoriaID: 0,
     LinkImg: ''
-}
-
-export const iniEndereco = {
-    UsuarioID: getInfUser() ? getInfUser().id : 0,
-    Rua: '',
-    Numero: 0,
-    UF: '',
-    Cidade: '',
-    CEP: '',
-    Complemento: ''
 }

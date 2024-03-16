@@ -36,15 +36,29 @@ export default function TemporaryDrawer(props) {
         >
             <Box sx={{ minWidth: 200, bgcolor: 'background.paper' }}>
                 <List>
-                    <ItemMenu icon={<IconHome />} text='Home' />
-                    <Divider textAlign="left"><TGMenuDivider text='Cadastros' link='/cadastros' /></Divider>
-                    <ItemMenu icon={<IconCadClientes />} text='Clientes' link='/clientes'/>
-                    <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos'/>
-                    <ItemMenu icon={<IconCadUsuarios />} text='Usuários' link='/usuarios'/>
-                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos'/>
-                    <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias'/>
-                    <ItemMenu icon={<IconOnFavorito />} text='Perfil' link='/perfil'/>
-                    <Divider textAlign="left"><TGMenuDivider text='Sessões' /></Divider>
+                    <ItemMenu icon={<IconHome />} text='Home' link='home' />
+
+                    {/* ADM */}
+                    <Divider textAlign="left"><TGMenuDivider text='Administrador' /></Divider>
+                    <ItemMenu icon={<IconCadUsuarios />} text='Usuários' link='/usuarios' />
+                    <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Perfil' link='/perfil' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Vendas' link='/vendas' />
+
+                    {/* VENDEDORES */}
+                    <Divider textAlign="left"><TGMenuDivider text='Vendedores' /></Divider>
+                    <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Vendas' link='/vendas' />
+
+                    {/* CLIENTES */}
+                    <Divider textAlign="left"><TGMenuDivider text='Clientes' /></Divider>
+                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Perfil' link='/perfil' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Meus Pedidos' link='/meuspedidos' />
+
                 </List>
             </Box>
         </Drawer>

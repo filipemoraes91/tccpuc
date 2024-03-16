@@ -52,7 +52,7 @@ function Login() {
                                     <BtnLogin />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button component={Link} to="/cadastrar" fullWidth variant="contained" color="info">Cadastre-se</Button>
+                                    <Button component={Link} to="/usuarios/cadastrar" fullWidth variant="contained" color="info">Cadastre-se</Button>
                                 </Grid>
                             </Grid>
                         </Box>

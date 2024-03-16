@@ -28,13 +28,7 @@ const useApiIBGE = () => {
         }
     }
 
-    useEffect(() => {
-        if (ufs.length === 0) {
-            getUFs();
-        }
-    })
-
-    return { ufs, getMun, municipios };
+    return { ufs, getUFs, getMun, municipios };
 };
 
 export default useApiIBGE;

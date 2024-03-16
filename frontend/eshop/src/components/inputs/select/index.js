@@ -6,7 +6,11 @@ import Select from '@mui/material/Select';
 import useApiIBGE from '../../../hooks/useApiIBGE';
 
 export default function SelectUF(props) {
-    const { ufs } = useApiIBGE();
+    const { getUFs, ufs } = useApiIBGE();
+
+    React.useEffect(() => {
+          getUFs();
+      }, [])
 
     function ListUfs(uf, u) {
         return <MenuItem key={u} value={uf.sigla}>{uf.nome}</MenuItem>

@@ -8,10 +8,17 @@ const getAll = async () => {
 }
 
 const addItensCarrinho = async (item) => {
-    const { usuarioID, produtoID, Quantidade } = item;
-    const qry = 'INSERT INTO CARRINHOCOMPRAS (usuarioID, produtoID, Quantidade) values (?, ?, ?)';
-    const addItensCarrinho = await connection.execute(qry, [usuarioID, produtoID, Quantidade]);
-    return addItensCarrinho;
+    try {
+        const { UsuarioID, ProdutoID, Quantidade } = item;
+        const qry = 'INSERT INTO carrinhocompras (usuarioID, produtoID, Quantidade) values (?, ?, ?)';
+        const addItensCarrinho = await connection.execute(qry, [UsuarioID, ProdutoID, Quantidade]);
+        return addItensCarrinho;
+    } catch (error) {
+        console.error('Erro ao adicionar item ao carrinho:', error);
+        // Capturando o erro específico do MySQL
+        return { success: false, message: 'Erro ao adicionar usuário' };
+    }
+
 }
 
 

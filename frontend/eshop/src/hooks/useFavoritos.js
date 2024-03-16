@@ -11,7 +11,7 @@ const useFavoritos = () => {
     console.log(item);
     try {
       setIsLoading(true);
-      let data = { usuarioID: parseInt(getInfUser().id), produtoID: parseInt(item.ID) }
+      let data = { usuarioID: parseInt(getInfUser().ID), produtoID: parseInt(item.ID) }
       const response = await api.post('/favoritos', data);
       setIsLoading(false);
       console.log(response)

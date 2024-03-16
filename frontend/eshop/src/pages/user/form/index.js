@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Container, Typography, Paper, Box, Grid } from '@mui/material';
+import { Paper } from '@mui/material';
 import { iniUser } from '../../../inicialization/initial';
-import { LogoM } from '../../../images';
-import { TFPassword, TFText, TFUser } from '../../../components/inputs/textField';
-import { BtnCadastrar } from '../../../components/inputs/button';
+import { TFDefault } from '../../../components/inputs/textField';
+import { BtnSalvar } from '../../../components/inputs/button';
 import useUsuarios from '../../../hooks/useUsuarios';
+import { getInfUser } from '../../../utils';
+import { StackJustify, StackRight } from '../../../components/layout/stack';
+import SelectUF, { SelectMun } from '../../../components/inputs/select';
+import { ContainerPages } from '../../../components/layout/container';
+import ToolBarPages from '../../../components/surfaces/toolBar';
 
 export default function CadUser() {
   const [user, setUser] = useState(iniUser);
@@ -26,45 +30,36 @@ export default function CadUser() {
   };
 
   return (
-    <div className="container">
+    <ContainerPages>
+      <ToolBarPages title='Cadastro de Usuario' />
+      <br />
       <form onSubmit={handleSubmit}>
-        <Container component="main" maxWidth="xs">
-          <Paper elevation={3}>
-            <Box p={2} style={{ background: 'black', padding: '10px', borderRadius: '5px' }}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} align="center">
-                  <LogoM />
-                  <Typography variant="h5">Novo Cadastro</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
-                    <TFText name='Nome' label='Nome' value={user.Nome}
-                      onChange={handleInputChange}
-                    />
-                  </Box>
-                </Grid>
-                <Grid item xs={12}>
-                  <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
-                    <TFUser value={user.Email}
-                      onChange={handleInputChange}
-                    />
-                  </Box>
-                </Grid>
-                <Grid item xs={12}>
-                  <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
-                    <TFPassword value={user.Senha}
-                      onChange={handleInputChange}
-                    />
-                  </Box>
-                </Grid>
-                <Grid item xs={12}>
-                  <BtnCadastrar />
-                </Grid>
-              </Grid>
-            </Box>
-          </Paper>
-        </Container>
+        <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
+          <StackJustify>
+            <TFDefault fullWidth={true} label="Nome" value={getInfUser().nome} />
+            <TFDefault fullWidth={true} label="Email" value={getInfUser().email} />
+          </StackJustify>
+          <br />
+          <StackJustify>
+            <SelectUF name='UF' onChange={handleInputChange} value={user.UF} />
+            <SelectMun uf={user.UF} name='Cidade' onChange={handleInputChange} value={user.Cidade} />
+          </StackJustify>
+          <br />
+          <StackJustify>
+            <TFDefault fullWidth={true} label="Número" name='Numero' value={user.Numero} onChange={handleInputChange} />
+            <TFDefault fullWidth={true} label="Rua" name='Rua' value={user.Rua} onChange={handleInputChange} />
+            <TFDefault fullWidth={true} label="CEP" name='CEP' value={user.CEP} onChange={handleInputChange} />
+          </StackJustify>
+          <br />
+          <StackJustify>
+            <TFDefault fullWidth={true} label="Complemento" multiline={true} rows={3} name='Complemento' value={user.Complemento} onChange={handleInputChange} />
+          </StackJustify>
+          <br />
+          <StackRight>
+            <BtnSalvar />
+          </StackRight>
+        </Paper>
       </form>
-    </div>
+    </ContainerPages>
   );
 };
