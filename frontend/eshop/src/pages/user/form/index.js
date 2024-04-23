@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
 import { iniUser } from '../../../inicialization/initial';
 import { TFDefault } from '../../../components/inputs/textField';
@@ -9,10 +9,22 @@ import { StackJustify, StackRight } from '../../../components/layout/stack';
 import SelectUF, { SelectMun } from '../../../components/inputs/select';
 import { ContainerPages } from '../../../components/layout/container';
 import ToolBarPages from '../../../components/surfaces/toolBar';
+import { useParams } from 'react-router-dom';
 
 export default function CadUser() {
+  const { postUsuario, getUsuario, putUsuario, usuario, isLoading } = useUsuarios();
   const [user, setUser] = useState(iniUser);
-  const { postUsuario } = useUsuarios();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id > 0) {
+      getUsuario(id);
+      setUser(usuario);
+    } else {
+      setUser(iniUser);
+    }
+  }, [isLoading])
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,12 +32,31 @@ export default function CadUser() {
   };
 
   const handleSubmit = (e) => {
-    postUsuario({
-      Nome: user.Nome,
-      Email: user.Email,
-      Senha: user.Senha,
-      PerfilID: parseInt(0)
-    });
+    if (id > 0) {
+      putUsuario({
+        ID: id,
+        Nome: user.Nome,
+        Email: user.Email,
+        Senha: user.Senha,
+        Rua: user.Rua,
+        Numero: user.Numero,
+        CEP: user.CEP,
+        Cidade: user.Cidade,
+        UF: user.UF
+      })
+    } else {
+      postUsuario({
+        ID: id,
+        Nome: user.Nome,
+        Email: user.Email,
+        Senha: user.Senha,
+        Rua: user.Rua,
+        Numero: user.Numero,
+        CEP: user.CEP,
+        Cidade: user.Cidade,
+        UF: user.UF
+      });
+    }
     e.preventDefault();
   };
 
@@ -36,8 +67,7 @@ export default function CadUser() {
       <form onSubmit={handleSubmit}>
         <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
           <StackJustify>
-            <TFDefault fullWidth={true} label="Nome" value={getInfUser().nome} />
-            <TFDefault fullWidth={true} label="Email" value={getInfUser().email} />
+            <TFDefault fullWidth={true} label="Email" value={user.Email} />
           </StackJustify>
           <br />
           <StackJustify>

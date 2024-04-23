@@ -11,11 +11,14 @@ const useFavoritos = () => {
     console.log(item);
     try {
       setIsLoading(true);
-      let data = { usuarioID: parseInt(getInfUser().ID), produtoID: parseInt(item.ID) }
-      const response = await api.post('/favoritos', data);
-      setIsLoading(false);
-      console.log(response)
-      alert(response.data.message);
+      if (getInfUser() !== null) {
+        let data = { usuarioID: parseInt(getInfUser().ID), produtoID: parseInt(item.ID) }
+        const response = await api.post('/favoritos', data);
+        setIsLoading(false);
+        alert(response.data.message);
+      } else {
+        alert('Para adicionar itens aos favoritos é necessário fazer login.');
+      }
       window.location.href = '/home'
     } catch (err) {
       alert(err);

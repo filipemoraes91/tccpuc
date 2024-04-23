@@ -10,10 +10,14 @@ const useCarrinho = () => {
   const postItemCarrinho = async (item) => {
     try {
       setIsLoading(true);
-      let data = { UsuarioID: getInfUser().ID, ProdutoID: item.ID, Quantidade: 1 }
-      const response = await api.post('/carrinho', data);
-      setIsLoading(false);
-      alert(response.data.message);
+      if (getInfUser() !== null) {
+        let data = { UsuarioID: getInfUser().ID, ProdutoID: item.ID, Quantidade: 1 }
+        const response = await api.post('/carrinho', data);
+        setIsLoading(false);
+        alert(response.data.message);
+      } else {
+        alert('Para adicionar itens no carrinho é necessário fazer login.');
+      }
       window.location.href = '/home'
     } catch (err) {
       alert(err);

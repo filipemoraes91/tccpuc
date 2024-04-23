@@ -13,13 +13,15 @@ export const iniUser = {
     Nome: '',
     Email: '',
     Senha: '',
+    ConfirmarSenha: '',
     PerfilID: 0,
     Rua: '',
-    Numero: '',
-    UF: '',
+    Numero: 0,
+    Estado: '',
     Cidade: '',
     CEP: '',
     Complemento: ''
+
 }
 
 export const iniProdutos = {

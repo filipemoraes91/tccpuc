@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ContainerPages } from "../../components/layout/container";
 import { Box, Grid, Paper } from "@mui/material";
 import useProdutos from "../../hooks/useProdutos";
 import { CardProdutos } from "../../components/surfaces/card";
 import useCarrinho from "../../hooks/useCarrinho";
 import useFavoritos from "../../hooks/useFavoritos";
-import { getInfUser } from "../../utils";
 
 export default function Produtos() {
     const { getProdutos, produtos } = useProdutos();
     const { postItemCarrinho } = useCarrinho();
-    const { postFavoritos} = useFavoritos();
+    const { postFavoritos } = useFavoritos();
 
     useEffect(() => {
         getProdutos();

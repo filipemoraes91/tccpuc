@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function BtnDefault(props) {
     return <Button onClick={props.onClick} type={props.type} variant="contained"
         color={props.color} style={props.style} fullWidth={props.fullWidth}
-        size={props.size} startIcon={props.startIcon}
+        size={props.size} startIcon={props.startIcon} disabled={props.disabled}
     >
         {props.text}
     </Button>
@@ -27,7 +27,7 @@ export function BtnNovo(props) {
 }
 
 export function BtnCadastrar(props) {
-    return <BtnDefault text="Cadastrar-se" onClick={props.onClick} color="info" type="submit" />
+    return <BtnDefault text="Cadastrar-se" onClick={props.onClick} color="info" type="submit" disabled={props.disabled}/>
 }
 
 export function BtnSalvar(props) {

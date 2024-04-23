@@ -1,5 +1,9 @@
 export function getInfUser(){
-    return JSON.parse(sessionStorage.getItem('usuario'))
+    try {
+        return JSON.parse(sessionStorage.getItem('usuario'))        
+    } catch (error) {
+        return undefined;
+    }
 }
 
 export function Logoff() {

@@ -7,11 +7,10 @@ const getAll = async () => {
     return usuarios;
 }
 
-async function getUsuario(user) {
-    const { Email, Senha } = user;
-    const query = 'SELECT *  FROM usuarios WHERE Email = ? AND Senha = ?';
-    const usuario = await connection.execute(query, [Email, Senha]);
-    return usuario;
+async function getUsuario(id) {
+    const qry = 'SELECT * FROM usuarios WHERE ID = ?';
+    const usuario = await connection.execute(qry, [id]);
+    return usuario[0];
 }
 
 const addUsuario = async (usuario) => {
@@ -31,9 +30,17 @@ const addUsuario = async (usuario) => {
     }
 }
 
+const putUsuario = async (usuario) => {
+    const { ID, Nome, Email, Senha, Rua, Numero, CEP, Cidade, Estado } = usuario;
+    const qry = 'UPDATE usuarios SET Nome = ?, Email = ?, Senha = ?, Rua = ?, Numero = ?, CEP = ?, Cidade = ?, Estado = ? WHERE ID = ?';
+    const putUsuario = await connection.execute(qry, [ID, Nome, Email, Senha, Rua, Numero, CEP, Cidade, Estado]);
+    return putUsuario;
+};
+
 
 module.exports = {
     getUsuario,
     getAll,
-    addUsuario
+    addUsuario,
+    putUsuario
 }

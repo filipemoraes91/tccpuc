@@ -1,5 +1,6 @@
 const express = require('express');
 const auth = require('./auth');
+const authControl = require('./controllers/authController');
 const usuarioController = require('./controllers/usuarioController');
 const pessoasContrl = require('./controllers/pessoasController');
 const produtosContrl = require('./controllers/produtosController');
@@ -10,8 +11,10 @@ const favoritosContrl = require('./controllers/favoritosController');
 
 const router = express.Router();
 
-router.get('/pessoas', pessoasContrl.getAll);
-router.post('/pessoas', pessoasContrl.addPessoa);
+router.post('/login', authControl.getAuth);
+
+// router.get('/pessoas', pessoasContrl.getAll);
+// router.post('/pessoas', pessoasContrl.addPessoa);
 
 router.get('/carrinho', carrinhoContrl.getAll);
 router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
@@ -33,8 +36,9 @@ router.post('/perfil/novo', perfilContrl.addPerfil);
 router.put('/perfil/editar/:id', perfilContrl.putPerfil);
 router.delete('/perfil/delete/:id', perfilContrl.deletePerfil);
 
-router.post('/login', usuarioController.login);
 router.get('/usuarios', usuarioController.getAll);
+router.get('/usuarios/:id', usuarioController.getUsuario);
+router.put('/usuario/:id', usuarioController.putUsuario);
 router.post('/usuario/novo', usuarioController.addUsuario);
 
 // Rota protegida (exemplo)

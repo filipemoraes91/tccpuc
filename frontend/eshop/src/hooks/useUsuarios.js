@@ -17,6 +17,17 @@ const useUsuarios = () => {
         setIsLoading(false);
     };
 
+    const putUsuario = async (usuario) => {
+        try {
+            setIsLoading(true);
+            const response = await api.put('/usuario/novo', usuario);
+            alert(response.data.message);
+        } catch (err) {
+            alert(err.response.data.message);
+        }
+        setIsLoading(false);
+    };
+
 
     const getUsuarios = async () => {
         try {
@@ -29,7 +40,18 @@ const useUsuarios = () => {
         }
     };
 
-    return { postUsuario, getUsuarios, listUsuarios, usuario, isLoading };
+    const getUsuario = async (id) => {
+        try {
+            setIsLoading(true);
+            const response = await api.get(`/usuarios/${id}`);
+            setIsLoading(false);
+            setUsuario(response.data[0]);
+        } catch (err) {
+            alert(err.response.data.message);
+        }
+    };
+
+    return { postUsuario, putUsuario, getUsuarios, getUsuario, listUsuarios, usuario, isLoading };
 };
 
 export default useUsuarios;

@@ -1,23 +1,25 @@
 const usuarioModel = require('../models/usuarioModel');
 const auth = require('../auth');
 
-const login = async (req, res) => {
+const getUsuario = async (req, res) => {
+  const id = req.params.id;
   try {
+    const usuario = await usuarioModel.getUsuario(id);
+    return res.status(200).json(usuario);
 
-    // Consulta o usuario no banco de dados
-    const [usuario] = await usuarioModel.getUsuario(req.body);
-    if (!usuario) {
-      return res.status(401).json({ auth: false, message: 'Falha na autenticação.' });
-    }
-
-    const token = auth.generateToken(usuario.id);
-
-    res.status(200).json({ auth: true, token, usuario: usuario[0] });
   } catch (error) {
-    res.status(500).json({ auth: false, message: 'Erro no servidor.' });
-    console.log('erro server');
+    return res.status(500).json({ "message": "Ops! Ocorreu algum erro!", "error": error });
   }
 };
+
+const putUsuario = async (req, res) => {
+  try {
+    const putUsuario = await usuarioModel.putUsuario(req.body);
+    return res.status(200).json({ "message": "Produto Alterado com sucesso!", "Item": putUsuario });
+  } catch (error) {
+    return res.status(500).json({ "message": "Ops! Ocorreu algum erro!" });
+  }
+}
 
 const addUsuario = async (req, res) => {
   try {
@@ -35,7 +37,8 @@ const getAll = async (req, res) => {
 
 
 module.exports = {
-  login,
+  getUsuario,
   addUsuario,
+  putUsuario,
   getAll
 }

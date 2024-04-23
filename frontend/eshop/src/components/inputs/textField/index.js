@@ -14,11 +14,15 @@ export function TFText(props) {
 }
 
 export function TFUser(props) {
-    return <TFDefault id="Email" name="Email" type='email' value={props.value} label="Usuário" color="secondary" fullWidth={true} onChange={props.onChange} />
+    return <TFDefault id="Email" name="Email" type='email' value={props.value} label="Email" color="secondary" fullWidth={true} onChange={props.onChange} />
 }
 
 export function TFPassword(props) {
     return <TFDefault id="Senha" name="Senha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange} />
+}
+
+export function TFPasswordConfirme(props) {
+    return <TFDefault id="Senha" name="ConfirmarSenha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange} />
 }
 
 export function TFQtde(props) {
