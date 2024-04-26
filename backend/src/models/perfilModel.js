@@ -7,7 +7,6 @@ const addPerfil = async (perfil) => {
     return addPerm;
 }
 
-
 const putPerfil = async (perfil) => {
     const { Nome, Perm, ID } = perfil;
     const qry = 'UPDATE perfil SET Nome = ?, Perm = ? WHERE ID = ?';

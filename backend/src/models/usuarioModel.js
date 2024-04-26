@@ -31,9 +31,12 @@ const addUsuario = async (usuario) => {
 }
 
 const putUsuario = async (usuario) => {
-    const { ID, Nome, Email, Senha, Rua, Numero, CEP, Cidade, Estado } = usuario;
-    const qry = 'UPDATE usuarios SET Nome = ?, Email = ?, Senha = ?, Rua = ?, Numero = ?, CEP = ?, Cidade = ?, Estado = ? WHERE ID = ?';
-    const putUsuario = await connection.execute(qry, [ID, Nome, Email, Senha, Rua, Numero, CEP, Cidade, Estado]);
+    console.log(usuario)
+    const { ID, Nome, Email, Senha, Rua, Numero, CEP, Cidade, Estado, Complemento, PerfilID } = usuario;
+    // const qry = 'UPDATE usuarios SET Nome = ?, Email = ?, Senha = ?, Rua = ?, Numero = ?, CEP = ?, Cidade = ?, Estado = ? WHERE ID = ?';
+    const qry = 'UPDATE usuarios SET Rua = ?, Numero = ?, CEP = ?, Cidade = ?, Estado = ?, Complemento = ?, PerfilID = ? WHERE ID = ?';
+    console.log(qry);
+    const putUsuario = await connection.execute(qry, [Rua, Numero, CEP, Cidade, Estado, Complemento, PerfilID, ID]);
     return putUsuario;
 };
 

@@ -20,7 +20,7 @@ const useUsuarios = () => {
     const putUsuario = async (usuario) => {
         try {
             setIsLoading(true);
-            const response = await api.put('/usuario/novo', usuario);
+            const response = await api.put(`/usuario/${usuario.ID}`, usuario);
             alert(response.data.message);
         } catch (err) {
             alert(err.response.data.message);

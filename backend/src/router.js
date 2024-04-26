@@ -5,6 +5,7 @@ const usuarioController = require('./controllers/usuarioController');
 const pessoasContrl = require('./controllers/pessoasController');
 const produtosContrl = require('./controllers/produtosController');
 const perfilContrl = require('./controllers/perfilController');
+const categoriaContrl = require('./controllers/categoriaController');
 const carrinhoContrl = require('./controllers/carrinhoController');
 const favoritosContrl = require('./controllers/favoritosController');
 
@@ -35,6 +36,12 @@ router.get('/perfil', perfilContrl.getAll);
 router.post('/perfil/novo', perfilContrl.addPerfil);
 router.put('/perfil/editar/:id', perfilContrl.putPerfil);
 router.delete('/perfil/delete/:id', perfilContrl.deletePerfil);
+
+router.get('/categoria', categoriaContrl.getAll);
+router.get('/categoria/:id', categoriaContrl.getCategoria);
+router.post('/categoria/novo', categoriaContrl.addCategoria);
+router.put('/categoria/editar/:id', categoriaContrl.putCategoria);
+router.delete('/categoria/delete/:id', categoriaContrl.deleteCategoria);
 
 router.get('/usuarios', usuarioController.getAll);
 router.get('/usuarios/:id', usuarioController.getUsuario);

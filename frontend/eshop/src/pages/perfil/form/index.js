@@ -10,7 +10,6 @@ import ToolBarPages from "../../../components/surfaces/toolBar";
 export default function Perfil() {
     const { postPerfil } = usePerfil();
     const [perf, setPerf] = useState({ Nome: '', Perm: [] });
-    let listPerm = [];
 
     const handleCheckChange = (e) => {
         const { name, checked } = e.target;

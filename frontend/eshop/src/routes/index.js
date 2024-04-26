@@ -9,6 +9,8 @@ import CadProdutos from "../pages/produtos/form";
 import Favoritos from "../pages/produtos/favoritos";
 import ListUser from "../pages/user/lista";
 import ListPerfil from "../pages/perfil/lista";
+import ListCategoria from "../pages/categorias/lista";
+import Categoria from "../pages/categorias/form";
 
 export default function RoutesApp() {
   return (
@@ -25,6 +27,10 @@ export default function RoutesApp() {
         <Route path="/perfil" element={<ListPerfil />} />
         <Route path="/perfil/novo" element={<Pefil />} />
         <Route path="/perfil/editar/:id" element={<Pefil />} />
+
+        <Route path="/categorias" element={<ListCategoria />} />
+        <Route path="/categoria/novo" element={<Categoria />} />
+        <Route path="/categoria/editar/:id" element={<Categoria />} />
 
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/produtos/novo" element={<CadProdutos />} />

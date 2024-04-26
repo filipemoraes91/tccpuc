@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
 import { iniUser } from '../../../inicialization/initial';
 import { TFDefault } from '../../../components/inputs/textField';
-import { BtnSalvar } from '../../../components/inputs/button';
+import { BtnCancelar, BtnSalvar } from '../../../components/inputs/button';
 import useUsuarios from '../../../hooks/useUsuarios';
 import { getInfUser } from '../../../utils';
 import { StackJustify, StackRight } from '../../../components/layout/stack';
-import SelectUF, { SelectMun } from '../../../components/inputs/select';
+import SelectUF, { SelectMun, SelectPerfil } from '../../../components/inputs/select';
 import { ContainerPages } from '../../../components/layout/container';
 import ToolBarPages from '../../../components/surfaces/toolBar';
 import { useParams } from 'react-router-dom';
@@ -19,6 +19,7 @@ export default function CadUser() {
   useEffect(() => {
     if (id > 0) {
       getUsuario(id);
+      console.log(usuario.PerfilID)
       setUser(usuario);
     } else {
       setUser(iniUser);
@@ -32,6 +33,7 @@ export default function CadUser() {
   };
 
   const handleSubmit = (e) => {
+    console.log(user);
     if (id > 0) {
       putUsuario({
         ID: id,
@@ -39,10 +41,12 @@ export default function CadUser() {
         Email: user.Email,
         Senha: user.Senha,
         Rua: user.Rua,
-        Numero: user.Numero,
+        Numero: parseInt(user.Numero),
         CEP: user.CEP,
         Cidade: user.Cidade,
-        UF: user.UF
+        Estado: user.Estado,
+        Complemento: user.Complemento,
+        PerfilID: user.PerfilID
       })
     } else {
       postUsuario({
@@ -54,10 +58,12 @@ export default function CadUser() {
         Numero: user.Numero,
         CEP: user.CEP,
         Cidade: user.Cidade,
-        UF: user.UF
+        Estado: user.Estado,
+        PerfilID: user.PerfilID
       });
     }
     e.preventDefault();
+    window.location.href = '/usuarios'
   };
 
   return (
@@ -67,12 +73,14 @@ export default function CadUser() {
       <form onSubmit={handleSubmit}>
         <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
           <StackJustify>
+            <TFDefault fullWidth={true} label="Nome" value={user.Nome} />
             <TFDefault fullWidth={true} label="Email" value={user.Email} />
+            <SelectPerfil name='PerfilID' value={user.PerfilID} onChange={handleInputChange} />
           </StackJustify>
           <br />
           <StackJustify>
-            <SelectUF name='UF' onChange={handleInputChange} value={user.UF} />
-            <SelectMun uf={user.UF} name='Cidade' onChange={handleInputChange} value={user.Cidade} />
+            <SelectUF name='Estado' onChange={handleInputChange} value={user.Estado} />
+            <SelectMun uf={user.Estado} name='Cidade' onChange={handleInputChange} value={user.Cidade} />
           </StackJustify>
           <br />
           <StackJustify>
@@ -87,6 +95,7 @@ export default function CadUser() {
           <br />
           <StackRight>
             <BtnSalvar />
+            <BtnCancelar onClick={() => window.location.href = '/usuarios'}/>
           </StackRight>
         </Paper>
       </form>

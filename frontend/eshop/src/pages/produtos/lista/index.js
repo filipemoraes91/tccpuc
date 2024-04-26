@@ -14,7 +14,7 @@ export default function Produtos() {
 
     function deleteProd(id) {
         deleteProduto(id);
-        getProdutos();
+        window.location.reload();
     }
 
     function ListProdutos(produto, p) {
