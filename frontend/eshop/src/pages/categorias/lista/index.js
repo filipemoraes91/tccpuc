@@ -11,7 +11,7 @@ import { TGMedio } from "../../../components/dataDisplay/typography";
 import useCategorias from "../../../hooks/useCategorias";
 
 export default function ListCategoria() {
-  const { getCategoria, listCategoria } = useCategorias();
+  const { getCategoria, listCategoria , deleteCategoria } = useCategorias();
 
   useEffect(() => {
     getCategoria();
@@ -28,7 +28,7 @@ export default function ListCategoria() {
           <Box>
             <BtnEditar onClick={() => window.location.href = `/categoria/editar/${categoria.ID}`} />
             <span style={{ padding: '5px' }} />
-            <BtnDelete onClick={() => console.log('excluido')} />
+            <BtnDelete onClick={() => deleteCategoria(categoria.ID)} />
           </Box>
         </StackJustify>
       </ListItemText>

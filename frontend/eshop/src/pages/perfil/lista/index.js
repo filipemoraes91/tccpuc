@@ -11,7 +11,7 @@ import { TGMedio } from "../../../components/dataDisplay/typography";
 import usePerfil from "../../../hooks/usePerfil";
 
 export default function ListPerfil() {
-  const { getPerfil, listPerfil } = usePerfil();
+  const { getPerfil, listPerfil, deletePerfil } = usePerfil();
 
   useEffect(() => {
     getPerfil();
@@ -27,7 +27,7 @@ export default function ListPerfil() {
           <Box>
             <BtnEditar onClick={() => window.location.href = `/perfil/editar/${perfil.ID}`} />
             <span style={{ padding: '5px' }} />
-            <BtnDelete onClick={() => console.log('excluido')} />
+            <BtnDelete onClick={() => deletePerfil(perfil.ID)} />
           </Box>
         </StackJustify>
       </ListItemText>

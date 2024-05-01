@@ -11,7 +11,7 @@ const useCategoria = () => {
   async function getCategoria(id) {
     try {
       setIsLoading(true)
-      if (id) {
+      if (id > 0) {
         const response = await api.get(`/categoria/${id}`);
         setCategoria(response.data[0]);
         setIsLoading(false);
@@ -23,7 +23,6 @@ const useCategoria = () => {
     } catch (err) {
       alert(err.response.data.message);
     }
-
   }
 
   const postCategoria = async (categoria) => {
@@ -46,7 +45,20 @@ const useCategoria = () => {
       alert(err.response.data.message);
     }
   };
-  return { categoria, postCategoria, putCategoria, getCategoria, listCategoria };
+
+  const deleteCategoria = async (id) => {
+    try {
+      setIsLoading(true);
+      const response = await api.delete(`/categoria/delete/${id}`);
+      alert(response.data.message);
+      window.location.reload();
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+    setIsLoading(false);
+  }
+
+  return { categoria, postCategoria, putCategoria, getCategoria, deleteCategoria, listCategoria, isLoading };
 }
 
 export default useCategoria;

@@ -33,6 +33,7 @@ router.put('/produtos/editar/:id', produtosContrl.putProduto);
 router.delete('/produtos/delete/:id', produtosContrl.deleteProduto);
 
 router.get('/perfil', perfilContrl.getAll);
+router.get('/perfil/:id', perfilContrl.getPerfil);
 router.post('/perfil/novo', perfilContrl.addPerfil);
 router.put('/perfil/editar/:id', perfilContrl.putPerfil);
 router.delete('/perfil/delete/:id', perfilContrl.deletePerfil);

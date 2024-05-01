@@ -51,7 +51,6 @@ export default function TemporaryDrawer(props) {
                     <Divider textAlign="left"><TGMenuDivider text='Vendedores' /></Divider>
                     <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
                     <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Vendas' link='/vendas' />
 
                     {/* CLIENTES */}
                     <Divider textAlign="left"><TGMenuDivider text='Clientes' /></Divider>

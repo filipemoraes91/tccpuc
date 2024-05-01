@@ -20,7 +20,7 @@ const deleteCategoria = async (req, res) => {
     const id = req.params.id;
     try {
         const categoria = await categoriaModel.deleteCategoria(id);
-        return res.status(200).json({ "message": "Perfil removido com sucesso!", "Item": categoria });
+        return res.status(200).json({ "message": "Categoria removida com sucesso!", "Item": categoria });
     } catch (error) {
         return res.status(500).json({ "message": "Ops! Ocorreu algum erro!", "error": error });
     }
@@ -29,7 +29,7 @@ const deleteCategoria = async (req, res) => {
 const putCategoria = async (req, res) => {
     try {
         const putCategoria = await categoriaModel.putCategoria(req.body);
-        return res.status(200).json({ "message": "Perfil Alterado com sucesso!", "Item": putCategoria });
+        return res.status(200).json({ "message": "Categoria Alterado com sucesso!", "Item": putCategoria });
     } catch (error) {
         return res.status(500).json({ "message": "Ops! Ocorreu algum erro!" });
     }
@@ -37,7 +37,7 @@ const putCategoria = async (req, res) => {
 const addCategoria = async (req, res) => {
     try {
         const addCategoria = await categoriaModel.addCategoria(req.body);
-        return res.status(200).json({ "message": "Perfil cadastrado com sucesso!", "item": addCategoria });
+        return res.status(200).json({ "message": "Categoria cadastrado com sucesso!", "item": addCategoria });
     } catch (error) {
         return res.status(500).json({ "message": "Ops! Ocorreu algum erro!" });
     }

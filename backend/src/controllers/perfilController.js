@@ -10,7 +10,6 @@ const getPerfil = async (req, res) => {
     try {
         const perfil = await perfilModel.getPerfil(id);
         return res.status(200).json(perfil);
-
     } catch (error) {
         return res.status(500).json({ "message": "Ops! Ocorreu algum erro!", "error": error });
     }
