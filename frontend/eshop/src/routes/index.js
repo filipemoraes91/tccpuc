@@ -11,6 +11,7 @@ import ListUser from "../pages/user/lista";
 import ListPerfil from "../pages/perfil/lista";
 import ListCategoria from "../pages/categorias/lista";
 import Categoria from "../pages/categorias/form";
+import Pedido from "../pages/pedido";
 
 export default function RoutesApp() {
   return (
@@ -37,6 +38,7 @@ export default function RoutesApp() {
         <Route path="/produtos/editar/:id" element={<CadProdutos />} />
 
         <Route path="/carrinho" element={<Carrinho />} />
+        <Route path="/pedido" element={<Pedido />} />
         <Route path="/favoritos" element={<Favoritos />} />
       </Routes>
     </BrowserRouter>

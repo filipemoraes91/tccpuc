@@ -108,7 +108,7 @@ export function CardItemCar(props) {
                     </Box>
                     <Box>
                         <Typography variant="body2">{produto.Quantidade}</Typography><br />
-                        <BtnDelete onClick={props.onClickDelete} />
+                        {props.showBtn ? <BtnDelete onClick={props.onClickDelete} /> : ''}
                     </Box>
                 </StackJustify>
             </CardContent>

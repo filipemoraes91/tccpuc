@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ContainerPages } from "../../components/layout/container";
-import { Box, Paper, TextField, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { CardItemCar } from "../../components/surfaces/card";
 import useCarrinho from "../../hooks/useCarrinho";
 import ToolBarPages from "../../components/surfaces/toolBar";
 import { StackRight } from "../../components/layout/stack";
-import { TGPageTitle } from "../../components/dataDisplay/typography";
 import { BtnFinalizar } from "../../components/inputs/button";
 
 export default function Produtos() {
@@ -20,6 +19,7 @@ export default function Produtos() {
         total = total + parseFloat(item.Preco);
         return <CardItemCar key={i}
             produto={item}
+            showBtn={true}
             onClickDelete={() => deleteItens(item.ID)}
         />
     }
@@ -38,10 +38,9 @@ export default function Produtos() {
                     </Box>
                     <StackRight>
                         <Box p={1}>
-                            <BtnFinalizar />
+                            <BtnFinalizar onClick={() => window.location.href = '/pedido'} />
                         </Box>
                     </StackRight>
-
                 </Box>
             </Paper>
         </ContainerPages >
