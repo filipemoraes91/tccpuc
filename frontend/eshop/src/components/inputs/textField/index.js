@@ -4,7 +4,7 @@ import React from "react";
 
 export function TFDefault(props) {
     return <TextField id={props.id} name={props.name} type={props.type} label={props.label} onChange={props.onChange}
-        variant="outlined" value={props.value} size="small" color={props.color} fullWidth={props.fullWidth}
+        variant="outlined" value={props.value} size="small" color={props.color} fullWidth={props.fullWidth}  disabled={props.disabled}
         multiline={props.multiline} rows={props.rows}
     />
 }

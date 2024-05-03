@@ -26,6 +26,7 @@ export default function SelectUF(props) {
                 value={props.value}
                 label="UsF"
                 onChange={props.onChange}
+                disabled={props.disabled}
             >
                 {ufs.map(ListUfs)}
             </Select>
@@ -55,6 +56,7 @@ export function SelectMun(props) {
                 value={props.value}
                 label="Municipio"
                 onChange={props.onChange}
+                disabled={props.disabled}
             >
                 {municipios.map(ListMun)}
             </Select>
@@ -62,6 +64,32 @@ export function SelectMun(props) {
     );
 }
 
+export function SelectParc(props) {
+    return (
+        <FormControl fullWidth size='small'>
+            <InputLabel id="Parcelamento">Parcelamento</InputLabel>
+            <Select
+                labelId="Parcelamento"
+                id="Parcelamento"
+                name={props.name}
+                value={props.value}
+                label="Parcelamento"
+                onChange={props.onChange}
+            >
+                <MenuItem value={1}>1 vez</MenuItem>
+                <MenuItem value={2}>2 vezes</MenuItem>
+                <MenuItem value={3}>3 vezes</MenuItem>
+                <MenuItem value={4}>4 vezes</MenuItem>
+                <MenuItem value={5}>5 vezes</MenuItem>
+                <MenuItem value={6}>6 vezes</MenuItem>
+                <MenuItem value={7}>7 vezes</MenuItem>
+                <MenuItem value={8}>8 vezes</MenuItem>
+                <MenuItem value={9}>9 vezes</MenuItem>
+                <MenuItem value={10}>10 vezes</MenuItem>
+            </Select>
+        </FormControl>
+    );
+}
 export function SelectPerfil(props) {
     const { listPerfil, getPerfil } = usePerfil();
 

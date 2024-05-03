@@ -19,7 +19,6 @@ export default function CadUser() {
   useEffect(() => {
     if (id > 0) {
       getUsuario(id);
-      console.log(usuario.PerfilID)
       setUser(usuario);
     } else {
       setUser(iniUser);
