@@ -8,7 +8,8 @@ export function ContainerPages(props) {
 
         minHeight: '100vh',
         position: 'absolute',
-        padding: '0'
+        padding: '0',
+        marginBottom: '10px'
     }}>
         <MenuAppBar />
         <br />

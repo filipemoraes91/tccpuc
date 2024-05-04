@@ -73,8 +73,10 @@ export function SelectParc(props) {
                 id="Parcelamento"
                 name={props.name}
                 value={props.value}
+                defaultValue={1}
                 label="Parcelamento"
                 onChange={props.onChange}
+                disabled={props.disabled}
             >
                 <MenuItem value={1}>1 vez</MenuItem>
                 <MenuItem value={2}>2 vezes</MenuItem>

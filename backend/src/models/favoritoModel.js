@@ -2,7 +2,7 @@ const connection = require('./conection');
 const getAll = async () => {
     const favoritos = await connection.execute(
         'SELECT * FROM FAVORITOS ' +
-        'INNER JOIN PRODUTOS ON FAVORITOS.ProdutoID = PRODUTOS.ID '+
+        'INNER JOIN PRODUTOS ON FAVORITOS.ProdutoID = PRODUTOS.ID ' +
         'INNER JOIN USUARIOS ON USUARIOS.ID = FAVORITOS.USUARIOID '
     );
     return favoritos;
