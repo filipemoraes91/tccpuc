@@ -15,10 +15,10 @@ async function getUsuario(id) {
 
 const addUsuario = async (usuario) => {
     try {
-        const { Nome, Email, Senha, PerfilID } = usuario;
+        const { CPF, Nome, Email, Senha, PerfilID } = usuario;
         console.log(Nome)
-        const qry = 'INSERT INTO usuarios (Nome, Email, Senha, PerfilID) VALUES (?, ?, ?, ?)';
-        const addUsuario = await connection.execute(qry, [Nome, Email, Senha, PerfilID]);
+        const qry = 'INSERT INTO usuarios (CPF, Nome, Email, Senha, PerfilID) VALUES (?, ?, ?, ?, ?)';
+        const addUsuario = await connection.execute(qry, [CPF, Nome, Email, Senha, PerfilID]);
         return addUsuario;
     } catch (error) {
         console.error('Erro ao adicionar usuário:', error);
@@ -31,12 +31,11 @@ const addUsuario = async (usuario) => {
 }
 
 const putUsuario = async (usuario) => {
-    console.log(usuario)
-    const { ID, Nome, Email, Senha, Rua, Numero, CEP, Cidade, Estado, Complemento, PerfilID } = usuario;
+    const { ID, PerfilID } = usuario;
     // const qry = 'UPDATE usuarios SET Nome = ?, Email = ?, Senha = ?, Rua = ?, Numero = ?, CEP = ?, Cidade = ?, Estado = ? WHERE ID = ?';
-    const qry = 'UPDATE usuarios SET Rua = ?, Numero = ?, CEP = ?, Cidade = ?, Estado = ?, Complemento = ?, PerfilID = ? WHERE ID = ?';
+    const qry = 'UPDATE usuarios SET PerfilID = ? WHERE ID = ?';
     console.log(qry);
-    const putUsuario = await connection.execute(qry, [Rua, Numero, CEP, Cidade, Estado, Complemento, PerfilID, ID]);
+    const putUsuario = await connection.execute(qry, [PerfilID, ID]);
     return putUsuario;
 };
 

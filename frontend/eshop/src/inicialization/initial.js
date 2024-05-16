@@ -21,6 +21,17 @@ export const iniUser = {
     Cidade: '',
     CEP: '',
     Complemento: ''
+}
+
+export const iniEndereco = {
+    id: 0,
+    UsuarioID: 0,
+    Rua: '',
+    Numero: 0,
+    Estado: '',
+    Cidade: '',
+    CEP: '',
+    Complemento: ''
 
 }
 

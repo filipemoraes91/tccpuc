@@ -32,7 +32,6 @@ export default function CadUser() {
   };
 
   const handleSubmit = (e) => {
-    console.log(user);
     if (id > 0) {
       putUsuario({
         ID: id,

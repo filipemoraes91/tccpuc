@@ -2,7 +2,7 @@ const express = require('express');
 const auth = require('./auth');
 const authControl = require('./controllers/authController');
 const usuarioController = require('./controllers/usuarioController');
-const entregaContrl = require('./controllers/entregaController');
+const enderecoContrl = require('./controllers/enderecoController');
 const produtosContrl = require('./controllers/produtosController');
 const perfilContrl = require('./controllers/perfilController');
 const categoriaContrl = require('./controllers/categoriaController');
@@ -14,8 +14,10 @@ const router = express.Router();
 
 router.post('/login', authControl.getAuth);
 
-router.get('/entrega/:id', entregaContrl.getAll);
-router.post('/entrega', entregaContrl.addEntrega);
+router.get('/enderecos/:id', enderecoContrl.getAll);
+router.get('/endereco/:id/:idEnd', enderecoContrl.getEndereco);
+router.post('/endereco', enderecoContrl.addEndereco);
+router.delete('/endereco/:id', enderecoContrl.putEndereco);
 
 router.get('/carrinho', carrinhoContrl.getAll);
 router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);

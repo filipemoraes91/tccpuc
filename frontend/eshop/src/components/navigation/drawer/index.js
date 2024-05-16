@@ -9,6 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { IconCadClientes, IconCadProdutos, IconCadUsuarios, IconHome, IconOnFavorito } from '../../dataDisplay/icons';
 import { TGMenuDivider } from '../../dataDisplay/typography';
+import { getInfUser } from '../../../utils';
 
 function ItemMenu(props) {
     function direct() {
@@ -54,9 +55,9 @@ export default function TemporaryDrawer(props) {
 
                     {/* CLIENTES */}
                     <Divider textAlign="left"><TGMenuDivider text='Clientes' /></Divider>
-                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Perfil' link='/perfil' />
+                    {getInfUser() ? <ItemMenu icon={<IconOnFavorito />} text='Meu Perfil' link={`/meuperfil/${getInfUser().ID}`} /> : ''}
                     <ItemMenu icon={<IconOnFavorito />} text='Meus Pedidos' link='/meuspedidos' />
+                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
 
                 </List>
             </Box>

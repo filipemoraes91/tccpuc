@@ -12,6 +12,8 @@ import ListPerfil from "../pages/perfil/lista";
 import ListCategoria from "../pages/categorias/lista";
 import Categoria from "../pages/categorias/form";
 import Pedido from "../pages/pedido";
+import MeuPerfil from "../pages/meuperfil/lista";
+import CadEndereco from "../pages/endereco/form";
 
 export default function RoutesApp() {
   return (
@@ -25,9 +27,14 @@ export default function RoutesApp() {
         <Route path="/usuarios/novo" element={<CadUser />} />
         <Route path="/usuarios/editar/:id" element={<CadUser />} />
 
+        <Route path="/meuperfil/:usuario/endereco/novo" element={<CadEndereco />} />
+        <Route path="/endereco/editar/:id" element={<CadEndereco />} />
+
         <Route path="/perfil" element={<ListPerfil />} />
         <Route path="/perfil/novo" element={<Pefil />} />
         <Route path="/perfil/editar/:id" element={<Pefil />} />
+
+        <Route path="/meuperfil/:id" element={<MeuPerfil />} />
 
         <Route path="/categorias" element={<ListCategoria />} />
         <Route path="/categoria/novo" element={<Categoria />} />
@@ -43,4 +50,5 @@ export default function RoutesApp() {
       </Routes>
     </BrowserRouter>
   );
+
 }
