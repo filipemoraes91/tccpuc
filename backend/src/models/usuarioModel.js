@@ -16,7 +16,6 @@ async function getUsuario(id) {
 const addUsuario = async (usuario) => {
     try {
         const { CPF, Nome, Email, Senha, PerfilID } = usuario;
-        console.log(Nome)
         const qry = 'INSERT INTO usuarios (CPF, Nome, Email, Senha, PerfilID) VALUES (?, ?, ?, ?, ?)';
         const addUsuario = await connection.execute(qry, [CPF, Nome, Email, Senha, PerfilID]);
         return addUsuario;
@@ -32,10 +31,16 @@ const addUsuario = async (usuario) => {
 
 const putUsuario = async (usuario) => {
     const { ID, PerfilID } = usuario;
-    // const qry = 'UPDATE usuarios SET Nome = ?, Email = ?, Senha = ?, Rua = ?, Numero = ?, CEP = ?, Cidade = ?, Estado = ? WHERE ID = ?';
     const qry = 'UPDATE usuarios SET PerfilID = ? WHERE ID = ?';
-    console.log(qry);
     const putUsuario = await connection.execute(qry, [PerfilID, ID]);
+    return putUsuario;
+}
+    ;
+const putDadosUsuario = async (usuario) => {
+    const { ID, Nome, Email, Senha, CPF, Telefone } = usuario;
+    const qry = 'UPDATE usuarios SET Nome = ?, Email = ?, Senha = ?, CPF = ?, Telefone = ? WHERE ID = ?';
+    console.log(qry);
+    const putUsuario = await connection.execute(qry, [Nome, Email, Senha, CPF, Telefone, ID]);
     return putUsuario;
 };
 
@@ -44,5 +49,6 @@ module.exports = {
     getUsuario,
     getAll,
     addUsuario,
-    putUsuario
+    putUsuario,
+    putDadosUsuario
 }

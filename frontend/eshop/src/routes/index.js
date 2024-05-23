@@ -28,7 +28,7 @@ export default function RoutesApp() {
         <Route path="/usuarios/editar/:id" element={<CadUser />} />
 
         <Route path="/meuperfil/:usuario/endereco/novo" element={<CadEndereco />} />
-        <Route path="/endereco/editar/:id" element={<CadEndereco />} />
+        <Route path="/meuperfil/editar/:usuario/endereco/:id" element={<CadEndereco />} />
 
         <Route path="/perfil" element={<ListPerfil />} />
         <Route path="/perfil/novo" element={<Pefil />} />

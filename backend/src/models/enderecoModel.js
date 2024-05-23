@@ -1,18 +1,26 @@
 const connection = require('./conection');
 
 const addEndereco = async (endereco) => {
-    console.log(endereco)
-    const { UsuarioID, Estado, Cidade, Rua, Numero, Complemento, Descricao } = endereco;
-    const qry = 'INSERT INTO enderecos (UsuarioID, Estado, Cidade, Rua, Numero, Complemento, Descricao) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    const addEndereco = await connection.execute(qry, [UsuarioID, Estado, Cidade, Rua, Numero, Complemento, Descricao]);
+    const { UsuarioID, Estado, Cidade, Rua, Numero, Complemento, CEP, Descricao } = endereco;
+    const qry = 'INSERT INTO enderecos (UsuarioID, Estado, Cidade, Rua, Numero, Complemento, CEP, Descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const addEndereco = await connection.execute(qry, [UsuarioID, Estado, Cidade, Rua, Numero, Complemento, CEP, Descricao]);
     return addEndereco;
 }
 
 const putEndereco = async (endereco) => {
-    const { Estado, Cidade, Rua, Numero, Complemento, Descricao, ID } = endereco;
-    const qry = 'UPDATE endereco SET Estado = ? , Cidade = ? , Rua = ? , Numero = ? , Complemento = ? , Descricao = ?  WHERE ID = ?';
-    const putEndereco = await connection.execute(qry, [Estado, Cidade, Rua, Numero, Complemento, Descricao, ID]);
-    return putEndereco;
+    try {
+        const { Estado, Cidade, Rua, Numero, CEP, Complemento, Descricao, ID } = endereco;
+        const qry = 'UPDATE enderecos SET Estado = ? , Cidade = ? , Rua = ? , Numero = ?, CEP = ? , Complemento = ? , Descricao = ?  WHERE ID = ?';
+        const putEndereco = await connection.execute(qry, [Estado, Cidade, Rua, Numero, CEP, Complemento, Descricao, ID]);
+        return putEndereco;
+    } catch (error) {
+        console.error('Erro ao adicionar usuário:', error);
+        // Capturando o erro específico do MySQL
+        if (error.code === 'ER_DUP_ENTRY') {
+            return { success: false, message: 'Este cadastro já existe.' };
+        }
+        return { success: false, message: 'Erro ao adicionar endereco' };
+    }
 };
 
 const getAll = async (id) => {

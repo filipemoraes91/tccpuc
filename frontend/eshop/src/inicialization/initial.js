@@ -15,12 +15,8 @@ export const iniUser = {
     Senha: '',
     ConfirmarSenha: '',
     PerfilID: 0,
-    Rua: '',
-    Numero: 0,
-    Estado: '',
-    Cidade: '',
-    CEP: '',
-    Complemento: ''
+    CPF: '',
+    Telefone: ''
 }
 
 export const iniEndereco = {
@@ -31,8 +27,8 @@ export const iniEndereco = {
     Estado: '',
     Cidade: '',
     CEP: '',
-    Complemento: ''
-
+    Complemento: '',
+    Descricao: ''
 }
 
 export const iniProdutos = {
@@ -43,4 +39,13 @@ export const iniProdutos = {
     Estoque: 0.0,
     CategoriaID: 0,
     LinkImg: ''
+}
+
+export const iniPedido = {
+    DataPedido: new Date(),
+    TotalPedido: 0,
+    UsuarioID: 0,
+    EntregaID: '',
+    QtdeParcelas: 1,
+    FormaPagto: 'boleto'
 }

@@ -1,39 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { ContainerPages } from "../../components/layout/container";
-import { Box, Card, FormControlLabel, FormLabel, Paper, Radio, RadioGroup, Typography } from "@mui/material";
+import { Box, Card, FormControlLabel, Paper, Radio, RadioGroup, Typography } from "@mui/material";
 import { CardItemCar } from "../../components/surfaces/card";
 import useCarrinho from "../../hooks/useCarrinho";
 import ToolBarPages from "../../components/surfaces/toolBar";
 import { StackJustify, StackRight } from "../../components/layout/stack";
 import { BtnFinalizar } from "../../components/inputs/button";
-import SelectUF, { SelectMun, SelectParc } from "../../components/inputs/select";
+import { SelectEndereco, SelectParc } from "../../components/inputs/select";
 import { TFDefault } from "../../components/inputs/textField";
-import { getInfUser } from "../../utils";
-import useUsuarios from "../../hooks/useUsuarios";
+import useEnderecos from "../../hooks/useEnderecos";
+import { iniEndereco, iniPedido } from "../../inicialization/initial";
 
 export default function Pedido() {
     const { getItens, itens } = useCarrinho();
-    const [tipoEnd, setTipoEnd] = useState('meu');
-    const [tipoPagto, setTipoPagto] = useState('boleto');
-    const { getUsuario, usuario, isLoading } = useUsuarios();
-    const [pedido, setPedido] = useState({ DataPedido: new Date(), TotalPedido: 0, UsuarioID: 0, EntregaID: 0, PagamentoID: 0, tipoPagto: 'boleto' });
-    const [entrega, setEntrega] = useState({ Estado: '', Cidade: '', Rua: '', CEP: '', Numero: 0, Complemento: '' })
+    const [pedido, setPedido] = useState(iniPedido);
+    const { getEndereco, endereco, isLoading } = useEnderecos();
+    const [entrega, setEntrega] = useState(iniEndereco);
     let total = 0;
 
     useEffect(() => {
-        getItens()
+        getItens();
     }, [])
 
     useEffect(() => {
-        AtualizarEntrega()
-    }, [tipoEnd, isLoading])
-
-    function AtualizarEntrega() {
-        if (tipoEnd === 'meu') {
-            getUsuario(getInfUser().ID)
-            setEntrega(usuario);
+        if (pedido.EntregaID > 0) {
+            getEndereco(pedido.EntregaID)
+            setEntrega(endereco)
         }
-    }
+    }, [pedido.EntregaID, isLoading])
+
 
     function ListItens(item, i) {
         total = total + parseFloat(item.Preco);
@@ -43,9 +38,16 @@ export default function Pedido() {
     }
 
     const handleChangeEnd = (e) => {
-        setTipoEnd('outro');
+        setPedido({ ...pedido, EntregaID: e.target.value })
+    }
+
+    const handleChange = (e) => {
         const { name, value } = e.target;
-        setEntrega({ ...entrega, [name]: value });
+        setPedido({ ...pedido, [name]: value })
+    }
+
+    const finalizaPedido = (e) => {
+
     }
 
     return (
@@ -61,30 +63,23 @@ export default function Pedido() {
                 <Card>
                     <ToolBarPages title='Endereço de entraga' />
                     <Box p={1}>
-                        <RadioGroup
-                            row
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="meu"
-                            name="radio-buttons-group"
-                            value={tipoEnd}
-                            onChange={(e) => setTipoEnd(e.target.value)}
-                        >
-                            <FormControlLabel value="meu" control={<Radio size="small" />} label="Endereço Principal" />
-                            <FormControlLabel value="outro" control={<Radio size="small" />} label="Outro Endereço" />
-                        </RadioGroup>
                         <StackJustify>
-                            <SelectUF name='Estado' onChange={handleChangeEnd} value={entrega.Estado} />
-                            <SelectMun uf={entrega.Estado} name='Cidade' onChange={handleChangeEnd} value={entrega.Cidade} />
+                            <SelectEndereco name="EntregaID" value={pedido.EntregaID} onChange={handleChangeEnd} />
+                        </StackJustify>
+                        <p />
+                        <StackJustify>
+                            <TFDefault fullWidth={true} label="Estado" name='Estado' value={entrega.Estado} />
+                            <TFDefault fullWidth={true} label="Cidade" name='Cidade' value={entrega.Cidade} />
                         </StackJustify>
                         <br />
                         <StackJustify>
-                            <TFDefault fullWidth={true} label="Número" name='Numero' value={entrega.Numero} onChange={handleChangeEnd} />
-                            <TFDefault fullWidth={true} label="Rua" name='Rua' value={entrega.Rua} onChange={handleChangeEnd} />
-                            <TFDefault fullWidth={true} label="CEP" name='CEP' value={entrega.CEP} onChange={handleChangeEnd} />
+                            <TFDefault fullWidth={true} label="Número" name='Numero' value={entrega.Numero} />
+                            <TFDefault fullWidth={true} label="Rua" name='Rua' value={entrega.Rua} />
+                            <TFDefault fullWidth={true} label="CEP" name='CEP' value={entrega.CEP} />
                         </StackJustify>
                         <br />
                         <StackJustify>
-                            <TFDefault fullWidth={true} label="Complemento" multiline={true} rows={3} name='Complemento' value={entrega.Complemento} onChange={handleChangeEnd} />
+                            <TFDefault fullWidth={true} label="Complemento" multiline={true} rows={3} name='Complemento' value={entrega.Complemento} />
                         </StackJustify>
                     </Box>
                 </Card>
@@ -96,16 +91,16 @@ export default function Pedido() {
                             row
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="meu"
-                            name="radio-buttons-group"
-                            value={tipoPagto}
-                            onChange={(e) => setTipoPagto(e.target.value)}
+                            name="FormaPagto"
+                            value={pedido.FormaPagto}
+                            onChange={handleChange}
                         >
                             <FormControlLabel value="boleto" control={<Radio size="small" />} label="Boleto" />
                             <FormControlLabel value="pix" control={<Radio size="small" />} label="Pix" />
                             <FormControlLabel value="debito" control={<Radio size="small" />} label="Débito" />
                             <FormControlLabel value="credito" control={<Radio size="small" />} label="Crédito" />
                         </RadioGroup>
-                        <SelectParc disabled={tipoPagto !== 'credito'}/>
+                        <SelectParc name="QtdeParcelas" onChange={handleChange} value={pedido.QtdeParcelas} disabled={pedido.FormaPagto !== 'credito'} />
                     </Box>
                 </Card>
                 <p />
@@ -119,7 +114,7 @@ export default function Pedido() {
                         </Box>
                         <StackRight>
                             <Box p={1}>
-                                <BtnFinalizar />
+                                <BtnFinalizar onClick={finalizaPedido} />
                             </Box>
                         </StackRight>
                     </Box>

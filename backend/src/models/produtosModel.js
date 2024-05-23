@@ -10,10 +10,8 @@ const addProduto = async (produto) => {
 
 const putProduto = async (produto) => {
     const { Nome, Descricao, Preco, Estoque, CategoriaID, LinkImg, ID } = produto;
-    console.log(produto)
     const qry = 'UPDATE produtos SET Nome = ?, Descricao = ?, Preco = ?, Estoque = ?, CategoriaID = ?, LinkImg = ? WHERE ID = ?';
     const putProduto = await connection.execute(qry, [Nome, Descricao, Preco, Estoque, CategoriaID, LinkImg, ID]);
-    console.log('alterado')
     return putProduto;
 };
 

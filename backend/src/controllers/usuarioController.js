@@ -15,7 +15,16 @@ const getUsuario = async (req, res) => {
 const putUsuario = async (req, res) => {
   try {
     const putUsuario = await usuarioModel.putUsuario(req.body);
-    return res.status(200).json({ "message": "Produto Alterado com sucesso!", "Item": putUsuario });
+    return res.status(200).json({ "message": "Usuário Alterado com sucesso!", "Item": putUsuario });
+  } catch (error) {
+    return res.status(500).json({ "message": "Ops! Ocorreu algum erro!" });
+  }
+}
+
+const putDadosUsuario = async (req, res) => {
+  try {
+    const putDadosUsuario = await usuarioModel.putDadosUsuario(req.body);
+    return res.status(200).json({ "message": "Usuário Alterado com sucesso!", "Item": putDadosUsuario });
   } catch (error) {
     return res.status(500).json({ "message": "Ops! Ocorreu algum erro!" });
   }
@@ -40,5 +49,6 @@ module.exports = {
   getUsuario,
   addUsuario,
   putUsuario,
+  putDadosUsuario,
   getAll
 }

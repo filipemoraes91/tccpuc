@@ -5,8 +5,8 @@ import { ContainerPages } from "../../../components/layout/container";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { StackJustify } from "../../../components/layout/stack";
-import { BtnDelete, BtnEditar } from "../../../components/inputs/button";
+import { StackJustify, StackRight } from "../../../components/layout/stack";
+import { BtnDelete, BtnEditar, BtnSalvar } from "../../../components/inputs/button";
 import { TGMedio } from "../../../components/dataDisplay/typography";
 import useUsuarios from "../../../hooks/useUsuarios";
 import { iniUser } from "../../../inicialization/initial";
@@ -16,14 +16,14 @@ import useEnderecos from "../../../hooks/useEnderecos";
 
 export default function MeuPerfil() {
   const { getUsuario, putUsuario, usuario, isLoading } = useUsuarios();
-  const { getEnderecos, listEnderecos } = useEnderecos();
+  const { getEnderecos, listEnderecos, deleteEndereco } = useEnderecos();
   const [user, setUser] = useState(iniUser);
   const { id } = useParams();
 
   useEffect(() => {
     if (id > 0) {
       getUsuario(id);
-      setUser(usuario);
+      setUser({ ...usuario, ConfirmarSenha: usuario.Senha });
     } else {
       setUser(iniUser);
     }
@@ -35,30 +35,28 @@ export default function MeuPerfil() {
     }
   }, [])
 
-
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
   const handleSubmit = (e) => {
-    putUsuario({
-      ID: id,
-      Nome: user.Nome,
-      Email: user.Email,
-      Senha: user.Senha,
-      Rua: user.Rua,
-      Numero: parseInt(user.Numero),
-      CEP: user.CEP,
-      Cidade: user.Cidade,
-      Estado: user.Estado,
-      Complemento: user.Complemento,
-      PerfilID: user.PerfilID
-    })
+    if (user.Senha !== user.ConfirmarSenha) {
+      alert('As senhas não conferem!');
+      return '';
+    } else {
+      putUsuario({
+        ID: id,
+        Nome: user.Nome,
+        Email: user.Email,
+        Senha: user.Senha,
+        CPF: user.CPF,
+        Telefone: user.Telefone,
+        PerfilID: user.PerfilID
+      }, 'usuarioDados')
+      window.location.href = `/meuperfil/${id}`
+    }
     e.preventDefault();
-    window.location.href = `/meuperfil/${id}`
   };
 
   function ListarEnderecos(end, e) {
@@ -69,9 +67,9 @@ export default function MeuPerfil() {
             <TGMedio text={end.ID + ' - ' + end.Descricao} />
           </Box>
           <Box>
-            <BtnEditar onClick={() => window.location.href = `/usuarios/editar/${usuario.ID}`} />
+            <BtnEditar onClick={() => window.location.href = `/meuperfil/editar/${usuario.ID}/endereco/${end.ID}`} />
             <span style={{ padding: '5px' }} />
-            <BtnDelete onClick={() => console.log('excluido')} />
+            <BtnDelete onClick={() => deleteEndereco(end.ID)} />
           </Box>
         </StackJustify>
       </ListItemText>
@@ -85,35 +83,31 @@ export default function MeuPerfil() {
       <br />
       <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
         <form onSubmit={handleSubmit}>
-          <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
+          <Paper elevation={1} style={{ padding: '15px' }}>
             <StackJustify>
-              <TFDefault fullWidth={true} label="Nome" value={user.Nome} disabled={true} />
-              <TFDefault fullWidth={true} label="Email" value={user.Email} disabled={true} />
-              <TFDefault fullWidth={true} label="Senha" value={user.Email} disabled={true} />
-            </StackJustify>
-          </Paper>
-          <br />
-          <ToolBarPages title='Listagem de endereços' btnVisible={true} onClickNovo={() => window.location.href = `${id}/endereco/novo`} />
-          {listEnderecos ? listEnderecos.map(ListarEnderecos) : <TGMedio text='Nenhum endereço cadastrado.' />}
-          {/* <StackJustify>
-              <SelectUF name='Estado' onChange={handleInputChange} value={user.Estado} />
-              <SelectMun uf={user.Estado} name='Cidade' onChange={handleInputChange} value={user.Cidade} />
+              <TFDefault name="Nome" fullWidth={true} label="Nome" value={user.Nome} onChange={handleInputChange} />
+              <TFDefault name="Email" fullWidth={true} label="Email" value={user.Email} onChange={handleInputChange} />
             </StackJustify>
             <br />
             <StackJustify>
-              <TFDefault fullWidth={true} label="Número" name='Numero' value={user.Numero} onChange={handleInputChange} />
-              <TFDefault fullWidth={true} label="Rua" name='Rua' value={user.Rua} onChange={handleInputChange} />
-              <TFDefault fullWidth={true} label="CEP" name='CEP' value={user.CEP} onChange={handleInputChange} />
+              <TFDefault name="CPF" fullWidth={true} label="CPF" value={user.CPF} onChange={handleInputChange} />
+              <TFDefault name="Telefone" fullWidth={true} label="Telefone" value={user.Telefone} onChange={handleInputChange} />
             </StackJustify>
             <br />
             <StackJustify>
-              <TFDefault fullWidth={true} label="Complemento" multiline={true} rows={3} name='Complemento' value={user.Complemento} onChange={handleInputChange} />
+              <TFDefault name="Senha" fullWidth={true} type='password' label="Senha" value={user.Senha} onChange={handleInputChange} />
+              <TFDefault name="ConfirmarSenha" fullWidth={true} type='password' label="Confirmar Senha" value={user.ConfirmarSenha} onChange={handleInputChange} />
             </StackJustify>
             <br />
             <StackRight>
               <BtnSalvar />
-              <BtnCancelar onClick={() => window.location.href = '/meuperfil'} />
-            </StackRight> */}
+            </StackRight>
+          </Paper>
+          <br />
+          <ToolBarPages title='Listagem de endereços' btnVisible={true} onClickNovo={() => window.location.href = `${id}/endereco/novo`} />
+          <List>
+            {listEnderecos ? listEnderecos.map(ListarEnderecos) : <TGMedio text='Nenhum endereço cadastrado.' />}
+          </List>
         </form>
       </Paper>
     </ContainerPages >

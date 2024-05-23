@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import api from '../services';
 
-const useEnderecos = () => {
+const 
+useEnderecos = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [endereco, setEndereco] = useState({});
     const [listEnderecos, setListEnderecos] = useState([]);
@@ -20,8 +21,9 @@ const useEnderecos = () => {
     const putEndereco = async (endereco) => {
         try {
             setIsLoading(true);
-            const response = await api.put(`/endereco/${endereco.ID}/${endereco.UsuarioID}`, endereco);
+            const response = await api.put(`/endereco/${endereco.UsuarioID}/${endereco.ID}`, endereco);
             alert(response.data.message);
+            window.location.href = `/meuperfil/${endereco.UsuarioID}`;
         } catch (err) {
             alert(err.response.data.message);
         }
@@ -40,10 +42,10 @@ const useEnderecos = () => {
         }
     };
 
-    const getEndereco = async (id) => {
+    const getEndereco = async (id, idEnd) => {
         try {
             setIsLoading(true);
-            const response = await api.get(`/endereco/${id}`);
+            const response = await api.get(`/endereco/${id}/${idEnd}`);
             setIsLoading(false);
             setEndereco(response.data[0]);
         } catch (err) {
@@ -51,7 +53,20 @@ const useEnderecos = () => {
         }
     };
 
-    return { postEndereco, putEndereco, getEnderecos, getEndereco, listEnderecos, endereco, isLoading };
+    
+  const deleteEndereco = async (id) => {
+    try {
+      setIsLoading(true);
+      const response = await api.delete(`/endereco/delete/${id}`);
+      alert(response.data.message);
+      window.location.reload();
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+    setIsLoading(false);
+  }
+
+    return { postEndereco, putEndereco, getEnderecos, getEndereco, deleteEndereco, listEnderecos, endereco, isLoading };
 };
 
 export default useEnderecos;

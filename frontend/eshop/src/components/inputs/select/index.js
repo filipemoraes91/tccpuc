@@ -5,6 +5,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useApiIBGE from '../../../hooks/useApiIBGE';
 import usePerfil from '../../../hooks/usePerfil';
+import useEnderecos from '../../../hooks/useEnderecos';
+import { getInfUser } from '../../../utils';
 
 export default function SelectUF(props) {
     const { getUFs, ufs } = useApiIBGE();
@@ -114,6 +116,35 @@ export function SelectPerfil(props) {
                 onChange={props.onChange}
             >
                 {listPerfil.map(ListPerfil)}
+            </Select>
+        </FormControl>
+    );
+}
+
+
+export function SelectEndereco(props) {
+    const { listEnderecos, getEnderecos } = useEnderecos();
+
+    React.useEffect(() => {
+        getEnderecos(getInfUser().ID);
+    }, [])
+
+    function ListEnderecos(end, e) {
+        return <MenuItem key={e} value={end.ID}>{end.Descricao}</MenuItem>
+    }
+    return (
+        <FormControl fullWidth size='small'>
+            <InputLabel id="Endereco">Endereços</InputLabel>
+            <br />
+            <Select
+                labelId="Endereco"
+                id="endereco"
+                name="endereco"
+                value={props.value}
+                label="Endereços"
+                onChange={props.onChange}
+            >
+                {listEnderecos.map(ListEnderecos)}
             </Select>
         </FormControl>
     );

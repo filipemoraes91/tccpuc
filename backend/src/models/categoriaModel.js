@@ -25,7 +25,6 @@ const getAll = async () => {
 const getCategoria = async (id) => {
     const qry = 'SELECT * FROM categoria WHERE ID = ?';
     const categoria = await connection.execute(qry, [id]);
-    console.log(categoria[0])
     return categoria[0];
 }
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
-import { iniEndereco, iniUser } from '../../../inicialization/initial';
+import { iniEndereco } from '../../../inicialization/initial';
 import { TFDefault } from '../../../components/inputs/textField';
 import { BtnCancelar, BtnSalvar } from '../../../components/inputs/button';
 import { StackJustify, StackRight } from '../../../components/layout/stack';
-import SelectUF, { SelectMun, SelectPerfil } from '../../../components/inputs/select';
+import SelectUF, { SelectMun } from '../../../components/inputs/select';
 import { ContainerPages } from '../../../components/layout/container';
 import ToolBarPages from '../../../components/surfaces/toolBar';
 import { useParams } from 'react-router-dom';
@@ -13,10 +13,9 @@ import useEnderecos from '../../../hooks/useEnderecos';
 export default function CadEndereco() {
   const { postEndereco, getEndereco, putEndereco, endereco, isLoading } = useEnderecos();
   const [end, setEnd] = useState(iniEndereco);
-  const {usuario, id} = useParams();
+  const { usuario, id } = useParams();
 
   useEffect(() => {
-    console.log(usuario, id)
     if (id > 0) {
       getEndereco(id);
       setEnd(endereco);
@@ -32,7 +31,6 @@ export default function CadEndereco() {
   };
 
   const handleSubmit = (e) => {
-    console.log(end)
     if (id > 0) {
       putEndereco({
         ID: id,
@@ -43,6 +41,7 @@ export default function CadEndereco() {
         Cidade: end.Cidade,
         Estado: end.Estado,
         Complemento: end.Complemento,
+        Descricao: end.Descricao
       })
     } else {
       postEndereco({
@@ -54,6 +53,7 @@ export default function CadEndereco() {
         Cidade: end.Cidade,
         Estado: end.Estado,
         Complemento: end.Complemento,
+        Descricao: end.Descricao
       });
     }
     e.preventDefault();
@@ -66,6 +66,10 @@ export default function CadEndereco() {
       <br />
       <form onSubmit={handleSubmit}>
         <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
+          <StackJustify>
+            <TFDefault fullWidth={true} label="Descricao" name='Descricao' value={end.Descricao} onChange={handleInputChange} />
+          </StackJustify>
+          <br />
           <StackJustify>
             <SelectUF name='Estado' onChange={handleInputChange} value={end.Estado} />
             <SelectMun uf={end.Estado} name='Cidade' onChange={handleInputChange} value={end.Cidade} />

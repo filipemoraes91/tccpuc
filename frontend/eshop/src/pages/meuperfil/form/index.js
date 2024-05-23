@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ToolBarPages from "../../../components/surfaces/toolBar";
-import { Box, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { ContainerPages } from "../../../components/layout/container";
 import { StackJustify, StackRight } from "../../../components/layout/stack";
-import { BtnCancelar, BtnDelete, BtnEditar, BtnSalvar } from "../../../components/inputs/button";
+import { BtnCancelar, BtnSalvar } from "../../../components/inputs/button";
 import useUsuarios from "../../../hooks/useUsuarios";
 import { iniUser } from "../../../inicialization/initial";
 import { useParams } from "react-router-dom";

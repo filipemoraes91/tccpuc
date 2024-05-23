@@ -5,6 +5,7 @@ const usuarioController = require('./controllers/usuarioController');
 const enderecoContrl = require('./controllers/enderecoController');
 const produtosContrl = require('./controllers/produtosController');
 const perfilContrl = require('./controllers/perfilController');
+const pedidoContrl = require('./controllers/pedidoController');
 const categoriaContrl = require('./controllers/categoriaController');
 const carrinhoContrl = require('./controllers/carrinhoController');
 const favoritosContrl = require('./controllers/favoritosController');
@@ -16,8 +17,9 @@ router.post('/login', authControl.getAuth);
 
 router.get('/enderecos/:id', enderecoContrl.getAll);
 router.get('/endereco/:id/:idEnd', enderecoContrl.getEndereco);
+router.put('/endereco/:id/:idEnd', enderecoContrl.putEndereco);
 router.post('/endereco', enderecoContrl.addEndereco);
-router.delete('/endereco/:id', enderecoContrl.putEndereco);
+router.delete('/endereco/delete/:id', enderecoContrl.deleteEndereco);
 
 router.get('/carrinho', carrinhoContrl.getAll);
 router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
@@ -34,6 +36,10 @@ router.post('/produtos/novo', produtosContrl.addProduto);
 router.put('/produtos/editar/:id', produtosContrl.putProduto);
 router.delete('/produtos/delete/:id', produtosContrl.deleteProduto);
 
+router.get('/pedido', pedidoContrl.getAll);
+router.get('/pedido/:id', pedidoContrl.getPedido);
+router.post('/pedido/novo', pedidoContrl.addPedido);
+
 router.get('/perfil', perfilContrl.getAll);
 router.get('/perfil/:id', perfilContrl.getPerfil);
 router.post('/perfil/novo', perfilContrl.addPerfil);
@@ -49,6 +55,7 @@ router.delete('/categoria/delete/:id', categoriaContrl.deleteCategoria);
 router.get('/usuarios', usuarioController.getAll);
 router.get('/usuarios/:id', usuarioController.getUsuario);
 router.put('/usuario/:id', usuarioController.putUsuario);
+router.put('/usuarioDados/:id', usuarioController.putDadosUsuario);
 router.post('/usuario/novo', usuarioController.addUsuario);
 
 // Rota protegida (exemplo)
