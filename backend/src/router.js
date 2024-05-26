@@ -36,8 +36,9 @@ router.post('/produtos/novo', produtosContrl.addProduto);
 router.put('/produtos/editar/:id', produtosContrl.putProduto);
 router.delete('/produtos/delete/:id', produtosContrl.deleteProduto);
 
-router.get('/pedido', pedidoContrl.getAll);
+router.get('/pedidos', pedidoContrl.getAll);
 router.get('/pedido/:id', pedidoContrl.getPedido);
+router.get('/meuspedidos/:id', pedidoContrl.getPedidos);
 router.post('/pedido/novo', pedidoContrl.addPedido);
 
 router.get('/perfil', perfilContrl.getAll);

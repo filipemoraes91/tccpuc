@@ -3,22 +3,22 @@ import axios from "../services";
 import api from "../services";
 import { iniPedido } from "../inicialization/initial";
 
-const usePerfil = () => {
+const usePedido = () => {
   const token = 'Bearer ' + sessionStorage.getItem('token_sac');
   const [isLoading, setIsLoading] = useState(false);
   const [pedido, setPedido] = useState(iniPedido);
-  const [listPedido, setListPedido] = useState([]);
-
-
+  const [listPedidos, setListPedido] = useState([]);
 
   async function getPedido(id) {
-    if (id > 0) {
-      const response = await axios.get(`/pedido/${id}`);
-      setPedido(response.data[0]);
-    } else {
-      const response = await axios.get('/pedido');
-      setListPedido(response.data);
-    }
+    const response = await axios.get(`/pedido/${id}`);
+    setPedido(response.data);
+    console.log(response.data)
+    setIsLoading(true)
+  }
+
+  async function getPedidos(id) {
+    const response = await axios.get(`/meuspedidos/${id}`);
+    setListPedido(response.data);
     setIsLoading(true)
   }
 
@@ -35,7 +35,7 @@ const usePerfil = () => {
   };
 
 
-  return { listPedido, pedido, postPedido, getPedido, isLoading };
+  return { listPedidos, pedido, postPedido, getPedido, getPedidos, isLoading };
 }
 
-export default usePerfil;
+export default usePedido;

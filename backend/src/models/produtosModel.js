@@ -3,7 +3,7 @@ const connection = require('./conection');
 const addProduto = async (produto) => {
     const { Nome, Descricao, Preco, CategoriaID, LinkImg } = produto;
     const qry = 'INSERT INTO produtos (Nome, Descricao, Preco, CategoriaID, LinkImg) VALUES (?,?,?,?,?)';
-    const addProduto = await connection.execute(qry, [Nome, Descricao, Preco, CategoriaID]);
+    const addProduto = await connection.execute(qry, [Nome, Descricao, Preco, CategoriaID, LinkImg]);
     return addProduto;
 }
 

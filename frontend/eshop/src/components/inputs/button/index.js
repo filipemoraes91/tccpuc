@@ -1,6 +1,6 @@
 import { Badge, Button, IconButton } from "@mui/material";
 import React from "react";
-import { IconAddCar, IconCadEditar, IconCadNovo, IconOffFavorito, ShoppingCart, IconDelete } from "../../dataDisplay/icons";
+import { IconAddCar, IconCadEditar, IconCadNovo, IconOffFavorito, ShoppingCart, IconDelete, IconDocument } from "../../dataDisplay/icons";
 import { Link } from "react-router-dom";
 
 
@@ -27,7 +27,7 @@ export function BtnNovo(props) {
 }
 
 export function BtnCadastrar(props) {
-    return <BtnDefault text="Cadastrar-se" onClick={props.onClick} color="info" type="submit" disabled={props.disabled}/>
+    return <BtnDefault text="Cadastrar-se" onClick={props.onClick} color="info" type="submit" disabled={props.disabled} />
 }
 
 export function BtnSalvar(props) {
@@ -46,7 +46,6 @@ export function BtnEditar(props) {
     return <Button aria-label="favorito" onClick={props.onClick} color='info' variant="contained" size="small">
         <IconCadEditar />
     </Button>
-
 }
 
 export function BtnAddCart(props) {
@@ -72,5 +71,11 @@ export function BtnShopCart(props) {
         <Badge badgeContent={props.itens} color="warning">
             <ShoppingCart />
         </Badge>
+    </IconButton>
+}
+
+export function ButtonDetalhes(props) {
+    return <IconButton aria-label="detalhes" onClick={props.onClick}>
+        <IconDocument />
     </IconButton>
 }

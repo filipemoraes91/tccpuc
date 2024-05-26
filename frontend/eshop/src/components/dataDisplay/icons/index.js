@@ -6,11 +6,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ArticleIcon from '@mui/icons-material/Article';
 
 export function IconHome() {
     return <HomeIcon />
@@ -55,5 +56,11 @@ export function IconOffFavorito() {
 export function ShoppingCart() {
     return <LocalGroceryStoreIcon />
 }
+
+export function IconDocument() {
+    return <VisibilityIcon />
+}
+
+
 
     

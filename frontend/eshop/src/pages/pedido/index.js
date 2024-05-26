@@ -10,10 +10,13 @@ import { SelectEndereco, SelectParc } from "../../components/inputs/select";
 import { TFDefault } from "../../components/inputs/textField";
 import useEnderecos from "../../hooks/useEnderecos";
 import { iniEndereco, iniPedido } from "../../inicialization/initial";
+import { formatDateSQL, getInfUser } from "../../utils";
+import usePedido from "../../hooks/usePedido";
 
 export default function Pedido() {
     const { getItens, itens } = useCarrinho();
     const [pedido, setPedido] = useState(iniPedido);
+    const { postPedido } = usePedido();
     const { getEndereco, endereco, isLoading } = useEnderecos();
     const [entrega, setEntrega] = useState(iniEndereco);
     let total = 0;
@@ -47,7 +50,17 @@ export default function Pedido() {
     }
 
     const finalizaPedido = (e) => {
-
+        const ped = {
+            DataPedido: formatDateSQL(pedido.DataPedido),
+            EntregaID: pedido.EntregaID,
+            FormaPagto: pedido.FormaPagto,
+            QtdeParcelas: pedido.QtdeParcelas,
+            TotalPedido: parseFloat(total.toFixed(2)),
+            UsuarioID: getInfUser().ID,
+            Itens: itens
+        }
+        // console.log(ped)
+        postPedido(ped);
     }
 
     return (

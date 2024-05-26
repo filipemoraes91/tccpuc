@@ -16,7 +16,7 @@ export function TGMenuDivider(props) {
 }
 
 export function TGPageTitle(props) {
-    return <TGDefault variant="button"  component="div" sx={{ flexGrow: 1, fontSize: 18 }} text={props.text} color='#000' />
+    return <TGDefault variant="button" component="div" sx={{ flexGrow: 1, fontSize: 18 }} text={props.text} color='#000' />
 }
 
 export function TGMedio(props) {
