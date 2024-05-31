@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
 // Defina sua chave secreta para assinatura do token
-const secretKey = process.env.CHAVE_CRIPTO;
+const secretKey = tccpuc@minas;
 
 // Middleware para verificar o token
 function verifyToken(req, res, next) {
