@@ -39,7 +39,13 @@ export default function CadUser() {
         Nome: user.Nome,
         Email: user.Email,
         Senha: user.Senha,
-        CPF: user.CPF
+        Rua: user.Rua,
+        Numero: parseInt(user.Numero),
+        CEP: user.CEP,
+        Cidade: user.Cidade,
+        Estado: user.Estado,
+        Complemento: user.Complemento,
+        PerfilID: user.PerfilID
       })
     } else {
       postUsuario({
@@ -47,13 +53,28 @@ export default function CadUser() {
         Nome: user.Nome,
         Email: user.Email,
         Senha: user.Senha,
-        PerfilID: user.PerfilID,
-        CPF: user.CPF
+        Rua: user.Rua,
+        Numero: parseInt(user.Numero),
+        CEP: user.CEP,
+        Cidade: user.Cidade,
+        Estado: user.Estado,
+        PerfilID: user.PerfilID
       });
     }
-
+    console.log({
+      ID: id,
+      Nome: user.Nome,
+      Email: user.Email,
+      Senha: user.Senha,
+      Rua: user.Rua,
+      Numero: user.Numero,
+      CEP: user.CEP,
+      Cidade: user.Cidade,
+      Estado: user.Estado,
+      PerfilID: user.PerfilID
+    })
     e.preventDefault();
-    window.location.href = '/usuarios'
+    // window.location.href = '/usuarios'
   };
 
   return (
@@ -64,19 +85,28 @@ export default function CadUser() {
         <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
           <StackJustify>
             <TFDefault fullWidth={true} name="Nome" label="Nome" value={user.Nome} onChange={handleInputChange} />
-            <TFDefault fullWidth={true} name="Email" label="Email" value={user.Email} onChange={handleInputChange} />
+            <TFDefault fullWidth={true} name="Email" label="Email" value={user.Email} onChange={handleInputChange}/>
+            <SelectPerfil name='PerfilID' value={user.PerfilID} onChange={handleInputChange} />
           </StackJustify>
           <br />
           <StackJustify>
-            <TFDefault fullWidth={true} name="CPF" label="CPF" value={user.CPF} onChange={handleInputChange} />
-            <TFDefault fullWidth={true} name="Senha" label="Senha" value={user.Senha} onChange={handleInputChange} />
-            <TFDefault fullWidth={true} name="ConfirmarSenha" label="Confirmar Senha" value={user.ConfirmarSenha} onChange={handleInputChange} />
-            <SelectPerfil name='PerfilID' value={user.PerfilID} onChange={handleInputChange} />
+            <SelectUF name='Estado' onChange={handleInputChange} value={user.Estado} />
+            <SelectMun uf={user.Estado} name='Cidade' onChange={handleInputChange} value={user.Cidade} />
+          </StackJustify>
+          <br />
+          <StackJustify>
+            <TFDefault fullWidth={true} label="Número" name='Numero' value={user.Numero} onChange={handleInputChange} />
+            <TFDefault fullWidth={true} label="Rua" name='Rua' value={user.Rua} onChange={handleInputChange} />
+            <TFDefault fullWidth={true} label="CEP" name='CEP' value={user.CEP} onChange={handleInputChange} />
+          </StackJustify>
+          <br />
+          <StackJustify>
+            <TFDefault fullWidth={true} label="Complemento" multiline={true} rows={3} name='Complemento' value={user.Complemento} onChange={handleInputChange} />
           </StackJustify>
           <br />
           <StackRight>
             <BtnSalvar />
-            <BtnCancelar onClick={() => window.location.href = '/usuarios'} />
+            <BtnCancelar onClick={() => window.location.href = '/usuarios'}/>
           </StackRight>
         </Paper>
       </form>
