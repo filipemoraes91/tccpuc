@@ -40,24 +40,28 @@ export default function TemporaryDrawer(props) {
                     <ItemMenu icon={<IconHome />} text='Home' link='home' />
 
                     {/* ADM */}
-                    <Divider textAlign="left"><TGMenuDivider text='Administrador' /></Divider>
-                    <ItemMenu icon={<IconCadUsuarios />} text='Usuários' link='/usuarios' />
-                    <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Perfil' link='/perfil' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Vendas' link='/vendas' />
+                    {getInfUser() ?
+                        <>
+                            <Divider textAlign="left"><TGMenuDivider text='Administrador' /></Divider>
+                            <ItemMenu icon={<IconCadUsuarios />} text='Usuários' link='/usuarios' />
+                            <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
+                            <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
+                            <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
+                            <ItemMenu icon={<IconOnFavorito />} text='Perfil' link='/perfil' />
+                            <ItemMenu icon={<IconOnFavorito />} text='Vendas' link='/vendas' />
 
-                    {/* VENDEDORES */}
-                    <Divider textAlign="left"><TGMenuDivider text='Vendedores' /></Divider>
-                    <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
+                            {/* VENDEDORES */}
+                            <Divider textAlign="left"><TGMenuDivider text='Vendedores' /></Divider>
+                            <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
+                            <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
 
-                    {/* CLIENTES */}
-                    <Divider textAlign="left"><TGMenuDivider text='Clientes' /></Divider>
-                    {getInfUser() ? <ItemMenu icon={<IconOnFavorito />} text='Meu Perfil' link={`/meuperfil/${getInfUser().ID}`} /> : ''}
-                    <ItemMenu icon={<IconOnFavorito />} text='Meus Pedidos' link={`/meuspedidos/${getInfUser().ID}`} />
-                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
+                            {/* CLIENTES */}
+                            <Divider textAlign="left"><TGMenuDivider text='Clientes' /></Divider>
+                            <ItemMenu icon={<IconOnFavorito />} text='Meu Perfil' link={`/meuperfil/${getInfUser().ID}`} />
+                            <ItemMenu icon={<IconOnFavorito />} text='Meus Pedidos' link={`/meuspedidos/${getInfUser().ID}`} />
+                            <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
+                        </>
+                        : ''}
 
                 </List>
             </Box>
