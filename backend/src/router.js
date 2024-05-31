@@ -15,6 +15,10 @@ const router = express.Router();
 
 router.post('/login', authControl.getAuth);
 
+router.get('/', (req, res) => {
+  res.json({ message: 'Servidor online!' });
+});
+
 router.get('/enderecos/:id', enderecoContrl.getAll);
 router.get('/endereco/:id/:idEnd', enderecoContrl.getEndereco);
 router.put('/endereco/:id/:idEnd', enderecoContrl.putEndereco);
