@@ -16,7 +16,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mysql2": "^3.6.0",
-    "jsonwebtoken": "^8.5.1" // Certifique-se de que esta linha está corretamente formatada
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
