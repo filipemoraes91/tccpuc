@@ -8,22 +8,22 @@ import { BtnCancelar, BtnSalvar } from "../../../components/inputs/button";
 import ToolBarPages from "../../../components/surfaces/toolBar";
 import { useParams } from "react-router-dom";
 
+const iniCategoria = { ID: 0, Nome: '' }
+
 export default function Categoria() {
     const { id } = useParams();
     const { postCategoria, getCategoria, putCategoria, categoria, isLoading } = useCategoria();
-    const [categ, setCateg] = useState({ ID: 0, Nome: '' });
+    const [categ, setCateg] = useState(iniCategoria);
 
     useEffect(() => {
+        console.log(id)
         if (id > 0) {
             getCategoria(id);
-            if (categoria !== undefined)
-                setCateg(categoria);
+            setCateg(categoria);
         } else {
             setCateg(categoria);
         }
     }, [isLoading]);
-
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -45,14 +45,13 @@ export default function Categoria() {
             <ToolBarPages title='Categoria' />
             <br />
             <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
-                {categoria ? <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <TFDefault fullWidth={true} name='Nome' label="Nome do Categoria" value={categ.Nome} onChange={handleInputChange} />
                     <StackRight>
                         <BtnSalvar />
                         <BtnCancelar onClick={() => window.location.href = '/categorias'} />
                     </StackRight>
                 </form>
-                    : ''}
             </Paper>
         </ContainerPages>
     )

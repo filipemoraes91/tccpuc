@@ -5,7 +5,7 @@ import api from "../services";
 const useCategoria = () => {
   const token = 'Bearer ' + sessionStorage.getItem('token_sac');
   const [isLoading, setIsLoading] = useState(false);
-  const [categoria, setCategoria] = useState();
+  const [categoria, setCategoria] = useState({});
   const [listCategoria, setListCategoria] = useState([]);
 
   async function getCategoria(id) {

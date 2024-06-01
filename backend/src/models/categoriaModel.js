@@ -1,9 +1,9 @@
 const connection = require('./conection');
 
 const addCategoria = async (categoria) => {
-    const { Nome, ID } = categoria;
-    const qry = 'INSERT INTO categoria (Nome, ID) VALUES (?, ?)';
-    const addCateg = await connection.execute(qry, [Nome, ID]);
+    const { Nome } = categoria;
+    const qry = 'INSERT INTO categoria (Nome) VALUES (?)';
+    const addCateg = await connection.execute(qry, [Nome]);
     return addCateg;
 }
 
