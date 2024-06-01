@@ -25,10 +25,10 @@ const useFavoritos = () => {
     }
   };
 
-  const getFavoritos = async () => {
+  const getFavoritos = async (id) => {
     try {
       setIsLoading(true);
-      const response = await api.get('/favoritos');
+      const response = await api.get(`/favoritos/${id}`);
       setIsLoading(false);
       setFavoritos(response.data);
       console.log(response.data);

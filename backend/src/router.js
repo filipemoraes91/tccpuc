@@ -31,7 +31,7 @@ router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
 router.post('/carrinho', carrinhoContrl.addItensCarrinho);
 router.delete('/carrinho/:id', carrinhoContrl.removeItensCarrinho);
 
-router.get('/favoritos', favoritosContrl.getAll);
+router.get('/favoritos/:id', favoritosContrl.getAll);
 router.post('/favoritos', favoritosContrl.addFavorito);
 router.delete('/favoritos/:id', favoritosContrl.removeFavorito);
 

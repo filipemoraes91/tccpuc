@@ -4,17 +4,20 @@ import { Box, Grid, Paper } from "@mui/material";
 import useFavoritos from "../../../hooks/useFavoritos";
 import { CardProdutos } from "../../../components/surfaces/card";
 import { ContainerPages } from "../../../components/layout/container";
+import { useParams } from "react-router-dom";
 
 export default function Favoritos() {
+    const { id } = useParams();
     const { getFavoritos, favoritos, deleteFavoritos } = useFavoritos();
 
     useEffect(() => {
-        getFavoritos();
+        if (id > 0)
+            getFavoritos(id);
     }, [])
 
     function ListProdutos(produto, p) {
         return <Grid key={p} item xs={12} md={4} lg={3}>
-            <CardProdutos 
+            <CardProdutos
                 produto={produto}
                 addFavorito={() => deleteFavoritos(produto.ID)}
             />

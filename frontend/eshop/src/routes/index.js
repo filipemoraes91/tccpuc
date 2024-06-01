@@ -50,7 +50,7 @@ export default function RoutesApp() {
 
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/pedido" element={<Pedido />} />
-        <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/favoritos/:id" element={<Favoritos />} />
       </Routes>
     </BrowserRouter>
   );

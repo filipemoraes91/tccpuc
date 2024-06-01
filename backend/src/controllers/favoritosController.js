@@ -1,7 +1,8 @@
 const favoritoModel = require('../models/favoritoModel');
 
 const getAll = async (req, res) => {
-    const [favoritos] = await favoritoModel.getAll();
+    const id = req.params.id;
+    const [favoritos] = await favoritoModel.getAll(id);
     return res.status(200).json(favoritos);
 };
 

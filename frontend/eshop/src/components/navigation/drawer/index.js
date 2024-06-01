@@ -43,7 +43,7 @@ export default function TemporaryDrawer(props) {
 
                     {permUser('CadProd') ? <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' /> : ''}
                     {permUser('CadCat') ? <ItemMenu icon={<IconCategory />} text='Categorias' link='/categorias' /> : ''}
-                    {getInfUser() ? <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' /> : ''}
+                    {getInfUser() ? <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link={`/favoritos/${getInfUser().ID}`} /> : ''}
 
                     {permUser('Vendas') ? <ItemMenu icon={<IconSale />} text='Vendas' link='/vendas' /> : ''}
                     {getInfUser() ? <ItemMenu icon={<IconDocument />} text='Meus Pedidos' link={`/meuspedidos/${getInfUser().ID}`} /> : ''}
