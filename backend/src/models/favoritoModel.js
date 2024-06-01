@@ -1,16 +1,16 @@
 const connection = require('./conection');
 const getAll = async () => {
     const favoritos = await connection.execute(
-        'SELECT * FROM FAVORITOS ' +
-        'INNER JOIN PRODUTOS ON FAVORITOS.ProdutoID = PRODUTOS.ID ' +
-        'INNER JOIN USUARIOS ON USUARIOS.ID = FAVORITOS.USUARIOID '
+        'SELECT * FROM favoritos ' +
+        'INNER JOIN produtos ON favoritos.ProdutoID = produtos.ID ' +
+        'INNER JOIN usuarios ON usuarios.ID = favoritos.USUARIOID '
     );
     return favoritos;
 }
 
 const addFavorito = async (item) => {
     const { usuarioID, produtoID } = item;
-    const qry = 'INSERT INTO FAVORITOS (usuarioID, produtoID) values (?,?)';
+    const qry = 'INSERT INTO favoritos (usuarioID, produtoID) values (?,?)';
     const addFavorito = await connection.execute(qry, [usuarioID, produtoID]);
     return addFavorito;
 }
