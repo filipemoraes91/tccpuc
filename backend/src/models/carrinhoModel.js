@@ -1,8 +1,8 @@
 const connection = require('./conection');
 const getAll = async () => {
     const carrinhoCompras = await connection.execute(
-        'SELECT * FROM CARRINHOCOMPRAS ' +
-        'INNER JOIN PRODUTOS ON CARRINHOCOMPRAS.ProdutoID = PRODUTOS.ID '
+        'SELECT * FROM carrinhocompras ' +
+        'INNER JOIN produtos ON carrinhocompras.ProdutoID = produtos.ID '
     );
     return carrinhoCompras;
 }
@@ -23,7 +23,7 @@ const addItensCarrinho = async (item) => {
 
 
 const removeItensCarrinho = async (id) => {
-    const qry = 'DELETE FROM CARRINHOCOMPRAS WHERE ProdutoID = ?';
+    const qry = 'DELETE FROM carrinhocompras WHERE ProdutoID = ?';
     const removeItensCarrinho = await connection.execute(qry, [id]);
     return removeItensCarrinho;
 }

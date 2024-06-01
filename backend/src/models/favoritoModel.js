@@ -17,7 +17,7 @@ const addFavorito = async (item) => {
 
 
 const removeFavorito = async (id) => {
-    const qry = 'DELETE FROM FAVORITOS WHERE ProdutoID = ?';
+    const qry = 'DELETE FROM favoritos WHERE ProdutoID = ?';
     const removeFavorito = await connection.execute(qry, [id]);
     return removeFavorito;
 }
