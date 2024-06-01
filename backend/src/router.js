@@ -12,13 +12,13 @@ const favoritosContrl = require('./controllers/favoritosController');
 
 
 const router = express.Router();
-
-router.post('/login', authControl.getAuth);
-
+require('dotenv').config();
+const DB_HOST = process.env.DB_HOST;
 router.get('/', (req, res) => {
-  res.json({ message: 'Servidor online!' });
+  res.json({ message: 'Servidor online! ' + DB_HOST });
 });
 
+router.post('/login', authControl.getAuth);
 router.get('/enderecos/:id', enderecoContrl.getAll);
 router.get('/endereco/:id/:idEnd', enderecoContrl.getEndereco);
 router.put('/endereco/:id/:idEnd', enderecoContrl.putEndereco);
