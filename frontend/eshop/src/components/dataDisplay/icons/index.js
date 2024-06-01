@@ -11,7 +11,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import ArticleIcon from '@mui/icons-material/Article';
+import CategoryIcon from '@mui/icons-material/Category';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import PortraitIcon from '@mui/icons-material/Portrait';
 
 export function IconHome() {
     return <HomeIcon />
@@ -60,6 +63,21 @@ export function ShoppingCart() {
 export function IconDocument() {
     return <VisibilityIcon />
 }
+
+export function IconCategory() {
+    return <CategoryIcon />
+}
+
+export function IconPerf() {
+    return <AccountBoxIcon />
+}
+export function IconSale() {
+    return <LoyaltyIcon />
+}
+export function IconProfile() {
+    return <PortraitIcon />
+}
+
 
 
 

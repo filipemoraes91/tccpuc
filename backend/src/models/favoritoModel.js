@@ -1,10 +1,10 @@
 const connection = require('./conection');
-const getAll = async () => {
-    const favoritos = await connection.execute(
-        'SELECT * FROM favoritos ' +
+const getAll = async (id) => {
+    const qry = 'SELECT produtos.* FROM favoritos ' +
         'INNER JOIN produtos ON favoritos.ProdutoID = produtos.ID ' +
-        'INNER JOIN usuarios ON usuarios.ID = favoritos.USUARIOID '
-    );
+        'INNER JOIN usuarios ON usuarios.ID = favoritos.UsuarioID ' +
+        'WHERE favoritos.Usuario = ?';
+    const favoritos = await connection.execute(qry, [id]);
     return favoritos;
 }
 

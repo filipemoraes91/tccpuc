@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
 import { iniUser } from '../../../inicialization/initial';
-import { TFDefault } from '../../../components/inputs/textField';
+import { TFDefault, TFPassword, TFPasswordConfirme } from '../../../components/inputs/textField';
 import { BtnCancelar, BtnSalvar } from '../../../components/inputs/button';
 import useUsuarios from '../../../hooks/useUsuarios';
 import { getInfUser } from '../../../utils';
@@ -17,18 +17,19 @@ export default function CadUser() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id > 0) {
-      getUsuario(id);
+    if (id > 0)
+      getUsuario(id)
+  }, [])
+
+
+  useEffect(() => {
+    if (usuario && !isLoading && window.location.pathname !== '/usuarios/novo')
       setUser(usuario);
-    } else {
-      setUser(iniUser);
-    }
   }, [isLoading])
 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value)
     setUser({ ...user, [name]: value });
   };
 
@@ -39,7 +40,7 @@ export default function CadUser() {
         Nome: user.Nome,
         Email: user.Email,
         Senha: user.Senha,
-        CPF: user.CPF
+        CPF: user.CPF,
       })
     } else {
       postUsuario({
@@ -69,9 +70,12 @@ export default function CadUser() {
           <br />
           <StackJustify>
             <TFDefault fullWidth={true} name="CPF" label="CPF" value={user.CPF} onChange={handleInputChange} />
-            <TFDefault fullWidth={true} name="Senha" label="Senha" value={user.Senha} onChange={handleInputChange} />
-            <TFDefault fullWidth={true} name="ConfirmarSenha" label="Confirmar Senha" value={user.ConfirmarSenha} onChange={handleInputChange} />
-            <SelectPerfil name='PerfilID' value={user.PerfilID} onChange={handleInputChange} />
+            <SelectPerfil name='PerfilID' value={user.PerfilID} />
+          </StackJustify>
+          <br />
+          <StackJustify>
+            <TFPassword value={user.Senha} onChange={handleInputChange} />
+            <TFPasswordConfirme value={user.ConfirmarSenha} onChange={handleInputChange} />
           </StackJustify>
           <br />
           <StackRight>

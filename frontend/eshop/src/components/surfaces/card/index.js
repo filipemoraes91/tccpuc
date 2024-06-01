@@ -49,7 +49,7 @@ export function CardProdutos(props) {
             <CardContent>
                 <Box>
                     <Typography variant="button" component="div" style={{ fontWeight: '600', fontSize: 18 }}>
-                        {produto.Nome}
+                        {produto.Nome}aaaa
                     </Typography>
                     <Typography variant="body2">
                         {produto.Descricao}

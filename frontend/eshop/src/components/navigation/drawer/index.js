@@ -2,14 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { IconCadClientes, IconCadProdutos, IconCadUsuarios, IconHome, IconOnFavorito } from '../../dataDisplay/icons';
-import { TGMenuDivider } from '../../dataDisplay/typography';
-import { getInfUser } from '../../../utils';
+import { IconProfile, IconCadProdutos, IconCadUsuarios, IconCategory, IconDocument, IconHome, IconOnFavorito, IconPerf, IconSale } from '../../dataDisplay/icons';
+import { getInfUser, permUser } from '../../../utils';
 
 function ItemMenu(props) {
     function direct() {
@@ -39,26 +37,16 @@ export default function TemporaryDrawer(props) {
                 <List>
                     <ItemMenu icon={<IconHome />} text='Home' link='home' />
 
-                    {/* ADM */}
-                    <Divider textAlign="left"><TGMenuDivider text='Administrador' /></Divider>
-                    <ItemMenu icon={<IconCadUsuarios />} text='Usuários' link='/usuarios' />
-                    <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Perfil' link='/perfil' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Vendas' link='/vendas' />
+                    {permUser('CadUser') ? <ItemMenu icon={<IconCadUsuarios />} text='Usuários' link='/usuarios' /> : ''}
+                    {permUser('CadPer') ? <ItemMenu icon={<IconProfile />} text='Perfis' link='/perfil' /> : ''}
+                    {getInfUser() ? <ItemMenu icon={<IconPerf />} text='Meu Perfil' link={`/meuperfil/${getInfUser().ID}`} /> : ''}
 
-                    {/* VENDEDORES */}
-                    <Divider textAlign="left"><TGMenuDivider text='Vendedores' /></Divider>
-                    <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' />
-                    <ItemMenu icon={<IconOnFavorito />} text='Categorias' link='/categorias' />
-
-                    {/* CLIENTES */}
-                    <Divider textAlign="left"><TGMenuDivider text='Clientes' /></Divider>
-                    {getInfUser() ? <ItemMenu icon={<IconOnFavorito />} text='Meu Perfil' link={`/meuperfil/${getInfUser().ID}`} /> : ''}
-                    {getInfUser() ? <ItemMenu icon={<IconOnFavorito />} text='Meus Pedidos' link={`/meuspedidos/${getInfUser().ID}`} /> : ''}
+                    {permUser('CadProd') ? <ItemMenu icon={<IconCadProdutos />} text='Produtos' link='/produtos' /> : ''}
+                    {permUser('CadCat') ? <ItemMenu icon={<IconCategory />} text='Categorias' link='/categorias' /> : ''}
                     {getInfUser() ? <ItemMenu icon={<IconOnFavorito />} text='Favoritos' link='/favoritos' /> : ''}
 
+                    {permUser('Vendas') ? <ItemMenu icon={<IconSale />} text='Vendas' link='/vendas' /> : ''}
+                    {getInfUser() ? <ItemMenu icon={<IconDocument />} text='Meus Pedidos' link={`/meuspedidos/${getInfUser().ID}`} /> : ''}
                 </List>
             </Box>
         </Drawer>

@@ -33,5 +33,15 @@ export function formatDate(data) {
     }
 
     const date = new Date(data);
-    return _formatZero(date.getDate()) + '/' + _formatZero(parseInt(date.getMonth()) + 1) + '/' +  date.getFullYear() ;
+    return _formatZero(date.getDate()) + '/' + _formatZero(parseInt(date.getMonth()) + 1) + '/' + date.getFullYear();
+}
+
+export function permUser(perm) {
+    let permissao = getInfUser()?.Perm;
+    try {
+        return (permissao.includes(perm));
+    } catch {
+        return false;
+    }
+
 }

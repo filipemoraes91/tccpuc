@@ -22,7 +22,7 @@ export function TFPassword(props) {
 }
 
 export function TFPasswordConfirme(props) {
-    return <TFDefault id="Senha" name="ConfirmarSenha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange} />
+    return <TFDefault id="ConfirmarSenha" name="ConfirmarSenha" type="Password" value={props.value} label="Senha" fullWidth={true} onChange={props.onChange} />
 }
 
 export function TFQtde(props) {
