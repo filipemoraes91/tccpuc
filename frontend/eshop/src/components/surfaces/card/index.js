@@ -49,7 +49,7 @@ export function CardProdutos(props) {
             <CardContent>
                 <Box>
                     <Typography variant="button" component="div" style={{ fontWeight: '600', fontSize: 18 }}>
-                        {produto.Nome}aaaa
+                        {produto.Nome}
                     </Typography>
                     <Typography variant="body2">
                         {produto.Descricao}
@@ -62,7 +62,7 @@ export function CardProdutos(props) {
                     </Typography>
                     <p />
                     <StackCenter>
-                        <img src={produto.LinkImg ? produto.LinkImg : 'https://img.freepik.com/vetores-gratis/ilustracao-de-galeria-icone_53876-27002.jpg?t=st=1710210992~exp=1710214592~hmac=8fd0c7965707fe14d785ae4861d2cd4125041f32ae63cf32f4cb1c960b8aa6f3&w=740'} width={200} height={140} />
+                        <img src={produto.LinkImg ? produto.LinkImg : 'https://img.freepik.com/vetores-gratis/ilustracao-de-galeria-icone_53876-27002.jpg?t=st=1710210992~exp=1710214592~hmac=8fd0c7965707fe14d785ae4861d2cd4125041f32ae63cf32f4cb1c960b8aa6f3&w=740'} width={220} height={170} />
                     </StackCenter>
                 </Box>
             </CardContent>

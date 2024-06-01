@@ -5,6 +5,7 @@ import useFavoritos from "../../../hooks/useFavoritos";
 import { CardProdutos } from "../../../components/surfaces/card";
 import { ContainerPages } from "../../../components/layout/container";
 import { useParams } from "react-router-dom";
+import { TGMedio } from "../../../components/dataDisplay/typography";
 
 export default function Favoritos() {
     const { id } = useParams();
@@ -31,7 +32,7 @@ export default function Favoritos() {
             <Paper elevation={1} style={{ background: 'rgb(0,0,0,0)', padding: '5px' }}>
                 <Box p={1}>
                     <Grid container spacing={2}>
-                        {favoritos ? favoritos.map(ListProdutos) : <h1>Aguarde...</h1>}
+                        {favoritos?.length > 0 ? favoritos.map(ListProdutos) : <Box p={1}><TGMedio text='Nenhum item adicionado' /></Box>}
                     </Grid>
                 </Box>
             </Paper>

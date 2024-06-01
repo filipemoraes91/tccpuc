@@ -43,7 +43,7 @@ const useFavoritos = () => {
       const response = await api.delete(`/favoritos/${ID}`);
       setIsLoading(false);
       alert(response.data.message)
-      window.location.href = '/favoritos'
+      window.location.href = `/favoritos/${getInfUser().ID}`
     } catch (err) {
       alert(err);
     }
