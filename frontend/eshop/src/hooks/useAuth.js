@@ -10,7 +10,7 @@ const useAuth = () => {
       const response = await axios.post('/login', user);
       setUser(response.data);
       sessionStorage.setItem('token', response.data.token);
-      sessionStorage.setItem('usuario', JSON.stringify({ ID: response.data.usuario.ID, Nome: response.data.usuario.Nome }));
+      sessionStorage.setItem('usuario', JSON.stringify({ ID: response.data.usuario.ID, Nome: response.data.usuario.Nome, Perm: response.data.usuario.Perm }));
       window.location.href = '/home';
     } catch (error) {
       alert('Erro de autenticação:', error);

@@ -28,10 +28,11 @@ const useProdutos = () => {
     }
   };
 
-  const getProdutos = async () => {
+  const getProdutos = async (idCategoria) => {
+    let url = `/produtos/${idCategoria > 0 ? idCategoria : ''}`
     try {
       setIsLoading(true);
-      const response = await api.get('/produtos');
+      const response = await api.get(url);
       setIsLoading(false);
       setProdutos(response.data);
     } catch (err) {

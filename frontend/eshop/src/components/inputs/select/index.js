@@ -7,6 +7,7 @@ import useApiIBGE from '../../../hooks/useApiIBGE';
 import usePerfil from '../../../hooks/usePerfil';
 import useEnderecos from '../../../hooks/useEnderecos';
 import { getInfUser } from '../../../utils';
+import useCategoria from '../../../hooks/useCategorias';
 
 export default function SelectUF(props) {
     const { getUFs, ufs } = useApiIBGE();
@@ -145,6 +146,34 @@ export function SelectEndereco(props) {
                 onChange={props.onChange}
             >
                 {listEnderecos.map(ListEnderecos)}
+            </Select>
+        </FormControl>
+    );
+}
+
+export function SelectCategorias(props) {
+    const { listCategoria, getCategoria } = useCategoria();
+
+    React.useEffect(() => {
+        getCategoria();
+    }, [])
+
+    function ListCategorias(categ, c) {
+        return <MenuItem key={c} value={categ.ID}>{categ.Nome}</MenuItem>
+    }
+    return (
+        <FormControl fullWidth size='small'>
+            <Select
+                variant="standard"
+                labelId="Categorias"
+                id="categorias"
+                name="CategoriaID"
+                value={props.value}
+                label="Categorias"
+                onChange={props.onChange}
+            >
+                <MenuItem key={-1} value={0}>Todas as categorias</MenuItem>
+                {listCategoria.map(ListCategorias)}
             </Select>
         </FormControl>
     );

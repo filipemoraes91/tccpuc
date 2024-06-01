@@ -8,6 +8,7 @@ import useProdutos from "../../../hooks/useProdutos";
 import { StackRight } from "../../../components/layout/stack";
 import { useParams } from "react-router-dom";
 import { TFDefault } from "../../../components/inputs/textField";
+import { SelectCategorias } from "../../../components/inputs/select";
 
 export default function CadProdutos() {
     const { putProduto, postProduto, getProduto, produto, isLoading } = useProdutos();
@@ -70,7 +71,7 @@ export default function CadProdutos() {
                                 <TFDefault fullWidth={true} id="Descricao" name='Descricao' onChange={handleInputChange} value={prod.Descricao} label="Descrição" />
                                 <TFDefault fullWidth={true} type='number' id="Preco" name='Preco' onChange={handleInputChange} value={prod.Preco} label="Preço" />
                                 <TFDefault fullWidth={true} type='number' id="Estoque" name='Estoque' onChange={handleInputChange} value={prod.Estoque} label="Estoque" />
-                                <TFDefault fullWidth={true} type='number' id="CategoriaID" name='CategoriaID' onChange={handleInputChange} value={prod.CategoriaID} label="Categoria" />
+                                <SelectCategorias  onChange={handleInputChange} value={prod.CategoriaID} />
                                 <TFDefault fullWidth={true} id="LinkImg" name='LinkImg' onChange={handleInputChange} value={prod.LinkImg} label="Link da Imagem" />
                                 <StackRight>
                                     <BtnSalvar />
