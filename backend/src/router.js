@@ -11,10 +11,9 @@ const carrinhoContrl = require('./controllers/carrinhoController');
 const favoritosContrl = require('./controllers/favoritosController');
 
 const router = express.Router();
-require('dotenv').config();
-const DB_HOST = process.env.DB_HOST;
+
 router.get('/', (req, res) => {
-  res.json({ message: 'Servidor online! banco:' + DB_HOST });
+  res.json({ message: 'Servidor online! banco:'});
 });
 
 router.post('/login', authControl.getAuth);
