@@ -38,7 +38,7 @@ const useCarrinho = () => {
   const getQtdeItens = async () => {
     // try {
     //   setIsLoading(true);
-    const response = await api.get('/carrinhoqtde');
+    const response = await api.get('/carrinhoqtde', {  withCredentials: true});
     // setIsLoading(false);
     setQtdeItens(response.data.itens);
     // } catch (err) {
