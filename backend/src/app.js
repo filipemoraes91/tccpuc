@@ -4,7 +4,7 @@ const cors = require('cors');
 const router = require('./router');
 
 const corsOptions = {
-     origin: '*', // Substitua pelo URL do seu frontend
+     origin: 'http://localhost:3000/', // Substitua pelo URL do seu frontend
      methods: ['GET', 'POST', 'PUT', 'DELETE'],
      allowedHeaders: ['Content-Type', 'Authorization'],
      credentials: false, // Se você precisa passar cookies ou autenticação
