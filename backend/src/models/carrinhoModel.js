@@ -2,7 +2,7 @@ const connection = require('./conection');
 const getAll = async () => {
     const carrinhoCompras = await connection.execute(
         'SELECT * FROM carrinhocompras ' +
-        'INNER JOIN produtos ON carrinhocompras.ProdutoID = produtos.ID '
+        'INNER JOIN produtos ON carrinhocompras.ProdutoID = produtos.ID'
     );
     return carrinhoCompras;
 }
@@ -18,9 +18,7 @@ const addItensCarrinho = async (item) => {
         // Capturando o erro específico do MySQL
         return { success: false, message: 'Erro ao adicionar usuário' };
     }
-
 }
-
 
 const removeItensCarrinho = async (id) => {
     const qry = 'DELETE FROM carrinhocompras WHERE ProdutoID = ?';
