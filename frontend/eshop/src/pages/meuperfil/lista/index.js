@@ -49,8 +49,7 @@ export default function MeuPerfil() {
         CPF: user.CPF,
         Telefone: user.Telefone,
         PerfilID: user.PerfilID
-      }, 'usuarioDados')
-      window.location.href = `/meuperfil/${id}`
+      }, 'usuarioDados')      
     }
     e.preventDefault();
   };
