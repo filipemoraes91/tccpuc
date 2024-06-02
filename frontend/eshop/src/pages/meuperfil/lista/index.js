@@ -23,17 +23,13 @@ export default function MeuPerfil() {
   useEffect(() => {
     if (id > 0) {
       getUsuario(id);
-      setUser({ ...usuario, ConfirmarSenha: usuario.Senha });
-    } else {
-      setUser(iniUser);
-    }
-  }, [isLoading])
-
-  useEffect(() => {
-    if (id > 0) {
       getEnderecos(id);
     }
   }, [])
+
+  useEffect(() => {
+    setUser({ ...usuario, ConfirmarSenha: usuario.Senha });
+  }, [isLoading])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

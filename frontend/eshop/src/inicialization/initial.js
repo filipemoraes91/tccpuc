@@ -25,6 +25,7 @@ export const iniEndereco = {
     Numero: 0,
     Estado: '',
     Cidade: '',
+    Bairro: '', 
     CEP: '',
     Complemento: '',
     Descricao: ''

@@ -39,6 +39,7 @@ export default function CadEndereco() {
         Numero: parseInt(end.Numero),
         CEP: end.CEP,
         Cidade: end.Cidade,
+        Bairro: end.Bairro, 
         Estado: end.Estado,
         Complemento: end.Complemento,
         Descricao: end.Descricao
@@ -51,13 +52,14 @@ export default function CadEndereco() {
         Numero: parseInt(end.Numero),
         CEP: end.CEP,
         Cidade: end.Cidade,
+        Bairro: end.Bairro, 
         Estado: end.Estado,
         Complemento: end.Complemento,
         Descricao: end.Descricao
       });
     }
     e.preventDefault();
-    // window.location.href = `/meuperfil/${idUser}`
+    window.location.href = `/meuperfil/${usuario}`
   };
 
   return (
@@ -76,9 +78,13 @@ export default function CadEndereco() {
           </StackJustify>
           <br />
           <StackJustify>
-            <TFDefault fullWidth={true} label="Número" name='Numero' value={end.Numero} onChange={handleInputChange} />
-            <TFDefault fullWidth={true} label="Rua" name='Rua' value={end.Rua} onChange={handleInputChange} />
             <TFDefault fullWidth={true} label="CEP" name='CEP' value={end.CEP} onChange={handleInputChange} />
+            <TFDefault fullWidth={true} label="Bairro" name='Bairro' value={end.Bairro} onChange={handleInputChange} />
+          </StackJustify>
+          <br />
+          <StackJustify>
+            <TFDefault fullWidth={true} label="Rua" name='Rua' value={end.Rua} onChange={handleInputChange} />
+            <TFDefault fullWidth={true} label="Número" name='Numero' value={end.Numero} onChange={handleInputChange} />
           </StackJustify>
           <br />
           <StackJustify>

@@ -12,12 +12,12 @@ const usePedido = () => {
   async function getPedido(id) {
     const response = await axios.get(`/pedido/${id}`);
     setPedido(response.data);
-    console.log(response.data)
     setIsLoading(true)
   }
 
   async function getPedidos(id) {
-    const response = await axios.get(`/meuspedidos/${id}`);
+    const url = id > 0 ? `/meuspedidos/${id}` : '/pedidos'
+    const response = await axios.get(url);
     setListPedido(response.data);
     setIsLoading(true)
   }

@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { ContainerPages } from "../../../components/layout/container";
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Card, FormControlLabel, List, ListItem, Paper, Radio, RadioGroup, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { CardItemCar } from "../../../components/surfaces/card";
+import useCarrinho from "../../../hooks/useCarrinho";
 import ToolBarPages from "../../../components/surfaces/toolBar";
-import { StackRight } from "../../../components/layout/stack";
-import { ButtonDetalhes } from "../../../components/inputs/button";
-import { formatDate } from "../../../utils";
+import { StackJustify, StackRight } from "../../../components/layout/stack";
+import { BtnFinalizar, ButtonDetalhes } from "../../../components/inputs/button";
+import { SelectEndereco, SelectParc } from "../../../components/inputs/select";
+import { TFDefault } from "../../../components/inputs/textField";
+import useEnderecos from "../../../hooks/useEnderecos";
+import { iniEndereco, iniPedido } from "../../../inicialization/initial";
+import { formatDate, getInfUser } from "../../../utils";
 import usePedido from "../../../hooks/usePedido";
 import { useParams } from "react-router-dom";
 
@@ -14,8 +20,7 @@ export default function MeusPedidos() {
     let total = 0;
 
     useEffect(() => {
-        if (id > 0)
-            getPedidos(id);
+        getPedidos(id);
     }, [])
 
     function ListPedidos(pedido) {
@@ -26,7 +31,7 @@ export default function MeusPedidos() {
             <TableCell>{pedido.FormaPagto}</TableCell>
             <TableCell>{pedido.QtdeParcelas}</TableCell>
             <TableCell>{pedido.TotalPedido}</TableCell>
-            <TableCell align="right"><ButtonDetalhes onClick={() => window.location.href = `/meuspedidos/${id}/pedido/${pedido.ID}`} /></TableCell>
+            <TableCell align="right"><ButtonDetalhes onClick={() => window.location.href = `/meuspedidos/${id}/pedido/${pedido.ID}`}/></TableCell>
         </TableRow>
     }
 
@@ -44,7 +49,7 @@ export default function MeusPedidos() {
                                 <TableCell>Forma de Pagto</TableCell>
                                 <TableCell>Qtde Parcelas</TableCell>
                                 <TableCell>Total</TableCell>
-                                <TableCell />
+                                <TableCell/>
                             </TableRow>
                         </TableHead>
                         <TableBody>

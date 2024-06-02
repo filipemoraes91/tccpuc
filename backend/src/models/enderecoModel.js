@@ -1,17 +1,17 @@
 const connection = require('./conection');
 
 const addEndereco = async (endereco) => {
-    const { UsuarioID, Estado, Cidade, Rua, Numero, Complemento, CEP, Descricao } = endereco;
-    const qry = 'INSERT INTO enderecos (UsuarioID, Estado, Cidade, Rua, Numero, Complemento, CEP, Descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-    const addEndereco = await connection.execute(qry, [UsuarioID, Estado, Cidade, Rua, Numero, Complemento, CEP, Descricao]);
+    const { UsuarioID, Estado, Cidade, Bairro,  Rua, Numero, Complemento, CEP, Descricao } = endereco;
+    const qry = 'INSERT INTO enderecos (UsuarioID, Estado, Cidade, Bairro,  Rua, Numero, Complemento, CEP, Descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const addEndereco = await connection.execute(qry, [UsuarioID, Estado, Cidade, Bairro,  Rua, Numero, Complemento, CEP, Descricao]);
     return addEndereco;
 }
 
 const putEndereco = async (endereco) => {
     try {
-        const { Estado, Cidade, Rua, Numero, CEP, Complemento, Descricao, ID } = endereco;
-        const qry = 'UPDATE enderecos SET Estado = ? , Cidade = ? , Rua = ? , Numero = ?, CEP = ? , Complemento = ? , Descricao = ?  WHERE ID = ?';
-        const putEndereco = await connection.execute(qry, [Estado, Cidade, Rua, Numero, CEP, Complemento, Descricao, ID]);
+        const { Estado, Cidade, Bairro, Rua, Numero, CEP, Complemento, Descricao, ID } = endereco;
+        const qry = 'UPDATE enderecos SET Estado = ? , Cidade = ? , Bairro = ?,  Rua = ? , Numero = ?, CEP = ? , Complemento = ? , Descricao = ?  WHERE ID = ?';
+        const putEndereco = await connection.execute(qry, [Estado, Cidade, Bairro, Rua, Numero, CEP, Complemento, Descricao, ID]);
         return putEndereco;
     } catch (error) {
         console.error('Erro ao adicionar usuário:', error);

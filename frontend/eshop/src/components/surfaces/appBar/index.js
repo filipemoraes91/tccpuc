@@ -52,7 +52,7 @@ export default function MenuAppBar() {
         onClose={handleClose}
       >
         <MenuItem style={{ minWidth: '200px' }}>
-          <Link to="/perfil" style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }}>Perfil</Link>
+          <Link to={`/meuperfil/${getInfUser().ID}`} style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }}>Perfil</Link>
         </MenuItem>
         <MenuItem style={{ minWidth: '200px' }}>
           <Link to="/home" style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }} onClick={() => Logoff()}>Sair</Link>
@@ -96,9 +96,12 @@ export default function MenuAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            eShop
-          </Typography>
+          <Link to="/home" style={{ textDecoration: 'none', color: 'white', flexGrow: 1 }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              eShop
+            </Typography>
+          </Link>
+
           {getInfUser() ?
             <StackJustify>
               <Link to="/carrinho" style={{ textDecoration: 'none', color: 'inherit' }}>

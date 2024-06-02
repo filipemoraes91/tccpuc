@@ -38,6 +38,7 @@ export default function RoutesApp() {
 
         <Route path="/meuperfil/:id" element={<MeuPerfil />} />
         <Route path="/meuspedidos/:id" element={<MeusPedidos />} />
+        <Route path="/vendas" element={<MeusPedidos />} />
         <Route path="/meuspedidos/:idUser/pedido/:id" element={<DetailPedido />} />
 
         <Route path="/categorias" element={<ListCategoria />} />
