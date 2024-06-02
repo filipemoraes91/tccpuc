@@ -10,15 +10,16 @@ const getAll = async () => {
 const getPedido = async (id) => {
     const qry = 'SELECT * FROM pedidos WHERE ID = ?';
     const ped = await connection.execute(qry, [id]);
-    
+
     const itensQry = 'SELECT * FROM itenspedido ' +
-    'INNER JOIN produtos ON Produtos.ID = itensPedido.ProdutoID ' +
-    'WHERE itenspedido.PedidoID = ?';
+        'INNER JOIN produtos ON produtos.ID = itenspedido.PedidoID ' +
+        'where itenspedido.PedidoID  = ?';
+
     const itensPedido = await connection.execute(itensQry, [id]);
-    
+
     const enderecoQry = 'SELECT * FROM enderecos WHERE ID = ?';
     const endereco = await connection.execute(enderecoQry, [ped[0][0].EntregaID]);
-    
+
     const pedido = {
         ...ped[0][0],
         Endereco: endereco[0][0],
