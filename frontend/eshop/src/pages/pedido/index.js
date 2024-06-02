@@ -12,6 +12,7 @@ import useEnderecos from "../../hooks/useEnderecos";
 import { iniEndereco, iniPedido } from "../../inicialization/initial";
 import { formatDateSQL, getInfUser } from "../../utils";
 import usePedido from "../../hooks/usePedido";
+import { Link } from "react-router-dom";
 
 export default function Pedido() {
     const { getItens, itens } = useCarrinho();
@@ -50,17 +51,21 @@ export default function Pedido() {
     }
 
     const finalizaPedido = (e) => {
-        const ped = {
-            DataPedido: formatDateSQL(pedido.DataPedido),
-            EntregaID: pedido.EntregaID,
-            FormaPagto: pedido.FormaPagto,
-            QtdeParcelas: pedido.QtdeParcelas,
-            TotalPedido: parseFloat(total.toFixed(2)),
-            UsuarioID: getInfUser().ID,
-            Itens: itens
+        if (pedido.EntregaID > 0) {
+            const ped = {
+                DataPedido: formatDateSQL(pedido.DataPedido),
+                EntregaID: pedido.EntregaID,
+                FormaPagto: pedido.FormaPagto,
+                QtdeParcelas: pedido.QtdeParcelas,
+                TotalPedido: parseFloat(total.toFixed(2)),
+                UsuarioID: getInfUser().ID,
+                Itens: itens
+            }
+            // console.log(ped)
+            postPedido(ped);
+        } else{
+            alert('Obrigatório selecionar um endereço! Caso não possua nenhum cadastro acesse seu perfil e realize o cadastro.');
         }
-        // console.log(ped)
-        postPedido(ped);
     }
 
     return (
