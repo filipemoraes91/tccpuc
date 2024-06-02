@@ -10,6 +10,7 @@ export function Logoff() {
     sessionStorage.clear();
     localStorage.clear();
     window.location.reload();
+    window.location.href = '/home'
 }
 
 export function formatDateSQL(data) {

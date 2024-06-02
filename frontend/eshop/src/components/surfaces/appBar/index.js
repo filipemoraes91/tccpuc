@@ -55,7 +55,7 @@ export default function MenuAppBar() {
           <Link to={`/meuperfil/${getInfUser().ID}`} style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }}>Perfil</Link>
         </MenuItem>
         <MenuItem style={{ minWidth: '200px' }}>
-          <Link to="/home" style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }} onClick={() => Logoff()}>Sair</Link>
+          <Link to="#" style={{ textDecoration: 'none', minWidth: '100%', color: 'black' }} onClick={() => Logoff()}>Sair</Link>
         </MenuItem>
       </Menu>
     } else {
