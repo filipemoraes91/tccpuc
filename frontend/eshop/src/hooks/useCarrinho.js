@@ -27,7 +27,7 @@ const useCarrinho = () => {
   const getItens = async () => {
     try {
       setIsLoading(true);
-      const response = await api.get('/carrinho');
+      const response = await api.get(`/carrinho/${getInfUser().ID}`);
       setIsLoading(false);
       setItens(response.data);
     } catch (err) {
@@ -38,7 +38,7 @@ const useCarrinho = () => {
   const getQtdeItens = async () => {
     // try {
     //   setIsLoading(true);
-    const response = await api.get('/carrinhoqtde', {  withCredentials: true});
+    const response = await api.get(`/carrinhoqtde/${getInfUser().ID}`, {  withCredentials: true});
     // setIsLoading(false);
     setQtdeItens(response.data.itens);
     // } catch (err) {

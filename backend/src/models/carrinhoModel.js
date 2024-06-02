@@ -1,9 +1,9 @@
 const connection = require('./conection');
-const getAll = async () => {
-    const carrinhoCompras = await connection.execute(
-        'SELECT * FROM carrinhocompras ' +
-        'INNER JOIN produtos ON carrinhocompras.ProdutoID = produtos.ID'
-    );
+const getAll = async (id) => {
+    const qry = 'SELECT * FROM carrinhocompras ' +
+        'INNER JOIN produtos ON carrinhocompras.ProdutoID = produtos.ID ' +
+        'WHERE carrinhocompras.UsuarioID = ?'
+    const carrinhoCompras = await connection.execute(qry, [id]);
     return carrinhoCompras;
 }
 

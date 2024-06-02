@@ -26,8 +26,8 @@ router.put('/endereco/:id/:idEnd', enderecoContrl.putEndereco);
 router.post('/endereco', enderecoContrl.addEndereco);
 router.delete('/endereco/delete/:id', enderecoContrl.deleteEndereco);
 
-router.get('/carrinho', carrinhoContrl.getAll);
-router.get('/carrinhoqtde', carrinhoContrl.getQtdeItens);
+router.get('/carrinho/:id', carrinhoContrl.getAll);
+router.get('/carrinhoqtde/:id', carrinhoContrl.getQtdeItens);
 router.post('/carrinho', carrinhoContrl.addItensCarrinho);
 router.delete('/carrinho/:id', carrinhoContrl.removeItensCarrinho);
 
