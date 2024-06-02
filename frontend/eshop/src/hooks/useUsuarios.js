@@ -25,10 +25,12 @@ const useUsuarios = () => {
                 setIsLoading(true);
                 const response = await api.put(`/usuarioDados/${usuario.ID}`, usuario);
                 alert(response.data.message);
+                window.location.href = `/meuperfil/${usuario.ID}`
             } else {
                 setIsLoading(true);
                 const response = await api.put(`/usuario/${usuario.ID}`, usuario);
                 alert(response.data.message);
+                window.location.href = `/meuperfil/${usuario.ID}`
             }
         } catch (err) {
             alert(err.response.data.message);
