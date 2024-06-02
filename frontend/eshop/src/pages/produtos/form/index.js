@@ -45,7 +45,7 @@ export default function CadProdutos() {
             Nome: prod.Nome,
             Descricao: prod.Descricao,
             Preco: parseFloat(prod.Preco),
-            Estoque: parseFloat(prod.Estoque),
+            Estoque: parseInt(prod.Estoque),
             CategoriaID: parseInt(prod.CategoriaID),
             LinkImg: prod.LinkImg
         }

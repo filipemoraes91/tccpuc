@@ -57,8 +57,6 @@ export function CardProdutos(props) {
                         R$ {produto.Preco}
                         <br />
                         Estoque:{produto.Estoque}
-                        <br />
-                        Categoria:{produto.Categoria}
                     </Typography>
                     <p />
                     <StackCenter>
