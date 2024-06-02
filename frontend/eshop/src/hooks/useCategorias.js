@@ -30,7 +30,7 @@ const useCategoria = () => {
       setIsLoading(true);
       const response = await api.post('/categoria/novo', categoria);
       alert(response.data.message);
-      window.location.href = '/categoria'
+      window.location.href = '/categorias'
     } catch (err) {
       alert(err.response.data.message);
     }
@@ -41,6 +41,7 @@ const useCategoria = () => {
     try {
       const response = await api.put(`/categoria/editar/${categoria.ID}`, categoria);
       alert(response.data.message);
+      window.location.href = '/categorias'
     } catch (err) {
       alert(err.response.data.message);
     }
@@ -51,7 +52,7 @@ const useCategoria = () => {
       setIsLoading(true);
       const response = await api.delete(`/categoria/delete/${id}`);
       alert(response.data.message);
-      window.location.reload();
+      window.location.href = '/categorias'
     } catch (err) {
       alert(err.response.data.message);
     }

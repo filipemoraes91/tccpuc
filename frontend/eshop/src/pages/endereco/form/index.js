@@ -58,8 +58,7 @@ export default function CadEndereco() {
         Descricao: end.Descricao
       });
     }
-    e.preventDefault();
-    window.location.href = `/meuperfil/${usuario}`
+    e.preventDefault();    
   };
 
   return (

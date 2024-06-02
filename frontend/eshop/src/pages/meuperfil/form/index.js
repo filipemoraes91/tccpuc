@@ -53,7 +53,6 @@ export default function MeuPerfil() {
             PerfilID: user.PerfilID
         })
         e.preventDefault();
-        window.location.href = `/meuperfil/${id}`
     };
 
     return (

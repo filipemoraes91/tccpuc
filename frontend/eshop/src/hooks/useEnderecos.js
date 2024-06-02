@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import api from '../services';
+import { getInfUser } from '../utils';
 
 const 
 useEnderecos = () => {
@@ -12,6 +13,7 @@ useEnderecos = () => {
             setIsLoading(true);
             const response = await api.post(`/endereco`, endereco);
             alert(response.data.message);
+            window.location.href = `/meuperfil/${endereco.UsuarioID}`;
         } catch (err) {
             alert(err.response.data.message);
         }

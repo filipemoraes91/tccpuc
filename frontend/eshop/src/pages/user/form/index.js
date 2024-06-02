@@ -54,7 +54,6 @@ export default function CadUser() {
     }
 
     e.preventDefault();
-    window.location.href = '/usuarios'
   };
 
   return (

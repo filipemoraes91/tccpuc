@@ -36,8 +36,6 @@ export default function Categoria() {
             postCategoria(categ);
         else
             putCategoria(categ);
-
-        window.location.href = '/categorias'
     };
 
     return (

@@ -53,8 +53,6 @@ export default function CadProdutos() {
             postProduto(p);
         else
             putProduto(p);
-
-        window.location.href = '/produtos'
     };
 
 

@@ -12,6 +12,7 @@ const useProdutos = () => {
       setIsLoading(true);
       const response = await api.post('/produtos/novo', produto);
       alert(response.data.message);
+      window.location.href = '/produtos'
     } catch (err) {
       alert(err.response.data.message);
     }
@@ -23,6 +24,7 @@ const useProdutos = () => {
     try {
       const response = await api.put(`/produtos/editar/${produto.ID}`, produto);
       alert(response.data.message);
+      window.location.href = '/produtos'
     } catch (err) {
       alert(err.response.data.message);
     }
