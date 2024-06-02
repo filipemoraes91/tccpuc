@@ -11,7 +11,9 @@ const useUsuarios = () => {
         try {
             setIsLoading(true);
             const response = await api.post('/usuario/novo', usuario);
+            alert(response);
             alert('Usuário cadastrado com sucesso!');
+            window.location.href = '/login';
         } catch (err) {
             alert('Erro ao cadastrar usuário!');
         }

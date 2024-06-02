@@ -35,7 +35,6 @@ export default function Login() {
                 return '';
             } else {
                 postUsuario(user);
-                window.location.reload();
             }
     }
 
