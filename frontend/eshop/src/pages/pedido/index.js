@@ -61,7 +61,6 @@ export default function Pedido() {
                 UsuarioID: getInfUser().ID,
                 Itens: itens
             }
-            // console.log(ped)
             postPedido(ped);
         } else{
             alert('Obrigatório selecionar um endereço! Caso não possua nenhum cadastro acesse seu perfil e realize o cadastro.');

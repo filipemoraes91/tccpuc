@@ -15,9 +15,9 @@ async function getUsuario(id) {
 
 const addUsuario = async (usuario) => {
     try {
-        const { CPF, Nome, Email, Senha, PerfilID } = usuario;
-        const qry = 'INSERT INTO usuarios (CPF, Nome, Email, Senha, PerfilID) VALUES (?, ?, ?, ?, ?)';
-        const addUsuario = await connection.execute(qry, [CPF, Nome, Email, Senha, PerfilID]);
+        const { CPF, Nome, Email, Senha, Telefone, PerfilID } = usuario;
+        const qry = 'INSERT INTO usuarios (CPF, Nome, Email, Senha, Telefone, PerfilID) VALUES (?, ?, ?, ?, ?, ?)';
+        const addUsuario = await connection.execute(qry, [CPF, Nome, Email, Senha, Telefone, PerfilID]);
         return addUsuario;
     } catch (error) {
         console.error('Erro ao adicionar usuário:', error);

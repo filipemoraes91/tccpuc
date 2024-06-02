@@ -15,7 +15,8 @@ export const iniUser = {
     Senha: '',
     ConfirmarSenha: '',
     PerfilID: 3,
-    CPF: ''
+    CPF: '',
+    Telefone: ''
 }
 
 export const iniEndereco = {
