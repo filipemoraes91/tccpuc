@@ -36,7 +36,7 @@ export default function Login() {
                 return '';
             } else {
                 postUsuario(user);
-                window.location.reload();
+                // window.location.reload();
             }
     }
 
@@ -55,6 +55,12 @@ export default function Login() {
                                 <Grid item xs={12}>
                                     <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
                                         <TFDefault fullWidth={true} name="Nome" label="Nome" value={user.Nome} onChange={handleInputChange} />
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    <Box style={{ background: 'white', padding: '10px', borderRadius: '5px' }}>
+                                        <TFDefault fullWidth={true} name="CPF" label="CPF" value={user.CPF} onChange={handleInputChange} />
                                     </Box>
                                 </Grid>
 
