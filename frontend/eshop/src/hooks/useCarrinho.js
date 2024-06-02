@@ -36,14 +36,10 @@ const useCarrinho = () => {
   };
 
   const getQtdeItens = async () => {
-    // try {
-    //   setIsLoading(true);
-    const response = await api.get(`/carrinhoqtde/${getInfUser().ID}`, {  withCredentials: true});
-    // setIsLoading(false);
-    setQtdeItens(response.data.itens);
-    // } catch (err) {
-    // alert(err.response.data.message);
-    // }
+    if (getInfUser()) {
+      const response = await api.get(`/carrinhoqtde/${getInfUser().ID}`, { withCredentials: true });
+      setQtdeItens(response.data.itens);
+    }
   };
 
   const deleteItens = async (ID) => {
