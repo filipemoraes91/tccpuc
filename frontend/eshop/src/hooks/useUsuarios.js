@@ -11,9 +11,9 @@ const useUsuarios = () => {
         try {
             setIsLoading(true);
             const response = await api.post('/usuario/novo', usuario);
-            alert(response.data.message);
+            alert('Usuário cadastrado com sucesso!');
         } catch (err) {
-            alert(err.response.data.message);
+            alert('Erro ao cadastrar usuário!');
         }
         setIsLoading(false);
     };

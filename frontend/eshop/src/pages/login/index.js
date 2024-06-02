@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Container, Typography, Paper, Box, Grid } from '@mui/material';
 import './index.css'
 import { LogoP, LogoM } from '../../images';
-import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { TFDefault, TFPassword, TFPasswordConfirme, TFUser } from '../../components/inputs/textField';
 import { iniUser } from '../../inicialization/initial';
@@ -36,7 +35,7 @@ export default function Login() {
                 return '';
             } else {
                 postUsuario(user);
-                // window.location.reload();
+                window.location.reload();
             }
     }
 

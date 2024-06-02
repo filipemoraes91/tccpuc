@@ -2,7 +2,7 @@ const connection = require('./conection');
 
 const addEndereco = async (endereco) => {
     const { UsuarioID, Estado, Cidade, Bairro,  Rua, Numero, Complemento, CEP, Descricao } = endereco;
-    const qry = 'INSERT INTO enderecos (UsuarioID, Estado, Cidade, Bairro,  Rua, Numero, Complemento, CEP, Descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const qry = 'INSERT INTO enderecos (UsuarioID, Estado, Cidade, Bairro,  Rua, Numero, Complemento, CEP, Descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
     const addEndereco = await connection.execute(qry, [UsuarioID, Estado, Cidade, Bairro,  Rua, Numero, Complemento, CEP, Descricao]);
     return addEndereco;
 }
